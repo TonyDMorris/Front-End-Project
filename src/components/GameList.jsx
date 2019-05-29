@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import GameCard from './GameCard';
+import { Paper } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
+
+const styles = {
+	gameCard: {
+		padding: '20px',
+	},
+};
 
 class GameList extends Component {
 	render() {
-		console.log(this.props.games, 'props.games');
+		const { classes } = this.props;
 		return (
 			<div>
-				<h1>Gamelist</h1>
-
-				<ul>
-					{this.props.game &&
+				<div>
+					{this.props.games &&
 						this.props.games.map(game => {
-							return <h1>{game.title}</h1>;
-							// return <GameCard game={game} />;
+							return (
+								<Paper className={classes.gameCard} key={game.id}>
+									<GameCard game={game} />
+								</Paper>
+							);
 						})}
-				</ul>
+				</div>
 			</div>
 		);
 	}
 }
 
-export default GameList;
+export default withStyles(styles)(GameList);
