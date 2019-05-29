@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { Link } from "@reach/router";
 
 function Header() {
+  const [isHome, changeHome] = useState(true);
+  console.log(window.location.pathname);
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -11,7 +14,25 @@ function Header() {
           <Typography variant="h6" className={classes.title}>
             App Name
           </Typography>
-          <Button color="inherit">Create New Game</Button>
+          {isHome ? (
+            <Button
+              onClick={() => {
+                changeHome(!isHome);
+              }}
+              color="inherit"
+            >
+              <Link to="/create">Create New Game</Link>
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                changeHome(!isHome);
+              }}
+              color="inherit"
+            >
+              <Link to="/">Home</Link>
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>
