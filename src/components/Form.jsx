@@ -54,18 +54,22 @@ class Form extends Component {
           />
         </FormGroup>
         <TextField
+          value={mainclue}
           label="Main clue:"
           onChange={e => this.handleChange("mainclue", e.target.value)}
         />
         <TextField
+          value={clue2}
           label="Second clue:"
           onChange={e => this.handleChange("clue2", e.target.value)}
         />
         <TextField
+          value={clue3}
           label="Third clue:"
           onChange={e => this.handleChange("clue3", e.target.value)}
         />
         <TextField
+          value={wintext}
           label="Level completion message:"
           onChange={e => this.handleChange("wintext", e.target.value)}
         />
@@ -73,6 +77,14 @@ class Form extends Component {
           <Fab
             onClick={() => {
               this.props.handleLevel(this.state);
+              this.setState({
+                wincondition: "string",
+                mainclue: "",
+                clue2: "",
+                clue3: "",
+                wintext: "",
+                windata: ""
+              });
             }}
             color="primary"
             aria-label="Add"
@@ -133,10 +145,3 @@ class Form extends Component {
   };
 }
 export default Form;
-
-//props == handleLevel
-
-//next level
-// checkbox  gps sound
-
-//buttoncamsoundgps component
