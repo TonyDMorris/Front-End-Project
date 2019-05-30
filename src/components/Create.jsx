@@ -19,7 +19,7 @@ class Create extends React.Component {
         />
         <Form />
         <TextField
-          label="Completion text:"
+          label="Game completion message:"
           onChange={e => this.handleChange("completion", e.target.value)}
         />
       </Card>

@@ -5,8 +5,10 @@ import {
   TextField,
   FormGroup,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  Fab
 } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 
 class Form extends Component {
   state = {
@@ -15,10 +17,17 @@ class Form extends Component {
     clue2: "",
     clue3: "",
     wintext: "",
-    windata: ""
+    windata: "turruu"
   };
   render() {
-    const { wincondition } = this.state;
+    const {
+      wincondition,
+      mainclue,
+      clue2,
+      clue3,
+      wintext,
+      windata
+    } = this.state;
     return (
       <Card>
         <FormGroup row>
@@ -55,6 +64,16 @@ class Form extends Component {
           label="Third clue:"
           onChange={e => this.handleChange("clue3", e.target.value)}
         />
+        <TextField
+          label="Level completion message:"
+          onChange={e => this.handleChange("wintext", e.target.value)}
+        />
+        {wincondition && mainclue && clue2 && clue3 && wintext && windata && (
+          <Fab color="primary" aria-label="Add" variant="extended">
+            <AddIcon />
+            Add Level
+          </Fab>
+        )}
       </Card>
     );
   }
@@ -71,14 +90,6 @@ export default Form;
 //props == handleLevel
 
 //next level
-// checkbox img txt gps sound
-
-// main clue
-
-// 2nd clue
-
-// 3rd clue
-
-//win txt
+// checkbox  gps sound
 
 //buttoncamsoundgps component
