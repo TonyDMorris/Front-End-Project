@@ -21,7 +21,6 @@ class Play extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         {this.state.game.levels && (
@@ -31,6 +30,7 @@ class Play extends React.Component {
             changeLevel={this.changeLevel}
             attempts={this.state.attempts}
             checkAnswer={this.checkAnswer}
+            checkPhotoAnswer={this.checkPhotoAnswer}
             changeLevelButton={this.state.changeLevelButton}
             title={this.state.game.title}
             numLevels={this.state.game.levels.length}
@@ -51,6 +51,25 @@ class Play extends React.Component {
       this.setState(prevState => {
         return { changeLevelButton: true };
       });
+    } else {
+      this.setState(prevState => {
+        return { attempts: prevState.attempts + 1 };
+      });
+    }
+  };
+
+  checkPhotoAnswer = inputArray => {
+    let windata = this.state.game.levels[this.state.curLevel].windata;
+
+    let total = [...inputArray, ...windata];
+    let comparison = new Set([...windata, ...inputArray]);
+    let comparisonArray = [...comparison];
+
+    console.log(comparisonArray.length, "comparisonArray length");
+    console.log(total.length, "total.length");
+
+    if (comparisonArray.length < total.length) {
+      this.setState({ changeLevelButton: true });
     } else {
       this.setState(prevState => {
         return { attempts: prevState.attempts + 1 };
