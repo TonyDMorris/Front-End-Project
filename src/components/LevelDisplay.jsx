@@ -1,10 +1,15 @@
 import React from "react";
 import { Typography, Link } from "@material-ui/core";
 import { Link as linkReach } from "@reach/router";
+import SnapShot from "./SnapShot";
+import vision from "react-cloud-vision-api";
+vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
 class LevelDisplay extends React.Component {
   state = {
-    input: ""
+    input: "",
+    location: "",
+    takingPic: false
   };
   render() {
     return (
@@ -51,6 +56,21 @@ class LevelDisplay extends React.Component {
                 <button onClick={this.handleGPS}>Check GPS</button>
               )}
 
+            {this.props.changeLevelButton === false &&
+              this.props.winCondition === "image" && (
+                <div style={{ height: "100vh" }} className="App">
+                  {this.state.takingPic && (
+                    <SnapShot
+                      handleCamera={this.handleCamera}
+                      handlePhoto={this.classifyImage}
+                    />
+                  )}
+                  {!this.state.takingPic && (
+                    <button onClick={this.handleCamera}>take pic</button>
+                  )}
+                </div>
+              )}
+
             {this.props.changeLevelButton && (
               <div>
                 <Typography variant="h3">
@@ -76,18 +96,57 @@ class LevelDisplay extends React.Component {
     );
   }
 
+  handleCamera = () => {
+    this.setState({ takingPic: !this.state.takingPic });
+  };
+
   handleChange = e => {
     this.setState({ input: e.target.value });
   };
 
   handleGPS = e => {
-    this.setState({ input: e.target.value });
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setState(
+        {
+          location: `${position.coords.latitude.toFixed(
+            4
+          )},${position.coords.longitude.toFixed(4)}`
+        },
+        () => {
+          this.props.checkAnswer(this.state.location);
+        }
+      );
+    });
   };
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.checkAnswer(this.state.input);
     this.setState({ input: "" });
+  };
+
+  classifyImage = base64Img => {
+    const vision = require("react-cloud-vision-api");
+    vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
+    const req = new vision.Request({
+      image: new vision.Image({
+        base64: base64Img
+      }),
+      features: [new vision.Feature("LABEL_DETECTION", 10)]
+    });
+
+    return vision.annotate(req).then(
+      ({ responses }) => {
+        const labels = responses[0].labelAnnotations.reduce((acc, curr) => {
+          acc.push(curr.description);
+          return acc;
+        }, []);
+        this.setState({ input: labels });
+      },
+      e => {
+        console.log("Error: ", e);
+      }
+    );
   };
 }
 
