@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import LevelInputButton from "./LevelInputButton";
 import {
   Card,
-  Typography,
   TextField,
   FormGroup,
   FormControlLabel,
@@ -17,7 +17,7 @@ class Form extends Component {
     clue2: "",
     clue3: "",
     wintext: "",
-    windata: "turruu"
+    windata: ""
   };
   render() {
     const {
@@ -74,6 +74,10 @@ class Form extends Component {
             Add Level
           </Fab>
         )}
+        <LevelInputButton
+          wincondition={wincondition}
+          handleWinData={this.handleWinData}
+        />
       </Card>
     );
   }
@@ -83,6 +87,13 @@ class Form extends Component {
 
   handleChange = (str, value) => {
     this.setState({ [str]: value });
+  };
+
+  handleWinData = value => {
+    const { wincondition } = this.state;
+    if (wincondition === "string") {
+      this.setState({ windata: value });
+    }
   };
 }
 export default Form;
