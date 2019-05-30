@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link as ReachLink } from '@reach/router';
-import { Card, Link } from '@material-ui/core';
+import React from "react";
+import { Link as ReachLink } from "@reach/router";
+import { Card, Link } from "@material-ui/core";
 
 const GameLink = React.forwardRef((props, ref) => (
   <ReachLink innerRef={ref} {...props} />
 ));
 
-const GameCard = (props) => {
+const GameCard = props => {
   const { game } = props;
   console.log(game);
   return (
