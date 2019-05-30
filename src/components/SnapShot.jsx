@@ -17,23 +17,25 @@ class SnapShot extends Component {
     return (
       <div syle={{}} className="App">
         {openCamera && (
-          <Camera
-            onTakePhoto={dataUri => {
-              this.onTakePhoto(dataUri);
-            }}
-            idealResolution={{ width: 400, height: 800 }}
-            imageType={IMAGE_TYPES.JPG}
-            imageCompression={0.97}
-            isMaxResolution={false}
-            isImageMirror={false}
-            isSilentMode={true}
-            isDisplayStartCameraError={true}
-            isFullscreen={true}
-            sizeFactor={1}
-            onTakePhoto={dataUri => {
-              this.onTakePhoto(dataUri);
-            }}
-          />
+          <Modal open={true}>
+            <Camera
+              onTakePhoto={dataUri => {
+                this.onTakePhoto(dataUri);
+              }}
+              idealResolution={{ width: 400, height: 800 }}
+              imageType={IMAGE_TYPES.JPG}
+              imageCompression={0.97}
+              isMaxResolution={false}
+              isImageMirror={false}
+              isSilentMode={true}
+              isDisplayStartCameraError={true}
+              isFullscreen={true}
+              sizeFactor={1}
+              onTakePhoto={dataUri => {
+                this.onTakePhoto(dataUri);
+              }}
+            />
+          </Modal>
         )}
         {!openCamera && (
           <Button

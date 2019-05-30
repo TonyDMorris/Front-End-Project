@@ -17,7 +17,7 @@ class Create extends React.Component {
           label="Description:"
           onChange={e => this.handleChange("description", e.target.value)}
         />
-        <Form />
+        <Form handleLevel={this.handleLevel} />
         <TextField
           label="Game completion message:"
           onChange={e => this.handleChange("completion", e.target.value)}
@@ -36,9 +36,10 @@ class Create extends React.Component {
   handleChange = (str, value) => {
     this.setState({ [str]: value });
   };
-  //handleLevel = ()=>{
-  //handleSubmit=()=>{
-  //navigate to created game
+  handleLevel = level => {
+    const { levels } = this.state;
+    this.setState({ levels: [...levels, level] });
+  };
 }
 
 export default Create;

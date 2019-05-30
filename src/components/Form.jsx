@@ -9,7 +9,8 @@ import {
   Fab
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-
+import vision from "react-cloud-vision-api";
+vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 class Form extends Component {
   state = {
     wincondition: "string",
@@ -69,7 +70,14 @@ class Form extends Component {
           onChange={e => this.handleChange("wintext", e.target.value)}
         />
         {wincondition && mainclue && clue2 && clue3 && wintext && windata && (
-          <Fab color="primary" aria-label="Add" variant="extended">
+          <Fab
+            onClick={() => {
+              this.props.handleLevel(this.state);
+            }}
+            color="primary"
+            aria-label="Add"
+            variant="extended"
+          >
             <AddIcon />
             Add Level
           </Fab>
@@ -95,8 +103,33 @@ class Form extends Component {
       this.setState({ windata: value });
     }
     if (wincondition === "image") {
-      console.log(value);
+      return this.classifyImage(value).then(labels => {
+        this.setState({ windata: labels });
+      });
     }
+  };
+  classifyImage = base64Img => {
+    const vision = require("react-cloud-vision-api");
+    vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
+    const req = new vision.Request({
+      image: new vision.Image({
+        base64: base64Img
+      }),
+      features: [new vision.Feature("LABEL_DETECTION", 10)]
+    });
+
+    return vision.annotate(req).then(
+      ({ responses }) => {
+        const labels = responses[0].labelAnnotations.reduce((acc, curr) => {
+          acc.push(curr.description);
+          return acc;
+        }, []);
+        return labels;
+      },
+      e => {
+        console.log("Error: ", e);
+      }
+    );
   };
 }
 export default Form;
