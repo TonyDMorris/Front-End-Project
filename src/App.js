@@ -24,7 +24,7 @@ class App extends React.Component {
         <Router>
           <Home path="/" games={this.state.games} />
           <Create path="/create" />
-          <Play path="/play" />
+          <Play path="/play/:gameid" />
         </Router>
       </div>
     );
