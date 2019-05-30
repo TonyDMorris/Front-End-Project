@@ -3,7 +3,7 @@ import Camera, { IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import { Button, Modal } from "@material-ui/core";
 
-class SnapShot extends Component {
+class SnapShotCam extends Component {
   state = { openCamera: false };
 
   onTakePhoto(dataUri) {
@@ -54,4 +54,4 @@ class SnapShot extends Component {
   };
 }
 
-export default SnapShot;
+export default SnapShotCam;

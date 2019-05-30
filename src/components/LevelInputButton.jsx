@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
-import SnapShot from "./SnapShot";
+import SnapShotCam from "./SnapShotCam";
 const LevelInputButton = ({ wincondition, handleWinData }) => {
   return (
     <div>
@@ -10,7 +10,7 @@ const LevelInputButton = ({ wincondition, handleWinData }) => {
           onChange={e => handleWinData(e.target.value)}
         />
       )}
-      {wincondition === "image" && <SnapShot handlePhoto={handleWinData} />}
+      {wincondition === "image" && <SnapShotCam handlePhoto={handleWinData} />}
     </div>
   );
 };
