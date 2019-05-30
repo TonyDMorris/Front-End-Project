@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Typography, TextField } from "@material-ui/core";
+import Form from "./Form";
 
 class Create extends React.Component {
   state = { title: "", description: "", completion: "", levels: [] };
@@ -16,6 +17,7 @@ class Create extends React.Component {
           label="Description:"
           onChange={e => this.handleChange("description", e.target.value)}
         />
+        <Form />
         <TextField
           label="Completion text:"
           onChange={e => this.handleChange("completion", e.target.value)}
