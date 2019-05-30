@@ -94,6 +94,9 @@ class Form extends Component {
     if (wincondition === "string") {
       this.setState({ windata: value });
     }
+    if (wincondition === "image") {
+      console.log(value);
+    }
   };
 }
 export default Form;
