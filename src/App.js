@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Router, Location } from "@reach/router";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import Create from "./components/Create";
+import Play from "./components/Play";
+import Axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {};
+
+  componentDidMount = () => {
+    Axios.get("https://mongo-flask-api.herokuapp.com/gameslist").then(
+      ({ data }) => {
+        this.setState({ games: data });
+      }
+    );
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Location>{({ location }) => <Header location={location} />}</Location>
+        <Router>
+          <Home path="/" games={this.state.games} />
+          <Create path="/create" />
+          <Play path="/play" />
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
