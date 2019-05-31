@@ -6,11 +6,15 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-  Fab
+  Fab,
+  Grid,
+  Container,
+  CssBaseline
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import vision from "react-cloud-vision-api";
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
+
 class Form extends Component {
   state = {
     wincondition: "string",
@@ -36,7 +40,7 @@ class Form extends Component {
             control={
               <Checkbox
                 value="text"
-                onClick={e => this.handleCheck("string")}
+                onClick={(e) => this.handleCheck("string")}
                 checked={wincondition === "string"}
               />
             }
@@ -46,7 +50,7 @@ class Form extends Component {
             control={
               <Checkbox
                 value="image"
-                onClick={e => this.handleCheck("image")}
+                onClick={(e) => this.handleCheck("image")}
                 checked={wincondition === "image"}
               />
             }
@@ -56,22 +60,22 @@ class Form extends Component {
         <TextField
           value={mainclue}
           label="Main clue:"
-          onChange={e => this.handleChange("mainclue", e.target.value)}
+          onChange={(e) => this.handleChange("mainclue", e.target.value)}
         />
         <TextField
           value={clue2}
           label="Second clue:"
-          onChange={e => this.handleChange("clue2", e.target.value)}
+          onChange={(e) => this.handleChange("clue2", e.target.value)}
         />
         <TextField
           value={clue3}
           label="Third clue:"
-          onChange={e => this.handleChange("clue3", e.target.value)}
+          onChange={(e) => this.handleChange("clue3", e.target.value)}
         />
         <TextField
           value={wintext}
           label="Level completion message:"
-          onChange={e => this.handleChange("wintext", e.target.value)}
+          onChange={(e) => this.handleChange("wintext", e.target.value)}
         />
         {wincondition && mainclue && clue2 && clue3 && wintext && windata && (
           <Fab
@@ -101,7 +105,7 @@ class Form extends Component {
       </Card>
     );
   }
-  handleCheck = winCon => {
+  handleCheck = (winCon) => {
     this.setState({ wincondition: winCon });
   };
 
@@ -109,18 +113,18 @@ class Form extends Component {
     this.setState({ [str]: value });
   };
 
-  handleWinData = value => {
+  handleWinData = (value) => {
     const { wincondition } = this.state;
     if (wincondition === "string") {
       this.setState({ windata: value });
     }
     if (wincondition === "image") {
-      return this.classifyImage(value).then(labels => {
+      return this.classifyImage(value).then((labels) => {
         this.setState({ windata: labels });
       });
     }
   };
-  classifyImage = base64Img => {
+  classifyImage = (base64Img) => {
     const vision = require("react-cloud-vision-api");
     vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
     const req = new vision.Request({
@@ -138,7 +142,7 @@ class Form extends Component {
         }, []);
         return labels;
       },
-      e => {
+      (e) => {
         console.log("Error: ", e);
       }
     );
