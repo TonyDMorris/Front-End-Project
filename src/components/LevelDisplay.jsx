@@ -53,7 +53,9 @@ class LevelDisplay extends React.Component {
 
             {this.props.changeLevelButton === false &&
               this.props.winCondition === "gps" && (
-                <button onClick={this.handleGPS}>Check GPS</button>
+                <div>
+                  <button onClick={this.handleGPS}>Check GPS</button>
+                </div>
               )}
 
             {this.props.changeLevelButton === false &&
@@ -134,6 +136,8 @@ class LevelDisplay extends React.Component {
       }),
       features: [new vision.Feature("LABEL_DETECTION", 10)]
     });
+
+    this.setState({ loading: true });
 
     return vision.annotate(req).then(
       ({ responses }) => {
