@@ -14,8 +14,8 @@ const resources = {
   es: {
     translation: {
       "Create New Game": "Crear Juego",
-      "English-lang": "Ingles",
-      "Spanish-lang": "Espanol"
+      "English-lang": "Inglés",
+      "Spanish-lang": "Español"
     }
   }
 };

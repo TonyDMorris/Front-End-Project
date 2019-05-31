@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import { Select, InputLabel } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
+
 const LocDropDown = () => {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState("English");
