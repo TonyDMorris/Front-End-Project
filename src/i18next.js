@@ -8,14 +8,28 @@ const resources = {
     translation: {
       "Create New Game": "Create",
       "English-lang": "English",
-      "Spanish-lang": "Spanish"
+      "Spanish-lang": "Spanish",
+      "Create Your Game": "Create Your Game",
+      "Create game header":
+        "Give your new game a name and add a short description.",
+      "Submit Game": "Submit Game",
+      Title: "Title:",
+      Description: "Description:",
+      "Game completion message": "Game completion message:"
     }
   },
   es: {
     translation: {
       "Create New Game": "Crear Juego",
       "English-lang": "Inglés",
-      "Spanish-lang": "Español"
+      "Spanish-lang": "Español",
+      "Create Your Game": "Crea Tu Juego",
+      "Create game header":
+        "Dale un nombre a tu juego y añade una descripción.",
+      "Submit Game": "Enviar Juego",
+      Title: "Nombre:",
+      Description: "Descripción:",
+      "Game completion message": "Mensaje final de juego:"
     }
   }
 };
