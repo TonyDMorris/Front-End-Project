@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Link } from "@material-ui/core";
 import { Link as linkReach } from "@reach/router";
-import SnapShot from "./SnapShot";
+import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
@@ -60,7 +60,7 @@ class LevelDisplay extends React.Component {
               this.props.winCondition === "image" && (
                 <div style={{ height: "100vh" }} className="App">
                   {this.state.takingPic && (
-                    <SnapShot
+                    <SnapShotCam
                       handleCamera={this.handleCamera}
                       handlePhoto={this.classifyImage}
                     />

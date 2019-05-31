@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Camera, { IMAGE_TYPES } from "react-html5-camera-photo";
+import Camera, { FACING_MODES, IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import { Button, Modal } from "@material-ui/core";
 
@@ -22,9 +22,9 @@ class SnapShotCam extends Component {
               onTakePhoto={dataUri => {
                 this.onTakePhoto(dataUri);
               }}
-              idealResolution={{ width: 400, height: 800 }}
               imageType={IMAGE_TYPES.JPG}
               imageCompression={0.97}
+              idealFacingMode={FACING_MODES.ENVIRONMENT}
               isMaxResolution={false}
               isImageMirror={false}
               isSilentMode={true}
