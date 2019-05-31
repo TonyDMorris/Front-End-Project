@@ -72,6 +72,18 @@ export const getGame = game_id => {
       return data;
     })
     .catch(err => {
+      if (!err.response) {
+        const error = {
+          message: "You are offline"
+        };
+        return error;
+      }
+      if (err.response.status) {
+        const error = {
+          message: "Game does not exist"
+        };
+        return error;
+      }
       console.dir(err);
     });
 };
