@@ -40,7 +40,7 @@ class LevelDisplay extends React.Component {
             )}
 
             {this.props.changeLevelButton === false &&
-              this.props.winCondition === "text" && (
+              this.props.winCondition === "string" && (
                 <form onSubmit={this.handleSubmit}>
                   <input
                     type="text"
@@ -141,7 +141,9 @@ class LevelDisplay extends React.Component {
           acc.push(curr.description);
           return acc;
         }, []);
-        this.setState({ input: labels });
+        this.setState({ input: labels }, () => {
+          this.props.checkPhotoAnswer(this.state.input);
+        });
       },
       e => {
         console.log("Error: ", e);

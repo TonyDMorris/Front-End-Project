@@ -13,12 +13,16 @@ function Header(props) {
             App Name
           </Typography>
           {props.location.pathname === "/" ? (
-            <Button color="inherit">
-              <Link to="/create">Create New Game</Link>
+            <Button variant="contained">
+              <Link className={classes.button} to="/create">
+                Create New Game
+              </Link>
             </Button>
           ) : (
-            <Button color="inherit">
-              <Link to="/">Home</Link>
+            <Button variant="contained">
+              <Link className={classes.button} to="/">
+                Home
+              </Link>
             </Button>
           )}
         </Toolbar>
@@ -33,6 +37,11 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1
+  },
+  button: {
+    color: "#283593",
+    fontWeight: 600,
+    textDecoration: "none"
   }
 }));
 
