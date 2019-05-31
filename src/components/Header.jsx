@@ -1,9 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, SWitch } from "@material-ui/core";
 import { Link } from "@reach/router";
-
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+import LocDropDown from "./LocDropDown";
 function Header(props) {
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -12,10 +15,11 @@ function Header(props) {
           <Typography variant="h6" className={classes.title}>
             App Name
           </Typography>
+          <LocDropDown />
           {props.location.pathname === "/" ? (
             <Button variant="contained">
               <Link className={classes.button} to="/create">
-                Create New Game
+                {t("Create New Game")}
               </Link>
             </Button>
           ) : (
