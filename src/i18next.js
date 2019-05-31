@@ -15,7 +15,8 @@ const resources = {
       "Submit Game": "Submit Game",
       Title: "Title:",
       Description: "Description:",
-      "Game completion message": "Game completion message:"
+      "Game completion message": "Game completion message:",
+      levels: "Levels:"
     }
   },
   es: {
@@ -29,7 +30,8 @@ const resources = {
       "Submit Game": "Enviar Juego",
       Title: "Nombre:",
       Description: "Descripción:",
-      "Game completion message": "Mensaje final de juego:"
+      "Game completion message": "Mensaje final de juego:",
+      levels: "Niveles:"
     }
   }
 };
