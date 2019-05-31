@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Card,
   Typography,
@@ -17,61 +17,64 @@ import Form from "./Form";
 import axios from "axios";
 import { navigate } from "@reach/router";
 
-class Create extends React.Component {
+class Create extends Component {
   state = { title: "", description: "", completion: "", levels: [] };
 
   render() {
     const { title, description, completion, levels } = this.state;
     return (
-      <Card>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
 
-          <Grid>
-            <Typography component="h1" variant="h5">
-              flavour text
-            </Typography>
+        <Grid container>
+          <Typography component="h1" variant="h5">
+            Create your game
+          </Typography>
 
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  label="Title:"
-                  onChange={(e) => this.handleChange("title", e.target.value)}
-                />
-              </Grid>
+          <Typography>
+            Give your new game a name and add a short description.
+          </Typography>
 
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  label="Description:"
-                  onChange={(e) =>
-                    this.handleChange("description", e.target.value)
-                  }
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <Form handleLevel={this.handleLevel} />
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  label="Game completion message:"
-                  onChange={(e) =>
-                    this.handleChange("completion", e.target.value)
-                  }
-                />
-              </Grid>
-
-              {title && description && completion && levels.length && (
-                <Button onClick={this.handleSubmit}>Submit Game</Button>
-              )}
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                label="Title:"
+                onChange={(e) => this.handleChange("title", e.target.value)}
+              />
             </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                label="Description:"
+                onChange={(e) =>
+                  this.handleChange("description", e.target.value)
+                }
+              />
+            </Grid>
+
+            <Form handleLevel={this.handleLevel} />
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                label="Game completion message:"
+                onChange={(e) =>
+                  this.handleChange("completion", e.target.value)
+                }
+              />
+            </Grid>
+
+            {title && description && completion && levels.length && (
+              <Button onClick={this.handleSubmit}>Submit Game</Button>
+            )}
           </Grid>
-        </Container>
-      </Card>
+        </Grid>
+      </Container>
     );
   }
   handleChange = (str, value) => {

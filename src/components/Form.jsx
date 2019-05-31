@@ -34,49 +34,74 @@ class Form extends Component {
       windata
     } = this.state;
     return (
-      <Card>
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox
-                value="text"
-                onClick={(e) => this.handleCheck("string")}
-                checked={wincondition === "string"}
-              />
-            }
-            label="Text"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                value="image"
-                onClick={(e) => this.handleCheck("image")}
-                checked={wincondition === "image"}
-              />
-            }
-            label="Image"
-          />
-        </FormGroup>
-        <TextField
-          value={mainclue}
-          label="Main clue:"
-          onChange={(e) => this.handleChange("mainclue", e.target.value)}
-        />
-        <TextField
-          value={clue2}
-          label="Second clue:"
-          onChange={(e) => this.handleChange("clue2", e.target.value)}
-        />
-        <TextField
-          value={clue3}
-          label="Third clue:"
-          onChange={(e) => this.handleChange("clue3", e.target.value)}
-        />
-        <TextField
-          value={wintext}
-          label="Level completion message:"
-          onChange={(e) => this.handleChange("wintext", e.target.value)}
-        />
+      <Container>
+        <CssBaseline />
+
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              fullWidth
+              value={mainclue}
+              label="Main clue:"
+              onChange={(e) => this.handleChange("mainclue", e.target.value)}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              fullWidth
+              value={clue2}
+              label="Second clue:"
+              onChange={(e) => this.handleChange("clue2", e.target.value)}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              fullWidth
+              value={clue3}
+              label="Third clue:"
+              onChange={(e) => this.handleChange("clue3", e.target.value)}
+            />
+          </Grid>
+
+          <FormGroup row>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value="text"
+                  onClick={(e) => this.handleCheck("string")}
+                  checked={wincondition === "string"}
+                />
+              }
+              label="Text"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value="image"
+                  onClick={(e) => this.handleCheck("image")}
+                  checked={wincondition === "image"}
+                />
+              }
+              label="Image"
+            />
+          </FormGroup>
+
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              fullWidth
+              value={wintext}
+              label="Level completion message:"
+              onChange={(e) => this.handleChange("wintext", e.target.value)}
+            />
+          </Grid>
+        </Grid>
+
         {wincondition && mainclue && clue2 && clue3 && wintext && windata && (
           <Fab
             onClick={() => {
@@ -102,7 +127,7 @@ class Form extends Component {
           wincondition={wincondition}
           handleWinData={this.handleWinData}
         />
-      </Card>
+      </Container>
     );
   }
   handleCheck = (winCon) => {
