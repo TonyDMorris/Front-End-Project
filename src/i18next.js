@@ -6,7 +6,7 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      "Create New Game": "Create New Game",
+      "Create New Game": "Create",
       "English-lang": "English",
       "Spanish-lang": "Spanish"
     }
