@@ -16,7 +16,9 @@ const resources = {
       Title: "Title:",
       Description: "Description:",
       "Game completion message": "Game completion message:",
-      levels: "Levels:"
+      levels: "Levels:",
+      "introduction paragraph":
+        "Welcome to TheHunt, where you can challenge your friends to hunt pretty much whatever you want! Set some clues(as hard or as easy as you like), find some objects, beat your friends! Can you find everything without using any clues??Pick one of the games, or create your own!"
     }
   },
   es: {
@@ -31,7 +33,9 @@ const resources = {
       Title: "Nombre:",
       Description: "Descripción:",
       "Game completion message": "Mensaje final de juego:",
-      levels: "Niveles:"
+      levels: "Niveles:",
+      "introduction paragraph":
+        "Bienvenido a TheHunt, ¡dónde tú puedes retar a tus amigos a lo que sea! Pon algunas pistas (tan difíciles o fáciles como tú quieras), encuentra objetos, ¡machácales! ¿Eres capaz de encontrar todo sin necesitar ninguna pista? ¡Elige uno de los juegos, o crea el tuyo propio!"
     }
   }
 };
