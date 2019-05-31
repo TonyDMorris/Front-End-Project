@@ -9,7 +9,7 @@ import LocDropDown from "./LocDropDown";
 import SvgIcon from "@material-ui/core/SvgIcon";
 
 function Header(props) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <div className={classes.root}>
