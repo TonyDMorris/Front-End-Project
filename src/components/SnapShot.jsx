@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Camera, { IMAGE_TYPES } from "react-html5-camera-photo";
+import Camera, { FACING_MODES, IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 
 class SnapShot extends Component {
@@ -18,6 +18,7 @@ class SnapShot extends Component {
           }}
           idealResolution={{ width: 400, height: 800 }}
           imageType={IMAGE_TYPES.JPG}
+          idealFacingMode={FACING_MODES.ENVIRONMENT}
           imageCompression={0.97}
           isMaxResolution={false}
           isImageMirror={false}
