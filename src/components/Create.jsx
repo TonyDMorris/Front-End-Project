@@ -23,11 +23,11 @@ class Create extends Component {
   render() {
     const { title, description, completion, levels } = this.state;
     return (
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <CssBaseline />
 
         <Grid container>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Create your game
           </Typography>
 
@@ -38,21 +38,19 @@ class Create extends Component {
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                label="Title:"
-                onChange={(e) => this.handleChange("title", e.target.value)}
+                label='Title:'
+                onChange={e => this.handleChange("title", e.target.value)}
               />
             </Grid>
 
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                label="Description:"
-                onChange={(e) =>
-                  this.handleChange("description", e.target.value)
-                }
+                label='Description:'
+                onChange={e => this.handleChange("description", e.target.value)}
               />
             </Grid>
 
@@ -60,12 +58,10 @@ class Create extends Component {
 
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                label="Game completion message:"
-                onChange={(e) =>
-                  this.handleChange("completion", e.target.value)
-                }
+                label='Game completion message:'
+                onChange={e => this.handleChange("completion", e.target.value)}
               />
             </Grid>
 
@@ -80,7 +76,7 @@ class Create extends Component {
   handleChange = (str, value) => {
     this.setState({ [str]: value });
   };
-  handleLevel = (level) => {
+  handleLevel = level => {
     const { levels } = this.state;
     this.setState({ levels: [...levels, level] });
   };
@@ -88,6 +84,9 @@ class Create extends Component {
     return axios
       .post("https://mongo-flask-api.herokuapp.com/games", this.state)
       .then(({ data: { game_id } }) => {
+        axios.post("https://mongo-flask-api.herokuapp.com/leaderBoard", {
+          game_id: game_id
+        });
         navigate(`/play/${game_id}`);
       });
   };
