@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Link } from "@material-ui/core";
 import { Link as linkReach } from "@reach/router";
-import SnapShot from "./SnapShot";
+import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
@@ -40,7 +40,7 @@ class LevelDisplay extends React.Component {
             )}
 
             {this.props.changeLevelButton === false &&
-              this.props.winCondition === "text" && (
+              this.props.winCondition === "string" && (
                 <form onSubmit={this.handleSubmit}>
                   <input
                     type="text"
@@ -53,14 +53,16 @@ class LevelDisplay extends React.Component {
 
             {this.props.changeLevelButton === false &&
               this.props.winCondition === "gps" && (
-                <button onClick={this.handleGPS}>Check GPS</button>
+                <div>
+                  <button onClick={this.handleGPS}>Check GPS</button>
+                </div>
               )}
 
             {this.props.changeLevelButton === false &&
               this.props.winCondition === "image" && (
                 <div style={{ height: "100vh" }} className="App">
                   {this.state.takingPic && (
-                    <SnapShot
+                    <SnapShotCam
                       handleCamera={this.handleCamera}
                       handlePhoto={this.classifyImage}
                     />
@@ -135,13 +137,17 @@ class LevelDisplay extends React.Component {
       features: [new vision.Feature("LABEL_DETECTION", 10)]
     });
 
+    this.setState({ loading: true });
+
     return vision.annotate(req).then(
       ({ responses }) => {
         const labels = responses[0].labelAnnotations.reduce((acc, curr) => {
           acc.push(curr.description);
           return acc;
         }, []);
-        this.setState({ input: labels });
+        this.setState({ input: labels }, () => {
+          this.props.checkPhotoAnswer(this.state.input);
+        });
       },
       e => {
         console.log("Error: ", e);
