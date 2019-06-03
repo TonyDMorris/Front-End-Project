@@ -10,7 +10,6 @@ class SnapShotCam extends Component {
   onTakePhoto(dataUri) {
     this.props.handlePhoto(dataUri);
     this.handleClick();
-    console.log("takePhoto");
   }
 
   render() {
@@ -41,6 +40,7 @@ class SnapShotCam extends Component {
         )}
         {!openCamera && (
           <Button
+            data-cy="img-condition-input"
             onClick={() => {
               this.handleClick();
             }}

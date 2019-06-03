@@ -16,6 +16,7 @@ const LevelInputButton = ({
       <Grid item xs={12}>
         {wincondition === "string" && (
           <TextField
+            data-cy="text-condition-input"
             variant="outlined"
             fullWidth
             label={t("Your answer")}
@@ -26,7 +27,9 @@ const LevelInputButton = ({
           <SnapShotCam handlePhoto={handleWinData} />
         )}
         {wincondition === "gps" && (
-          <Button onClick={handleGPS}>{t("Send GPS")}</Button>
+          <Button data-cy="gps-condition-input" onClick={handleGPS}>
+            {t("Send GPS")}
+          </Button>
         )}
         {loading && (
           <div>
