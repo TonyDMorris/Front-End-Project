@@ -16,7 +16,7 @@ class GameList extends Component {
       <div>
         <div>
           {this.props.games &&
-            this.props.games.map((game) => {
+            this.props.games.map(game => {
               return (
                 // <Paper className={classes.gameCard} key={game.id}>
                 <GameCard game={game} />

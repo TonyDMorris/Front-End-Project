@@ -40,7 +40,10 @@ class SnapShotCam extends Component {
         )}
         {!openCamera && (
           <Button
+            variant="outlined"
+            color="inherit"
             data-cy="img-condition-input"
+
             onClick={() => {
               this.handleClick();
             }}

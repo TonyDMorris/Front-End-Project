@@ -14,7 +14,7 @@ const styles = {
   root: {
     display: "flex",
     justifyContent: "center",
-    width: "90%"
+    width: "auto"
     // marginTop: theme.spacing(3)
   },
   table: {
@@ -52,19 +52,6 @@ class LeaderBoard extends Component {
           />
           <Button onClick={this.submitScore}>Submit Score!</Button>
         </form>
-        {this.state.leaderBoard &&
-          this.state.leaderBoard
-            .sort((a, b) => {
-              return b.score - a.score;
-            })
-            .map(score => {
-              return (
-                <div key={Math.random()}>
-                  {score.username}
-                  {score.score}
-                </div>
-              );
-            })}
 
         <Paper className={classes.root}>
           <Table className={classes.table}>
