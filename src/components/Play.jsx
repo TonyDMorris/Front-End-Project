@@ -44,7 +44,6 @@ class Play extends React.Component {
             score={this.state.score}
           />
         )}
-        <h1>Play here!</h1>
       </div>
     );
   }
@@ -67,9 +66,6 @@ class Play extends React.Component {
     let total = [...inputArray, ...windata];
     let comparison = new Set([...windata, ...inputArray]);
     let comparisonArray = [...comparison];
-
-    console.log(comparisonArray.length, "comparisonArray length");
-    console.log(total.length, "total.length");
 
     if (comparisonArray.length < total.length) {
       this.setState({ changeLevelButton: true });
