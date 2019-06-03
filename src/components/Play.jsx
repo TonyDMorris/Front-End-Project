@@ -9,7 +9,8 @@ class Play extends React.Component {
     curLevel: 0,
     attempts: 0,
     changeLevelButton: false,
-    answer: ""
+    answer: "",
+    score: null
   };
 
   componentDidMount() {
@@ -17,7 +18,7 @@ class Play extends React.Component {
       this.props.gameid
     }`;
     axios.get(url).then(({ data }) => {
-      this.setState({ game: data });
+      this.setState({ game: data, score: data.levels.length * 3 });
     });
   }
 
@@ -41,6 +42,8 @@ class Play extends React.Component {
               this.state.game.levels[this.state.curLevel].wincondition
             }
             completionMes={this.state.game.completion}
+            game_id={this.props.gameid}
+            score={this.state.score}
           />
         )}
       </div>
@@ -54,7 +57,7 @@ class Play extends React.Component {
       });
     } else {
       this.setState(prevState => {
-        return { attempts: prevState.attempts + 1 };
+        return { attempts: prevState.attempts + 1, score: prevState.score - 1 };
       });
     }
   };
@@ -73,7 +76,7 @@ class Play extends React.Component {
       this.setState({ changeLevelButton: true });
     } else {
       this.setState(prevState => {
-        return { attempts: prevState.attempts + 1 };
+        return { attempts: prevState.attempts + 1, score: prevState.score - 1 };
       });
     }
   };

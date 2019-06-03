@@ -26,21 +26,19 @@ class Create extends Component {
     const { title, description, completion, levels } = this.state;
     return (
       <Grid container>
-        <Container component="main" maxWidth="xs">
+        <Container component='main' maxWidth='xs'>
           <CssBaseline />
 
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             {t("Create Your Game")}
           </Typography>
 
-
           <Typography>{t("Create game header")}</Typography>
-
 
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
                 label={t("Title")}
                 onChange={e => this.handleChange("title", e.target.value)}
@@ -49,37 +47,28 @@ class Create extends Component {
 
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-
                 multiline
-                
-
                 label={t("Description")}
                 onChange={e => this.handleChange("description", e.target.value)}
-
               />
             </Grid>
 
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-
                 multiline
-                
-
                 label={t("Game completion message")}
                 onChange={e => this.handleChange("completion", e.target.value)}
-
               />
             </Grid>
           </Grid>
         </Container>
 
-        <Container component="main" maxWidth="xs">
+        <Container component='main' maxWidth='xs'>
           <CssBaseline />
-
 
           <Grid container>
             <CreateLevel handleLevel={this.handleLevel} />
@@ -91,10 +80,9 @@ class Create extends Component {
                 }
                 onClick={this.handleSubmit}
               >
-               {t("Submit Game")}
+                {t("Submit Game")}
               </Button>
             }
-
           </Grid>
         </Container>
       </Grid>
@@ -111,6 +99,9 @@ class Create extends Component {
     return axios
       .post("https://mongo-flask-api.herokuapp.com/games", this.state)
       .then(({ data: { game_id } }) => {
+        axios.post("https://mongo-flask-api.herokuapp.com/leaderBoard", {
+          game_id: game_id
+        });
         navigate(`/play/${game_id}`);
       });
   };

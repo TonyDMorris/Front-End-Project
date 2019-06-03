@@ -19,12 +19,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <Location>{({ location }) => <Header location={location} />}</Location>
         <Router>
-          <Home path="/" games={this.state.games} />
-          <Create path="/create" />
-          <Play path="/play/:gameid" />
+          <Home path='/' games={this.state.games} />
+          <Create path='/create' />
+          <Play path='/play/:gameid' />
         </Router>
       </div>
     );
