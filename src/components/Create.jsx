@@ -14,7 +14,7 @@ import {
   Container
 } from "@material-ui/core";
 import CreateLevel from "./CreateLevel";
-import axios from "axios";
+import { submitGame } from "../Api/Api";
 import { navigate } from "@reach/router";
 import { withTranslation } from "react-i18next";
 
@@ -26,10 +26,10 @@ class Create extends Component {
     const { title, description, completion, levels } = this.state;
     return (
       <Grid container>
-        <Container component='main' maxWidth='xs'>
+        <Container component="main" maxWidth="xs">
           <CssBaseline />
 
-          <Typography component='h1' variant='h5'>
+          <Typography component="h1" variant="h5">
             {t("Create Your Game")}
           </Typography>
 
@@ -38,7 +38,7 @@ class Create extends Component {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                variant='outlined'
+                variant="outlined"
                 fullWidth
                 label={t("Title")}
                 onChange={e => this.handleChange("title", e.target.value)}
@@ -47,7 +47,7 @@ class Create extends Component {
 
             <Grid item xs={12}>
               <TextField
-                variant='outlined'
+                variant="outlined"
                 fullWidth
                 multiline
                 label={t("Description")}
@@ -57,7 +57,7 @@ class Create extends Component {
 
             <Grid item xs={12}>
               <TextField
-                variant='outlined'
+                variant="outlined"
                 fullWidth
                 multiline
                 label={t("Game completion message")}
@@ -67,7 +67,7 @@ class Create extends Component {
           </Grid>
         </Container>
 
-        <Container component='main' maxWidth='xs'>
+        <Container component="main" maxWidth="xs">
           <CssBaseline />
 
           <Grid container>
@@ -96,14 +96,10 @@ class Create extends Component {
     this.setState({ levels: [...levels, level] });
   };
   handleSubmit = () => {
-    return axios
-      .post("https://mongo-flask-api.herokuapp.com/games", this.state)
-      .then(({ data: { game_id } }) => {
-        axios.post("https://mongo-flask-api.herokuapp.com/leaderBoard", {
-          game_id: game_id
-        });
-        navigate(`/play/${game_id}`);
-      });
+    const game = this.state;
+    submitGame(game).then(game_id => {
+      navigate(`/play/${game_id}`);
+    });
   };
 }
 

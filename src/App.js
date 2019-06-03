@@ -5,26 +5,24 @@ import Home from "./components/Home";
 import Create from "./components/Create";
 import Play from "./components/Play";
 import Axios from "axios";
-
+import { getGames } from "./Api/Api";
 class App extends React.Component {
   state = {};
 
   componentDidMount = () => {
-    Axios.get("https://mongo-flask-api.herokuapp.com/gameslist").then(
-      ({ data }) => {
-        this.setState({ games: data });
-      }
-    );
+    getGames().then(games => {
+      this.setState({ games });
+    });
   };
 
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Location>{({ location }) => <Header location={location} />}</Location>
         <Router>
-          <Home path='/' games={this.state.games} />
-          <Create path='/create' />
-          <Play path='/play/:gameid' />
+          <Home path="/" games={this.state.games} />
+          <Create path="/create" />
+          <Play path="/play/:gameid" />
         </Router>
       </div>
     );

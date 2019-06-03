@@ -87,3 +87,20 @@ export const getGame = game_id => {
       console.dir(err);
     });
 };
+
+export const getLeaderBoard = game_id => {
+  return axios
+    .get(`${URL}/leaderboards?game_id=${game_id}`)
+    .then(({ data: { leaderBoard } }) => {
+      return leaderBoard;
+    })
+    .catch(err => console.log(err));
+};
+
+export const submitScore = score => {
+  return axios
+    .patch("https://mongo-flask-api.herokuapp.com/leaderboards", score)
+    .catch(error => {
+      console.log(error);
+    });
+};
