@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Camera, { FACING_MODES, IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import { Button, Modal } from "@material-ui/core";
+import { withTranslation } from "react-i18next";
 
 class SnapShotCam extends Component {
   state = { openCamera: false };
@@ -13,6 +14,7 @@ class SnapShotCam extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const { openCamera } = this.state;
     return (
       <div syle={{}} className="App">
@@ -43,7 +45,7 @@ class SnapShotCam extends Component {
               this.handleClick();
             }}
           >
-            take a picture
+            {t("take pic")}
           </Button>
         )}
       </div>
@@ -54,4 +56,4 @@ class SnapShotCam extends Component {
   };
 }
 
-export default SnapShotCam;
+export default withTranslation()(SnapShotCam);
