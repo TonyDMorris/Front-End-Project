@@ -10,7 +10,7 @@ const LocDropDown = () => {
   const langObj = { en: "English", es: "Spanish" };
   return (
     <FormControl>
-      <InputLabel>{lang}</InputLabel>
+      <InputLabel>{t("current-language")}</InputLabel>
       <Select
         value={"lang"}
         onChange={e => {

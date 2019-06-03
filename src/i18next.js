@@ -6,6 +6,7 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
+      "current-language": "English",
       "Create New Game": "Create Game",
       "English-lang": "English",
       "Spanish-lang": "Spanish",
@@ -46,12 +47,13 @@ const resources = {
   },
   es: {
     translation: {
+      "current-language": "Español",
       "Create New Game": "Crear Juego",
       "English-lang": "Inglés",
       "Spanish-lang": "Español",
       "Create Your Game": "Crea Tu Juego",
       "Create game header":
-        "Dale un nombre a tu juego y añade una descripción.",
+        "Dale un nombre a tu juego y añade una breve descripción.",
       "Submit Game": "Enviar Juego",
       Title: "Nombre:",
       Description: "Descripción:",
