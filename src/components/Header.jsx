@@ -1,15 +1,17 @@
 import React from "react";
-
+import { useTranslation } from "react-i18next";
 import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button, Fab } from "@material-ui/core";
 import { Link } from "@reach/router";
 import AddIcon from "@material-ui/icons/Add";
+import LocDropDown from "./LocDropDown";
 // import { purple, green } from "@material-ui/core/colors/purple";
 import SvgIcon from "@material-ui/core/SvgIcon";
-
+import CreateIcon from "./CreateIcon";
+import HomeIcon from "./HomeIcon";
 
 function Header(props) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -20,35 +22,14 @@ function Header(props) {
           </Typography>
           <LocDropDown />
           {props.location.pathname === "/" ? (
-
             <Link className={classes.button} to="/create">
-              <Fab
-                size="small"
-                color="primary"
-                variant="extended"
-                aria-label="create"
-                className={classes.fab}
-              >
-                create
-                <AddIcon />
-              </Fab>
+
+              <CreateIcon />
+
             </Link>
-
-            
-
           ) : (
             <Link className={classes.button} to="/">
-              <Fab
-                size="small"
-                color="primary"
-                variant="round"
-                aria-label="home"
-                className={classes.fab}
-              >
-                <SvgIcon>
-                  <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
-                </SvgIcon>
-              </Fab>
+              <HomeIcon />
             </Link>
           )}
         </Toolbar>

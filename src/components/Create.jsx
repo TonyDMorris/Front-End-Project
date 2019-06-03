@@ -13,34 +13,34 @@ import {
   makeStyles,
   Container
 } from "@material-ui/core";
-import Form from "./Form";
+import CreateLevel from "./CreateLevel";
 import axios from "axios";
 import { navigate } from "@reach/router";
+import { withTranslation } from "react-i18next";
 
 class Create extends Component {
   state = { title: "", description: "", completion: "", levels: [] };
 
   render() {
+    const { t } = this.props;
     const { title, description, completion, levels } = this.state;
     return (
-      <Container component='main' maxWidth='xs'>
-        <CssBaseline />
+      <Grid container>
+        <Container component='main' maxWidth='xs'>
+          <CssBaseline />
 
-        <Grid container>
           <Typography component='h1' variant='h5'>
-            Create your game
+            {t("Create Your Game")}
           </Typography>
 
-          <Typography>
-            Give your new game a name and add a short description.
-          </Typography>
+          <Typography>{t("Create game header")}</Typography>
 
-          <Grid container spacing={4}>
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
                 fullWidth
-                label='Title:'
+                label={t("Title")}
                 onChange={e => this.handleChange("title", e.target.value)}
               />
             </Grid>
@@ -49,28 +49,43 @@ class Create extends Component {
               <TextField
                 variant='outlined'
                 fullWidth
-                label='Description:'
+                multiline
+                label={t("Description")}
                 onChange={e => this.handleChange("description", e.target.value)}
               />
             </Grid>
-
-            <Form handleLevel={this.handleLevel} />
 
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
                 fullWidth
-                label='Game completion message:'
+                multiline
+                label={t("Game completion message")}
                 onChange={e => this.handleChange("completion", e.target.value)}
               />
             </Grid>
-
-            {title && description && completion && levels.length && (
-              <Button onClick={this.handleSubmit}>Submit Game</Button>
-            )}
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+
+        <Container component='main' maxWidth='xs'>
+          <CssBaseline />
+
+          <Grid container>
+            <CreateLevel handleLevel={this.handleLevel} />
+
+            {
+              <Button
+                disabled={
+                  !title || !description || !completion || !levels.length
+                }
+                onClick={this.handleSubmit}
+              >
+                {t("Submit Game")}
+              </Button>
+            }
+          </Grid>
+        </Container>
+      </Grid>
     );
   }
   handleChange = (str, value) => {
@@ -92,4 +107,4 @@ class Create extends Component {
   };
 }
 
-export default Create;
+export default withTranslation()(Create);
