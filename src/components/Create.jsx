@@ -33,9 +33,7 @@ class Create extends Component {
             {t("Create Your Game")}
           </Typography>
 
-
           <Typography>{t("Create game header")}</Typography>
-
 
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -43,21 +41,19 @@ class Create extends Component {
                 variant="outlined"
                 fullWidth
                 label={t("Title")}
-                onChange={e => this.handleChange("title", e.target.value)}
+                onChange={(e) => this.handleChange("title", e.target.value)}
               />
             </Grid>
 
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                // variant="outlined"
                 fullWidth
-
                 multiline
-                
-
                 label={t("Description")}
-                onChange={e => this.handleChange("description", e.target.value)}
-
+                onChange={(e) =>
+                  this.handleChange("description", e.target.value)
+                }
               />
             </Grid>
 
@@ -65,13 +61,11 @@ class Create extends Component {
               <TextField
                 variant="outlined"
                 fullWidth
-
                 multiline
-                
-
                 label={t("Game completion message")}
-                onChange={e => this.handleChange("completion", e.target.value)}
-
+                onChange={(e) =>
+                  this.handleChange("completion", e.target.value)
+                }
               />
             </Grid>
           </Grid>
@@ -79,7 +73,6 @@ class Create extends Component {
 
         <Container component="main" maxWidth="xs">
           <CssBaseline />
-
 
           <Grid container>
             <CreateLevel handleLevel={this.handleLevel} />
@@ -91,10 +84,9 @@ class Create extends Component {
                 }
                 onClick={this.handleSubmit}
               >
-               {t("Submit Game")}
+                {t("Submit Game")}
               </Button>
             }
-
           </Grid>
         </Container>
       </Grid>
@@ -103,7 +95,7 @@ class Create extends Component {
   handleChange = (str, value) => {
     this.setState({ [str]: value });
   };
-  handleLevel = level => {
+  handleLevel = (level) => {
     const { levels } = this.state;
     this.setState({ levels: [...levels, level] });
   };
