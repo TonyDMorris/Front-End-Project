@@ -29,7 +29,16 @@ const resources = {
       GPS: "GPS",
       "Level completion message": "Level completion message:",
       "Add Level": "Add Level",
-      create: "Create Game"
+      create: "Create Game",
+      Level: "Level",
+      Task: "Task",
+      "Clue 1": "1st Clue:",
+      "Clue 2": "2nd Clue",
+      Submit: "Submit",
+      "Check GPS": "Check GPS",
+      "take pic": "take pic",
+      "Next Level": "Next Level",
+      Home: "Home"
     }
   },
   es: {
@@ -57,7 +66,16 @@ const resources = {
       GPS: "GPS",
       "Level completion message": "Mensaje al pasar de nivel:",
       "Add Level": "Añadir Nivel",
-      create: "Crear Juego"
+      create: "Crear Juego",
+      Level: "Nivel",
+      Task: "Misión",
+      "Clue 1": "1ª pista:",
+      "Clue 1": "2ª pista:",
+      Submit: "Enviar",
+      "Check GPS": "Comprobar GPS",
+      "take pic": "hacer foto",
+      "Next Level": "Siguiente Nivel",
+      Home: "Página Principal"
     }
   }
 };
