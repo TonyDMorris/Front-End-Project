@@ -43,7 +43,6 @@ class Play extends React.Component {
             completionMes={this.state.game.completion}
           />
         )}
-        <h1>{t("Play here")}</h1>
       </div>
     );
   }

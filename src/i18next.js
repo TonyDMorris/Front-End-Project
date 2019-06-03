@@ -41,8 +41,7 @@ const resources = {
       "Next Level": "Next Level",
       Home: "Home",
       "Your answer": "Your answer:",
-      "Send GPS": "Send GPS",
-      "Play here": "Play here:"
+      "Send GPS": "Send GPS"
     }
   },
   es: {
@@ -82,8 +81,7 @@ const resources = {
       "Next Level": "Siguiente Nivel",
       Home: "Página Principal",
       "Your answer": "Respuesta esperada:",
-      "Send GPS": "Enviar GPS",
-      "Play here": "Juega aquí:"
+      "Send GPS": "Enviar GPS"
     }
   }
 };
