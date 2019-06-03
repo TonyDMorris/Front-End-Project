@@ -6,17 +6,24 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Button,
   Fab,
   Grid,
   Container,
+  Typography,
   CssBaseline
 } from "@material-ui/core";
+import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
+import SvgIcon from "@material-ui/core/SvgIcon";
 import vision from "react-cloud-vision-api";
+import CameraIcon from "./CameraIcon";
+import GPSIcon from "./GPSIcon";
+import TextIcon from "./TextIcon";
 
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
-class Form extends Component {
+class CreateLevel extends Component {
   state = {
     wincondition: "string",
     mainclue: "",
@@ -37,17 +44,24 @@ class Form extends Component {
       loading
     } = this.state;
     return (
-      <Container>
+      // <Container>
+      <div>
         <CssBaseline />
 
-        <Grid container spacing={4}>
+        <Typography component="h1" variant="h5">
+          Create new level
+        </Typography>
+
+        <Typography>Create new level</Typography>
+
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
               variant="outlined"
               fullWidth
               value={mainclue}
               label="Main clue:"
-              onChange={e => this.handleChange("mainclue", e.target.value)}
+              onChange={(e) => this.handleChange("mainclue", e.target.value)}
             />
           </Grid>
 
@@ -57,7 +71,7 @@ class Form extends Component {
               fullWidth
               value={clue2}
               label="Second clue:"
-              onChange={e => this.handleChange("clue2", e.target.value)}
+              onChange={(e) => this.handleChange("clue2", e.target.value)}
             />
           </Grid>
 
@@ -67,16 +81,16 @@ class Form extends Component {
               fullWidth
               value={clue3}
               label="Third clue:"
-              onChange={e => this.handleChange("clue3", e.target.value)}
+              onChange={(e) => this.handleChange("clue3", e.target.value)}
             />
           </Grid>
 
-          <FormGroup row>
+          {/* <FormGroup row>
             <FormControlLabel
               control={
                 <Checkbox
                   value="text"
-                  onClick={e => this.handleCheck("string")}
+                  onClick={(e) => this.handleCheck("string")}
                   checked={wincondition === "string"}
                 />
               }
@@ -86,23 +100,50 @@ class Form extends Component {
               control={
                 <Checkbox
                   value="image"
-                  onClick={e => this.handleCheck("image")}
+                  onClick={(e) => this.handleCheck("image")}
                   checked={wincondition === "image"}
                 />
               }
               label="Image"
             />
+
             <FormControlLabel
               control={
                 <Checkbox
                   value="gps"
-                  onClick={e => this.handleCheck("gps")}
+                  onClick={(e) => this.handleCheck("gps")}
                   checked={wincondition === "gps"}
                 />
               }
               label="GPS"
             />
-          </FormGroup>
+          </FormGroup> */}
+
+          <Typography>Select a win condition:</Typography>
+
+          <Grid container>
+            <Button onClick={(e) => this.handleCheck("string")}>
+              <TextIcon clicked={this.state.wincondition === "string"} />
+              Text
+            </Button>
+
+            <Button onClick={(e) => this.handleCheck("image")}>
+              <CameraIcon clicked={this.state.wincondition === "image"} />
+              Image
+            </Button>
+
+            <Button onClick={(e) => this.handleCheck("gps")}>
+              <GPSIcon clicked={this.state.wincondition === "gps"} />
+              GPS
+            </Button>
+          </Grid>
+
+          <LevelInputButton
+            wincondition={wincondition}
+            handleWinData={this.handleWinData}
+            handleGPS={this.handleGPS}
+            loading={this.state.loading}
+          />
 
           <Grid item xs={12}>
             <TextField
@@ -110,7 +151,7 @@ class Form extends Component {
               fullWidth
               value={wintext}
               label="Level completion message:"
-              onChange={e => this.handleChange("wintext", e.target.value)}
+              onChange={(e) => this.handleChange("wintext", e.target.value)}
             />
           </Grid>
         </Grid>
@@ -136,17 +177,12 @@ class Form extends Component {
             Add Level
           </Fab>
         )}
-        <LevelInputButton
-          wincondition={wincondition}
-          handleWinData={this.handleWinData}
-          handleGPS={this.handleGPS}
-          loading={this.state.loading}
-        />
-      </Container>
+      </div>
+      // </Container>
     );
   }
 
-  handleCheck = winCon => {
+  handleCheck = (winCon) => {
     this.setState({ wincondition: winCon });
   };
 
@@ -154,14 +190,14 @@ class Form extends Component {
     this.setState({ [str]: value });
   };
 
-  handleWinData = value => {
+  handleWinData = (value) => {
     const { wincondition } = this.state;
     if (wincondition === "string") {
       this.setState({ windata: value, loading: false });
     }
     if (wincondition === "image") {
       this.setState({ loading: true });
-      return this.classifyImage(value).then(labels => {
+      return this.classifyImage(value).then((labels) => {
         this.setState({ windata: labels, loading: false });
       });
     }
@@ -170,8 +206,8 @@ class Form extends Component {
     }
   };
 
-  handleGPS = e => {
-    navigator.geolocation.getCurrentPosition(position => {
+  handleGPS = (e) => {
+    navigator.geolocation.getCurrentPosition((position) => {
       const lat = position.coords.latitude.toFixed(4);
       const long = position.coords.longitude.toFixed(4);
       this.setState({ loading: true });
@@ -179,7 +215,7 @@ class Form extends Component {
     });
   };
 
-  classifyImage = base64Img => {
+  classifyImage = (base64Img) => {
     const vision = require("react-cloud-vision-api");
     vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
     const req = new vision.Request({
@@ -197,10 +233,11 @@ class Form extends Component {
         }, []);
         return labels;
       },
-      e => {
+      (e) => {
         console.log("Error: ", e);
       }
     );
   };
 }
-export default Form;
+
+export default CreateLevel;
