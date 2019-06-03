@@ -1,26 +1,28 @@
 import React from "react";
-import axios from "axios";
-import LevelDisplay from "./LevelDisplay";
 
+import LevelDisplay from "./LevelDisplay";
+import { withTranslation } from "react-i18next";
+import { getGame } from "../Api/Api";
 class Play extends React.Component {
   state = {
     game: {},
     curLevel: 0,
     attempts: 0,
     changeLevelButton: false,
-    answer: ""
+    answer: "",
+    score: null
   };
 
   componentDidMount() {
-    const url = `https://mongo-flask-api.herokuapp.com/games?id=${
-      this.props.gameid
-    }`;
-    axios.get(url).then(({ data }) => {
-      this.setState({ game: data });
+    const { gameid } = this.props;
+    getGame(gameid).then(game => {
+      const score = game.levels.length * 3;
+      this.setState({ game, score });
     });
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div>
         {this.state.game.levels && (
@@ -39,9 +41,10 @@ class Play extends React.Component {
               this.state.game.levels[this.state.curLevel].wincondition
             }
             completionMes={this.state.game.completion}
+            game_id={this.props.gameid}
+            score={this.state.score}
           />
         )}
-        <h1>Play here!</h1>
       </div>
     );
   }
@@ -53,7 +56,7 @@ class Play extends React.Component {
       });
     } else {
       this.setState(prevState => {
-        return { attempts: prevState.attempts + 1 };
+        return { attempts: prevState.attempts + 1, score: prevState.score - 1 };
       });
     }
   };
@@ -65,14 +68,11 @@ class Play extends React.Component {
     let comparison = new Set([...windata, ...inputArray]);
     let comparisonArray = [...comparison];
 
-    console.log(comparisonArray.length, "comparisonArray length");
-    console.log(total.length, "total.length");
-
     if (comparisonArray.length < total.length) {
       this.setState({ changeLevelButton: true });
     } else {
       this.setState(prevState => {
-        return { attempts: prevState.attempts + 1 };
+        return { attempts: prevState.attempts + 1, score: prevState.score - 1 };
       });
     }
   };
@@ -88,4 +88,4 @@ class Play extends React.Component {
   };
 }
 
-export default Play;
+export default withTranslation()(Play);

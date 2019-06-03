@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button, Fab } from "@material-ui/core";
 import { Link } from "@reach/router";
@@ -11,7 +10,6 @@ import CreateIcon from "./CreateIcon";
 import HomeIcon from "./HomeIcon";
 
 function Header(props) {
-  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -23,9 +21,7 @@ function Header(props) {
           <LocDropDown />
           {props.location.pathname === "/" ? (
             <Link className={classes.button} to="/create">
-
               <CreateIcon />
-
             </Link>
           ) : (
             <Link className={classes.button} to="/">
@@ -48,7 +44,7 @@ function Header(props) {
 //   }
 // });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
