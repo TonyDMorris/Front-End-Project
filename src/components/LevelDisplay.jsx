@@ -3,7 +3,11 @@ import { Typography, Link } from "@material-ui/core";
 import { Link as linkReach } from "@reach/router";
 import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
+
 import LeaderBoard from "./LeaderBoard";
+
+import { withTranslation } from "react-i18next";
+
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
 class LevelDisplay extends React.Component {
@@ -13,29 +17,38 @@ class LevelDisplay extends React.Component {
     takingPic: false
   };
   render() {
+    const { t } = this.props;
     return (
       <div>
         {this.props.curLevel <= this.props.numLevels - 1 ? (
           <div>
-            <Typography variant='h3'>{this.props.title}</Typography>
-            <Typography variant='h5'>
-              Level {this.props.curLevel + 1}
+
+           
+
+            <Typography variant="h3">{this.props.title}</Typography>
+            <Typography variant="h5">
+              {t("Level")} {this.props.curLevel + 1}
             </Typography>
-            <Typography variant='h5'>
-              Task {this.props.gameLevel.mainclue}
+            <Typography variant="h5">
+              {t("Task")} {this.props.gameLevel.mainclue}
             </Typography>
             {this.props.attempts === 1 && (
-              <Typography variant='h5'>
-                Clue 1 {this.props.gameLevel.clue2}
+              <Typography variant="h5">
+                {t("Clue 1")} {this.props.gameLevel.clue2}
+
               </Typography>
             )}
             {this.props.attempts >= 2 && (
               <div>
-                <Typography variant='h5'>
-                  Clue 1 {this.props.gameLevel.clue2}
+
+                
+
+                <Typography variant="h5">
+                  {t("Clue 1")} {this.props.gameLevel.clue2}
                 </Typography>
-                <Typography variant='h5'>
-                  Clue 2 {this.props.gameLevel.clue3}
+                <Typography variant="h5">
+                  {t("Clue 2")} {this.props.gameLevel.clue3}
+
                 </Typography>
               </div>
             )}
@@ -48,14 +61,17 @@ class LevelDisplay extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.input}
                   />
-                  <button type='sumbit'>Submit</button>
+
+
+                  <button type="sumbit">{t("Submit")}</button>
+
                 </form>
               )}
 
             {this.props.changeLevelButton === false &&
               this.props.winCondition === "gps" && (
                 <div>
-                  <button onClick={this.handleGPS}>Check GPS</button>
+                  <button onClick={this.handleGPS}>{t("Check GPS")}</button>
                 </div>
               )}
 
@@ -69,7 +85,7 @@ class LevelDisplay extends React.Component {
                     />
                   )}
                   {!this.state.takingPic && (
-                    <button onClick={this.handleCamera}>take pic</button>
+                    <button onClick={this.handleCamera}>{t("take pic")}</button>
                   )}
                 </div>
               )}
@@ -79,19 +95,23 @@ class LevelDisplay extends React.Component {
                 <Typography variant='h3'>
                   {this.props.gameLevel.wintext}
                 </Typography>
-                <button onClick={this.props.changeLevel}>Next Level</button>
+                <button onClick={this.props.changeLevel}>
+                  {t("Next Level")}
+                </button>
               </div>
             )}
           </div>
         ) : (
           <div>
             <h1>{this.props.completionMes}</h1>
-            <Link component={linkReach} to='/'>
-              Home
+
+            <Link component={linkReach} to="/">
+              {t("Home")}
             </Link>
             <br />
-            <Link component={linkReach} to='/create'>
-              Create your own game
+            <Link component={linkReach} to="/create">
+              {t("Create Your Game")}
+
             </Link>
             <LeaderBoard
               game_id={this.props.game_id}
@@ -161,4 +181,4 @@ class LevelDisplay extends React.Component {
   };
 }
 
-export default LevelDisplay;
+export default withTranslation()(LevelDisplay);
