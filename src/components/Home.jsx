@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import GameList from "./GameList";
+import { useTranslation } from "react-i18next";
 
 const style = {
   wrapper: {
@@ -18,6 +19,7 @@ const style = {
 };
 
 function Home(props) {
+  const { t } = useTranslation();
   const { classes } = props;
   return (
     <div className={classes.wrapper}>
@@ -25,10 +27,7 @@ function Home(props) {
         TheHunt
       </Typography>
       <Typography variant="body1" className={classes.blurb}>
-        Welcome to TheHunt, where you can challenge your friends to hunt pretty
-        much whatever you want! Set some clues (as hard or as easy as you like),
-        find some objects, beat your friends! Can you find everything without
-        using any clues?? Pick one of the games, or create your own!
+        {t("introduction paragraph")}
       </Typography>
       <GameList games={props.games} />
     </div>

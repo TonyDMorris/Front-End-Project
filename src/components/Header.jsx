@@ -4,13 +4,14 @@ import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button, Fab } from "@material-ui/core";
 import { Link } from "@reach/router";
 import AddIcon from "@material-ui/icons/Add";
+import LocDropDown from "./LocDropDown";
 // import { purple, green } from "@material-ui/core/colors/purple";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import CreateIcon from "./CreateIcon";
 import HomeIcon from "./HomeIcon";
 
 function Header(props) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -19,10 +20,12 @@ function Header(props) {
           <Typography variant="h4" className={classes.title}>
             The Hunt
           </Typography>
-
+          <LocDropDown />
           {props.location.pathname === "/" ? (
             <Link className={classes.button} to="/create">
+
               <CreateIcon />
+
             </Link>
           ) : (
             <Link className={classes.button} to="/">
