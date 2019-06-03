@@ -6,7 +6,7 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      "Create New Game": "Create",
+      "Create New Game": "Create Game",
       "English-lang": "English",
       "Spanish-lang": "Spanish",
       "Create Your Game": "Create Your Game",
@@ -28,7 +28,8 @@ const resources = {
       Image: "Image",
       GPS: "GPS",
       "Level completion message": "Level completion message:",
-      "Add Level": "Add Level"
+      "Add Level": "Add Level",
+      create: "Create Game"
     }
   },
   es: {
@@ -55,7 +56,8 @@ const resources = {
       Image: "Imagen",
       GPS: "GPS",
       "Level completion message": "Mensaje al pasar de nivel:",
-      "Add Level": "Añadir Nivel"
+      "Add Level": "Añadir Nivel",
+      create: "Crear Juego"
     }
   }
 };
