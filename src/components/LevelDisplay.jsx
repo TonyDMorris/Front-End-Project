@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Link } from "@material-ui/core";
+import { Typography, Link, Button } from "@material-ui/core";
 import { Link as linkReach } from "@reach/router";
 import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
@@ -68,7 +68,15 @@ class LevelDisplay extends React.Component {
                     />
                   )}
                   {!this.state.takingPic && (
-                    <button onClick={this.handleCamera}>take pic</button>
+                    // <Button
+                    //   variant="outlined"
+                    //   color="inherit"
+                    //   onClick={this.handleCamera}
+                    // >
+                    //   Take Pic
+                    //   {/* <button onClick={this.handleCamera}>Take Pic</button> */}
+                    // </Button>
+                    <SnapShotCam />
                   )}
                 </div>
               )}
