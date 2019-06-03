@@ -17,7 +17,7 @@ const LevelInputButton = ({
             variant="outlined"
             fullWidth
             label="Your answer:"
-            onChange={(e) => handleWinData(e.target.value)}
+            onChange={e => handleWinData(e.target.value)}
           />
         )}
         {wincondition === "image" && (

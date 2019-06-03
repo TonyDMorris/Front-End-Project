@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Link } from "@material-ui/core";
+import { Typography, Link, Grid, Button } from "@material-ui/core";
 import { Link as linkReach } from "@reach/router";
 import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
@@ -11,76 +11,131 @@ class LevelDisplay extends React.Component {
     location: "",
     takingPic: false
   };
+
   render() {
     return (
       <div>
         {this.props.curLevel <= this.props.numLevels - 1 ? (
-          <div>
-            <Typography variant="h3">{this.props.title}</Typography>
-            <Typography variant="h5">
-              Level {this.props.curLevel + 1}
-            </Typography>
-            <Typography variant="h5">
-              Task {this.props.gameLevel.mainclue}
-            </Typography>
-            {this.props.attempts === 1 && (
-              <Typography variant="h5">
-                Clue 1 {this.props.gameLevel.clue2}
-              </Typography>
-            )}
-            {this.props.attempts >= 2 && (
-              <div>
-                <Typography variant="h5">
+          <div className="root">
+            <Grid
+              container
+              spacing={6}
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
+              <Grid item xs={12}>
+                <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
+                  {this.props.title}
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
+                  Level {this.props.curLevel + 1}
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
+                  Task {this.props.gameLevel.mainclue}
+                </div>
+              </Grid>
+              {this.props.attempts === 1 && (
+                <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
                   Clue 1 {this.props.gameLevel.clue2}
-                </Typography>
-                <Typography variant="h5">
-                  Clue 2 {this.props.gameLevel.clue3}
-                </Typography>
-              </div>
-            )}
+                </div>
+              )}
+              {this.props.attempts >= 2 && (
+                <Grid item xs={12}>
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: "Italianno",
+                        fontSize: "50px"
+                      }}
+                    >
+                      Clue 1 {this.props.gameLevel.clue2}
+                    </div>
 
-            {this.props.changeLevelButton === false &&
-              this.props.winCondition === "string" && (
-                <form onSubmit={this.handleSubmit}>
-                  <input
-                    type="text"
-                    onChange={this.handleChange}
-                    value={this.state.input}
-                  />
-                  <button type="sumbit">Submit</button>
-                </form>
+                    <div
+                      style={{
+                        fontFamily: "Italianno",
+                        fontSize: "50px"
+                      }}
+                    >
+                      Clue 2 {this.props.gameLevel.clue3}
+                    </div>
+                  </div>
+                </Grid>
               )}
 
-            {this.props.changeLevelButton === false &&
-              this.props.winCondition === "gps" && (
+              {this.props.changeLevelButton === false &&
+                this.props.winCondition === "string" && (
+                  <form onSubmit={this.handleSubmit}>
+                    <Grid item xs={12}>
+                      <input
+                        type="text"
+                        onChange={this.handleChange}
+                        value={this.state.input}
+                      />{" "}
+                    </Grid>
+                    <br />
+                    <Grid item xs={12} style={{ justifyContent: "center" }}>
+                      <Grid container alignItems="center" justify="center">
+                        <Button
+                          type="submit"
+                          variant="outlined"
+                          color="inherit"
+                        >
+                          Submit
+                        </Button>
+                      </Grid>
+                      {/* <button type="sumbit">Submit</button> */}
+                    </Grid>
+                  </form>
+                )}
+
+              {this.props.changeLevelButton === false &&
+                this.props.winCondition === "gps" && (
+                  <div>
+                    <button onClick={this.handleGPS}>Check GPS</button>
+                  </div>
+                )}
+
+              {this.props.changeLevelButton === false &&
+                this.props.winCondition === "image" && (
+                  <div style={{ height: "100vh" }} className="App">
+                    {this.state.takingPic && (
+                      <SnapShotCam
+                        handleCamera={this.handleCamera}
+                        handlePhoto={this.classifyImage}
+                      />
+                    )}
+                    {!this.state.takingPic && (
+                      // <Button
+                      //   variant="outlined"
+                      //   color="inherit"
+                      //   onClick={this.handleCamera}
+                      // >
+                      //   Take Pic
+                      //   {/* <button onClick={this.handleCamera}>Take Pic</button> */}
+                      // </Button>
+                      <SnapShotCam />
+                    )}
+                  </div>
+                )}
+
+              {this.props.changeLevelButton && (
                 <div>
-                  <button onClick={this.handleGPS}>Check GPS</button>
+                  <div
+                    style={{ "font-family": "Italianno", "font-size": "50px" }}
+                  >
+                    {this.props.gameLevel.wintext}
+                  </div>
+
+                  <button onClick={this.props.changeLevel}>Next Level</button>
                 </div>
               )}
-
-            {this.props.changeLevelButton === false &&
-              this.props.winCondition === "image" && (
-                <div style={{ height: "100vh" }} className="App">
-                  {this.state.takingPic && (
-                    <SnapShotCam
-                      handleCamera={this.handleCamera}
-                      handlePhoto={this.classifyImage}
-                    />
-                  )}
-                  {!this.state.takingPic && (
-                    <button onClick={this.handleCamera}>take pic</button>
-                  )}
-                </div>
-              )}
-
-            {this.props.changeLevelButton && (
-              <div>
-                <Typography variant="h3">
-                  {this.props.gameLevel.wintext}
-                </Typography>
-                <button onClick={this.props.changeLevel}>Next Level</button>
-              </div>
-            )}
+            </Grid>
           </div>
         ) : (
           <div>
