@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import LevelDisplay from "./LevelDisplay";
+import { withTranslation } from "react-i18next";
 
 class Play extends React.Component {
   state = {
@@ -22,6 +23,7 @@ class Play extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div>
         {this.state.game.levels && (
@@ -87,4 +89,4 @@ class Play extends React.Component {
   };
 }
 
-export default Play;
+export default withTranslation()(Play);

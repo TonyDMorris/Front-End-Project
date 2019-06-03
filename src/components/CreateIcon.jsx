@@ -8,6 +8,7 @@ import AddIcon from "@material-ui/icons/Add";
 import SvgIcon from "@material-ui/core/SvgIcon";
 
 const CreateIcon = () => {
+  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <Fab
@@ -17,13 +18,13 @@ const CreateIcon = () => {
       aria-label="create"
       className={classes.fab}
     >
-      create
+      {t("create")}
       <AddIcon />
     </Fab>
   );
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },

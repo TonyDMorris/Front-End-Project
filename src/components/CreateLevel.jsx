@@ -20,6 +20,7 @@ import vision from "react-cloud-vision-api";
 import CameraIcon from "./CameraIcon";
 import GPSIcon from "./GPSIcon";
 import TextIcon from "./TextIcon";
+import { withTranslation } from "react-i18next";
 
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
@@ -34,6 +35,7 @@ class CreateLevel extends Component {
     loading: null
   };
   render() {
+    const { t } = this.props;
     const {
       wincondition,
       mainclue,
@@ -49,19 +51,16 @@ class CreateLevel extends Component {
         <CssBaseline />
 
         <Typography component="h1" variant="h5">
-          Create new level
+          {t("Create new level")}
         </Typography>
-
-        <Typography>Create new level</Typography>
-
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
               variant="outlined"
               fullWidth
               value={mainclue}
-              label="Main clue:"
-              onChange={(e) => this.handleChange("mainclue", e.target.value)}
+              label={t("Main clue")}
+              onChange={e => this.handleChange("mainclue", e.target.value)}
             />
           </Grid>
 
@@ -70,8 +69,8 @@ class CreateLevel extends Component {
               variant="outlined"
               fullWidth
               value={clue2}
-              label="Second clue:"
-              onChange={(e) => this.handleChange("clue2", e.target.value)}
+              label={t("Second clue")}
+              onChange={e => this.handleChange("clue2", e.target.value)}
             />
           </Grid>
 
@@ -80,8 +79,8 @@ class CreateLevel extends Component {
               variant="outlined"
               fullWidth
               value={clue3}
-              label="Third clue:"
-              onChange={(e) => this.handleChange("clue3", e.target.value)}
+              label={t("Third clue")}
+              onChange={e => this.handleChange("clue3", e.target.value)}
             />
           </Grid>
 
@@ -119,22 +118,22 @@ class CreateLevel extends Component {
             />
           </FormGroup> */}
 
-          <Typography>Select a win condition:</Typography>
+          <Typography>{t("Select win condition")}</Typography>
 
           <Grid container>
-            <Button onClick={(e) => this.handleCheck("string")}>
+            <Button onClick={e => this.handleCheck("string")}>
               <TextIcon clicked={this.state.wincondition === "string"} />
-              Text
+              {t("Text")}
             </Button>
 
-            <Button onClick={(e) => this.handleCheck("image")}>
+            <Button onClick={e => this.handleCheck("image")}>
               <CameraIcon clicked={this.state.wincondition === "image"} />
-              Image
+              {t("Image")}
             </Button>
 
-            <Button onClick={(e) => this.handleCheck("gps")}>
+            <Button onClick={e => this.handleCheck("gps")}>
               <GPSIcon clicked={this.state.wincondition === "gps"} />
-              GPS
+              {t("GPS")}
             </Button>
           </Grid>
 
@@ -150,8 +149,8 @@ class CreateLevel extends Component {
               variant="outlined"
               fullWidth
               value={wintext}
-              label="Level completion message:"
-              onChange={(e) => this.handleChange("wintext", e.target.value)}
+              label={t("Level completion message")}
+              onChange={e => this.handleChange("wintext", e.target.value)}
             />
           </Grid>
         </Grid>
@@ -174,7 +173,7 @@ class CreateLevel extends Component {
             variant="extended"
           >
             <AddIcon />
-            Add Level
+            {t("Add Level")}
           </Fab>
         )}
       </div>
@@ -182,7 +181,7 @@ class CreateLevel extends Component {
     );
   }
 
-  handleCheck = (winCon) => {
+  handleCheck = winCon => {
     this.setState({ wincondition: winCon });
   };
 
@@ -190,14 +189,14 @@ class CreateLevel extends Component {
     this.setState({ [str]: value });
   };
 
-  handleWinData = (value) => {
+  handleWinData = value => {
     const { wincondition } = this.state;
     if (wincondition === "string") {
       this.setState({ windata: value, loading: false });
     }
     if (wincondition === "image") {
       this.setState({ loading: true });
-      return this.classifyImage(value).then((labels) => {
+      return this.classifyImage(value).then(labels => {
         this.setState({ windata: labels, loading: false });
       });
     }
@@ -206,8 +205,8 @@ class CreateLevel extends Component {
     }
   };
 
-  handleGPS = (e) => {
-    navigator.geolocation.getCurrentPosition((position) => {
+  handleGPS = e => {
+    navigator.geolocation.getCurrentPosition(position => {
       const lat = position.coords.latitude.toFixed(4);
       const long = position.coords.longitude.toFixed(4);
       this.setState({ loading: true });
@@ -215,7 +214,7 @@ class CreateLevel extends Component {
     });
   };
 
-  classifyImage = (base64Img) => {
+  classifyImage = base64Img => {
     const vision = require("react-cloud-vision-api");
     vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
     const req = new vision.Request({
@@ -233,11 +232,11 @@ class CreateLevel extends Component {
         }, []);
         return labels;
       },
-      (e) => {
+      e => {
         console.log("Error: ", e);
       }
     );
   };
 }
 
-export default CreateLevel;
+export default withTranslation()(CreateLevel);
