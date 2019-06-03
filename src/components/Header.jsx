@@ -6,6 +6,8 @@ import { Link } from "@reach/router";
 import AddIcon from "@material-ui/icons/Add";
 // import { purple, green } from "@material-ui/core/colors/purple";
 import SvgIcon from "@material-ui/core/SvgIcon";
+import CreateIcon from "./CreateIcon";
+import HomeIcon from "./HomeIcon";
 
 function Header(props) {
   const { t, i18n } = useTranslation();
@@ -20,30 +22,11 @@ function Header(props) {
 
           {props.location.pathname === "/" ? (
             <Link className={classes.button} to="/create">
-              <Fab
-                size="small"
-                color="primary"
-                variant="extended"
-                aria-label="create"
-                className={classes.fab}
-              >
-                create
-                <AddIcon />
-              </Fab>
+              <CreateIcon />
             </Link>
           ) : (
             <Link className={classes.button} to="/">
-              <Fab
-                size="small"
-                color="primary"
-                variant="round"
-                aria-label="home"
-                className={classes.fab}
-              >
-                <SvgIcon>
-                  <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
-                </SvgIcon>
-              </Fab>
+              <HomeIcon />
             </Link>
           )}
         </Toolbar>
@@ -62,7 +45,7 @@ function Header(props) {
 //   }
 // });
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
   },

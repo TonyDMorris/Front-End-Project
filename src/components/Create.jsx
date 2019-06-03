@@ -13,7 +13,7 @@ import {
   makeStyles,
   Container
 } from "@material-ui/core";
-import Form from "./Form";
+import CreateLevel from "./CreateLevel";
 import axios from "axios";
 import { navigate } from "@reach/router";
 
@@ -23,19 +23,19 @@ class Create extends Component {
   render() {
     const { title, description, completion, levels } = this.state;
     return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+      <Grid container>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
 
-        <Grid container>
           <Typography component="h1" variant="h5">
             Create your game
           </Typography>
 
           <Typography>
-            Give your new game a name and add a short description.
+            Give your new game a title and add a short description.
           </Typography>
 
-          <Grid container spacing={4}>
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -49,6 +49,7 @@ class Create extends Component {
               <TextField
                 variant="outlined"
                 fullWidth
+                multiline
                 label="Description:"
                 onChange={(e) =>
                   this.handleChange("description", e.target.value)
@@ -56,25 +57,39 @@ class Create extends Component {
               />
             </Grid>
 
-            <Form handleLevel={this.handleLevel} />
-
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 fullWidth
+                multiline
                 label="Game completion message:"
                 onChange={(e) =>
                   this.handleChange("completion", e.target.value)
                 }
               />
             </Grid>
-
-            {title && description && completion && levels.length && (
-              <Button onClick={this.handleSubmit}>Submit Game</Button>
-            )}
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+
+          <Grid container>
+            <CreateLevel handleLevel={this.handleLevel} />
+
+            {
+              <Button
+                disabled={
+                  !title || !description || !completion || !levels.length
+                }
+                onClick={this.handleSubmit}
+              >
+                Submit Game
+              </Button>
+            }
+          </Grid>
+        </Container>
+      </Grid>
     );
   }
   handleChange = (str, value) => {
