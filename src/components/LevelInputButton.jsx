@@ -16,13 +16,9 @@ const LevelInputButton = ({
       <Grid item xs={12}>
         {wincondition === "string" && (
           <TextField
-            variant="outlined"
+            variant='outlined'
             fullWidth
-<<<<<<< HEAD
             label={t("Your answer")}
-=======
-            label="Your answer:"
->>>>>>> c7b760abf0448ffa6c6dcef71b3bde9992dd0158
             onChange={e => handleWinData(e.target.value)}
           />
         )}
