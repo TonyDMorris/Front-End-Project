@@ -13,8 +13,7 @@ vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 class LevelDisplay extends React.Component {
   state = {
     input: "",
-    location: "",
-    takingPic: false
+    location: ""
   };
 
   render() {
@@ -110,23 +109,7 @@ class LevelDisplay extends React.Component {
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "image" && (
                   <div style={{ height: "100vh" }} className="App">
-                    {this.state.takingPic && (
-                      <SnapShotCam
-                        handleCamera={this.handleCamera}
-                        handlePhoto={this.classifyImage}
-                      />
-                    )}
-                    {!this.state.takingPic && (
-                      // <Button
-                      //   variant="outlined"
-                      //   color="inherit"
-                      //   onClick={this.handleCamera}
-                      // >
-                      //   Take Pic
-                      //   {/* <button onClick={this.handleCamera}>Take Pic</button> */}
-                      // </Button>
-                      <SnapShotCam />
-                    )}
+                    <SnapShotCam handlePhoto={this.handleImage} />
                   </div>
                 )}
 
@@ -163,10 +146,6 @@ class LevelDisplay extends React.Component {
       </div>
     );
   }
-
-  handleCamera = () => {
-    this.setState({ takingPic: !this.state.takingPic });
-  };
 
   handleChange = e => {
     this.setState({ input: e.target.value });
