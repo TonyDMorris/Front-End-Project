@@ -9,7 +9,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
+import { getLeaderBoard, submitScore } from "../Api/Api";
 const styles = {
   root: {
     display: "flex",
@@ -28,31 +28,27 @@ class LeaderBoard extends Component {
   };
 
   componentDidMount() {
-    Axios.get(
-      `https://mongo-flask-api.herokuapp.com/leaderboards?game_id=${
-        this.props.game_id
-      }`
-    )
-      .then(({ data }) => {
-        console.log(data);
-        this.setState({ leaderBoard: data.leaderBoard });
-      })
-      .catch(err => console.log(err));
+    const { game_id } = this.props;
+    getLeaderBoard(game_id).then(leaderBoard => {
+      this.setState({ leaderBoard });
+    });
   }
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <Typography variant='h4'>Welcome to the leaderboard!</Typography>
-        <Typography variant='body1'>
+        <Typography variant="h4">Welcome to the leaderboard!</Typography>
+        <Typography variant="body1">
           Please enter your name to add your score to the leaderboard!
         </Typography>
         <form onSubmit={this.submitScore} className={classes.form}>
           <TextField
-            id='standard-name'
-            label='Name'
-            margin='normal'
-            onChange={this.handleInput}
+            id="standard-name"
+            label="Name"
+            margin="normal"
+            onChange={e => {
+              this.handleInput(e.target.value);
+            }}
           />
           <Button onClick={this.submitScore}>Submit Score!</Button>
         </form>
@@ -62,7 +58,7 @@ class LeaderBoard extends Component {
             <TableHead>
               <TableRow>
                 <TableCell>Username</TableCell>
-                <TableCell align='right'>Score</TableCell>
+                <TableCell align="right">Score</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -73,10 +69,10 @@ class LeaderBoard extends Component {
                   })
                   .map(score => (
                     <TableRow key={score.username}>
-                      <TableCell component='th' scope='row'>
+                      <TableCell component="th" scope="row">
                         {score.username}
                       </TableCell>
-                      <TableCell align='right'>{score.score}</TableCell>
+                      <TableCell align="right">{score.score}</TableCell>
                     </TableRow>
                   ))}
             </TableBody>
@@ -86,24 +82,19 @@ class LeaderBoard extends Component {
     );
   }
 
-  handleInput = e => {
-    this.setState({ input: e.target.value });
+  handleInput = username => {
+    this.setState({ username });
   };
 
   submitScore = e => {
-    console.log("submitSccore");
+    const { username } = this.state;
+    const { score, game_id } = this.props;
+    const highScore = { game_id, username, score };
     e.preventDefault();
-    Axios.patch("https://mongo-flask-api.herokuapp.com/leaderboards", {
-      game_id: this.props.game_id,
-      username: this.state.input,
-      score: this.props.score
-    });
+    submitScore(highScore);
     this.setState(prevState => {
-      const newBoard = [
-        { username: this.state.input, score: this.props.score },
-        ...prevState.leaderBoard
-      ];
-      return { leaderBoard: newBoard };
+      const leaderBoard = [highScore, ...prevState.leaderBoard];
+      return { leaderBoard };
     });
   };
 }

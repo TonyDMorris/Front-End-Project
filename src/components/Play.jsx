@@ -1,8 +1,8 @@
 import React from "react";
-import axios from "axios";
+
 import LevelDisplay from "./LevelDisplay";
 import { withTranslation } from "react-i18next";
-
+import { getGame } from "../Api/Api";
 class Play extends React.Component {
   state = {
     game: {},
@@ -14,11 +14,10 @@ class Play extends React.Component {
   };
 
   componentDidMount() {
-    const url = `https://mongo-flask-api.herokuapp.com/games?id=${
-      this.props.gameid
-    }`;
-    axios.get(url).then(({ data }) => {
-      this.setState({ game: data, score: data.levels.length * 3 });
+    const { gameid } = this.props;
+    getGame(gameid).then(game => {
+      const score = game.levels.length * 3;
+      this.setState({ game, score });
     });
   }
 

@@ -3,7 +3,7 @@ import { Typography, Link, Grid, Button } from "@material-ui/core";
 import { Link as linkReach } from "@reach/router";
 import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
-
+import { classifyImage } from "../Api/Api";
 import LeaderBoard from "./LeaderBoard";
 
 import { withTranslation } from "react-i18next";
@@ -48,6 +48,7 @@ class LevelDisplay extends React.Component {
               {this.props.attempts === 1 && (
                 <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
                   {t("Clue 1")} {this.props.gameLevel.clue2}
+
                 </div>
               )}
               {this.props.attempts >= 2 && (
@@ -73,6 +74,7 @@ class LevelDisplay extends React.Component {
                   </div>
                 </Grid>
               )}
+
 
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "string" && (
@@ -144,6 +146,7 @@ class LevelDisplay extends React.Component {
                 </div>
               )}
             </Grid>
+
           </div>
         ) : (
           <div>
@@ -195,32 +198,13 @@ class LevelDisplay extends React.Component {
     this.setState({ input: "" });
   };
 
-  classifyImage = base64Img => {
-    const vision = require("react-cloud-vision-api");
-    vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
-    const req = new vision.Request({
-      image: new vision.Image({
-        base64: base64Img
-      }),
-      features: [new vision.Feature("LABEL_DETECTION", 10)]
-    });
-
+  handleImage = base64Img => {
     this.setState({ loading: true });
-
-    return vision.annotate(req).then(
-      ({ responses }) => {
-        const labels = responses[0].labelAnnotations.reduce((acc, curr) => {
-          acc.push(curr.description);
-          return acc;
-        }, []);
-        this.setState({ input: labels }, () => {
-          this.props.checkPhotoAnswer(this.state.input);
-        });
-      },
-      e => {
-        console.log("Error: ", e);
-      }
-    );
+    classifyImage(base64Img).then(labels => {
+      this.setState({ input: labels }, () => {
+        this.props.checkPhotoAnswer(this.state.input);
+      });
+    });
   };
 }
 

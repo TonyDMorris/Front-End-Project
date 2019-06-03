@@ -21,6 +21,7 @@ import CameraIcon from "./CameraIcon";
 import GPSIcon from "./GPSIcon";
 import TextIcon from "./TextIcon";
 import { withTranslation } from "react-i18next";
+import { classifyImage } from "../Api/Api";
 
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
@@ -121,17 +122,26 @@ class CreateLevel extends Component {
           <Typography>{t("Select win condition")}</Typography>
 
           <Grid container>
-            <Button onClick={e => this.handleCheck("string")}>
+            <Button
+              data-cy="text-condition-button"
+              onClick={e => this.handleCheck("string")}
+            >
               <TextIcon clicked={this.state.wincondition === "string"} />
               {t("Text")}
             </Button>
 
-            <Button onClick={e => this.handleCheck("image")}>
+            <Button
+              data-cy="img-condition-button"
+              onClick={e => this.handleCheck("image")}
+            >
               <CameraIcon clicked={this.state.wincondition === "image"} />
               {t("Image")}
             </Button>
 
-            <Button onClick={e => this.handleCheck("gps")}>
+            <Button
+              data-cy="gps-condition-button"
+              onClick={e => this.handleCheck("gps")}
+            >
               <GPSIcon clicked={this.state.wincondition === "gps"} />
               {t("GPS")}
             </Button>
@@ -196,7 +206,7 @@ class CreateLevel extends Component {
     }
     if (wincondition === "image") {
       this.setState({ loading: true });
-      return this.classifyImage(value).then(labels => {
+      return classifyImage(value).then(labels => {
         this.setState({ windata: labels, loading: false });
       });
     }
@@ -212,30 +222,6 @@ class CreateLevel extends Component {
       this.setState({ loading: true });
       this.handleWinData(`${lat},${long}`);
     });
-  };
-
-  classifyImage = base64Img => {
-    const vision = require("react-cloud-vision-api");
-    vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
-    const req = new vision.Request({
-      image: new vision.Image({
-        base64: base64Img
-      }),
-      features: [new vision.Feature("LABEL_DETECTION", 10)]
-    });
-
-    return vision.annotate(req).then(
-      ({ responses }) => {
-        const labels = responses[0].labelAnnotations.reduce((acc, curr) => {
-          acc.push(curr.description);
-          return acc;
-        }, []);
-        return labels;
-      },
-      e => {
-        console.log("Error: ", e);
-      }
-    );
   };
 }
 
