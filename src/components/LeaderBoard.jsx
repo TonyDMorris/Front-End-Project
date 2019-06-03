@@ -14,7 +14,7 @@ const styles = {
   root: {
     display: "flex",
     justifyContent: "center",
-    width: "90%"
+    width: "auto"
     // marginTop: theme.spacing(3)
   },
   table: {

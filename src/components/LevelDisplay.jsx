@@ -22,33 +22,25 @@ class LevelDisplay extends React.Component {
       <div>
         {this.props.curLevel <= this.props.numLevels - 1 ? (
           <div>
-
-           
-
-            <Typography variant="h3">{this.props.title}</Typography>
-            <Typography variant="h5">
+            <Typography variant='h3'>{this.props.title}</Typography>
+            <Typography variant='h5'>
               {t("Level")} {this.props.curLevel + 1}
             </Typography>
-            <Typography variant="h5">
+            <Typography variant='h5'>
               {t("Task")} {this.props.gameLevel.mainclue}
             </Typography>
             {this.props.attempts === 1 && (
-              <Typography variant="h5">
+              <Typography variant='h5'>
                 {t("Clue 1")} {this.props.gameLevel.clue2}
-
               </Typography>
             )}
             {this.props.attempts >= 2 && (
               <div>
-
-                
-
-                <Typography variant="h5">
+                <Typography variant='h5'>
                   {t("Clue 1")} {this.props.gameLevel.clue2}
                 </Typography>
-                <Typography variant="h5">
+                <Typography variant='h5'>
                   {t("Clue 2")} {this.props.gameLevel.clue3}
-
                 </Typography>
               </div>
             )}
@@ -62,9 +54,7 @@ class LevelDisplay extends React.Component {
                     value={this.state.input}
                   />
 
-
-                  <button type="sumbit">{t("Submit")}</button>
-
+                  <button type='sumbit'>{t("Submit")}</button>
                 </form>
               )}
 
@@ -96,15 +86,11 @@ class LevelDisplay extends React.Component {
                   {this.props.gameLevel.wintext}
                 </Typography>
                 <button onClick={this.props.changeLevel}>
-<<<<<<< HEAD
                   {this.props.numLevels > this.props.curLevel + 1 ? (
                     <span>{t("Next Level")}</span>
                   ) : (
                     <span>{t("Finish!")}</span>
                   )}
-=======
-                  {t("Next Level")}
->>>>>>> a09213be2e4b37281cde7753a1be347a903760d9
                 </button>
               </div>
             )}
@@ -113,13 +99,12 @@ class LevelDisplay extends React.Component {
           <div>
             <h1>{this.props.completionMes}</h1>
 
-            <Link component={linkReach} to="/">
+            <Link component={linkReach} to='/'>
               {t("Home")}
             </Link>
             <br />
-            <Link component={linkReach} to="/create">
+            <Link component={linkReach} to='/create'>
               {t("Create Your Game")}
-
             </Link>
             <LeaderBoard
               game_id={this.props.game_id}
