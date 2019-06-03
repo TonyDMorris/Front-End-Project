@@ -93,7 +93,10 @@ class LevelDisplay extends React.Component {
             <Link component={linkReach} to='/create'>
               Create your own game
             </Link>
-            <LeaderBoard />
+            <LeaderBoard
+              game_id={this.props.game_id}
+              score={this.props.score}
+            />
           </div>
         )}
       </div>
