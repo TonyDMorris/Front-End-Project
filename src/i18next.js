@@ -38,7 +38,9 @@ const resources = {
       "Check GPS": "Check GPS",
       "take pic": "take pic",
       "Next Level": "Next Level",
-      Home: "Home"
+      Home: "Home",
+      "Your answer": "Your answer:",
+      "Send GPS": "Send GPS"
     }
   },
   es: {
@@ -75,7 +77,9 @@ const resources = {
       "Check GPS": "Comprobar GPS",
       "take pic": "hacer foto",
       "Next Level": "Siguiente Nivel",
-      Home: "Página Principal"
+      Home: "Página Principal",
+      "Your answer": "Respuesta esperada:",
+      "Send GPS": "Enviar GPS"
     }
   }
 };
