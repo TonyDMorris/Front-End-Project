@@ -19,7 +19,7 @@ class GameList extends Component {
             this.props.games.map(game => {
               return (
                 // <Paper className={classes.gameCard} key={game.id}>
-                <GameCard game={game} />
+                <GameCard key={game.id} game={game} />
                 // </Paper>
               );
             })}

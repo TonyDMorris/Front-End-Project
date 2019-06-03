@@ -22,13 +22,13 @@ class LevelDisplay extends React.Component {
     return (
       <div>
         {this.props.curLevel <= this.props.numLevels - 1 ? (
-          <div className='root'>
+          <div className="root">
             <Grid
               container
               spacing={6}
-              direction='column'
-              justify='center'
-              alignItems='center'
+              direction="column"
+              justify="center"
+              alignItems="center"
             >
               <Grid item xs={12}>
                 <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
@@ -48,7 +48,6 @@ class LevelDisplay extends React.Component {
               {this.props.attempts === 1 && (
                 <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
                   {t("Clue 1")} {this.props.gameLevel.clue2}
-
                 </div>
               )}
               {this.props.attempts >= 2 && (
@@ -75,24 +74,23 @@ class LevelDisplay extends React.Component {
                 </Grid>
               )}
 
-
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "string" && (
                   <form onSubmit={this.handleSubmit}>
                     <Grid item xs={12}>
                       <input
-                        type='text'
+                        type="text"
                         onChange={this.handleChange}
                         value={this.state.input}
                       />{" "}
                     </Grid>
                     <br />
                     <Grid item xs={12} style={{ justifyContent: "center" }}>
-                      <Grid container alignItems='center' justify='center'>
+                      <Grid container alignItems="center" justify="center">
                         <Button
-                          type='submit'
-                          variant='outlined'
-                          color='inherit'
+                          type="submit"
+                          variant="outlined"
+                          color="inherit"
                         >
                           {t("Submit")}
                         </Button>
@@ -111,7 +109,7 @@ class LevelDisplay extends React.Component {
 
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "image" && (
-                  <div style={{ height: "100vh" }} className='App'>
+                  <div style={{ height: "100vh" }} className="App">
                     {this.state.takingPic && (
                       <SnapShotCam
                         handleCamera={this.handleCamera}
@@ -134,9 +132,7 @@ class LevelDisplay extends React.Component {
 
               {this.props.changeLevelButton && (
                 <div>
-                  <div
-                    style={{ "font-family": "Italianno", "font-size": "50px" }}
-                  >
+                  <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
                     {this.props.gameLevel.wintext}
                   </div>
 
@@ -146,17 +142,16 @@ class LevelDisplay extends React.Component {
                 </div>
               )}
             </Grid>
-
           </div>
         ) : (
           <div>
             <h1>{this.props.completionMes}</h1>
 
-            <Link component={linkReach} to='/'>
+            <Link component={linkReach} to="/">
               {t("Home")}
             </Link>
             <br />
-            <Link component={linkReach} to='/create'>
+            <Link component={linkReach} to="/create">
               {t("Create Your Game")}
             </Link>
             <LeaderBoard

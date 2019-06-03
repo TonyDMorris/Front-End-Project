@@ -29,7 +29,7 @@ class LeaderBoard extends Component {
 
   componentDidMount() {
     const { game_id } = this.props;
-    getLeaderBoard(game_id).then(leaderBoard => {
+    getLeaderBoard(game_id).then((leaderBoard = []) => {
       this.setState({ leaderBoard });
     });
   }
@@ -93,6 +93,7 @@ class LeaderBoard extends Component {
     e.preventDefault();
     submitScore(highScore);
     this.setState(prevState => {
+      console.log(prevState);
       const leaderBoard = [highScore, ...prevState.leaderBoard];
       return { leaderBoard };
     });
