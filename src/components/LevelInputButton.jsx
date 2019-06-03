@@ -18,7 +18,11 @@ const LevelInputButton = ({
           <TextField
             variant="outlined"
             fullWidth
+<<<<<<< HEAD
             label={t("Your answer")}
+=======
+            label="Your answer:"
+>>>>>>> c7b760abf0448ffa6c6dcef71b3bde9992dd0158
             onChange={e => handleWinData(e.target.value)}
           />
         )}

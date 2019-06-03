@@ -41,6 +41,8 @@ class SnapShotCam extends Component {
         )}
         {!openCamera && (
           <Button
+            variant="outlined"
+            color="inherit"
             onClick={() => {
               this.handleClick();
             }}
