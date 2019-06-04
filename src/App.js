@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import Create from "./components/Create";
 import Play from "./components/Play";
 import { getGames } from "./Api/Api";
-import { Container } from "@material-ui/core/";
+import { Container, MuiThemeProvider } from "@material-ui/core/";
 import test3 from "./test3.jpg";
 
 const styles = {
@@ -30,7 +30,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Container theme={theme}>
+        <MuiThemeProvider theme={theme}>
           <Location>
             {({ location }) => <Header location={location} />}
           </Location>
@@ -39,7 +39,7 @@ class App extends React.Component {
             <Create path="/create" />
             <Play path="/play/:gameid" />
           </Router>
-        </Container>
+        </MuiThemeProvider>
       </div>
     );
   }

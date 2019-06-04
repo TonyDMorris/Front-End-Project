@@ -7,12 +7,12 @@ export default createMuiTheme({
   palette: {
     primary: blue,
     secondary: green
+  },
+  typography: {
+    fontFamily: "'Montserrat', sans-serif",
+    fontSize: 16,
+    fontWeightLight: 500,
+    fontWeightRegular: 600,
+    fontWeightMedium: 700
   }
-  // typography: {
-  //   fontFamily: "'Montserrat', sans-serif",
-  //   fontSize: 16,
-  //   fontWeightLight: 500,
-  //   fontWeightRegular: 600,
-  //   fontWeightMedium: 700
-  // }
 });
