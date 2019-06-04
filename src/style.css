@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "PirateFont";
+  src: url("./PirateFont.ttf");
+}
+
 h1 h2 body p {
-  font-family: url("./PirateFont.ttf");
+  font-family: "PirateFont.ttf";
+}
+
+body {
 }
