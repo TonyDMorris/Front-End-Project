@@ -14,7 +14,7 @@ import {
   Container
 } from "@material-ui/core";
 import CreateLevel from "./CreateLevel";
-import { submitGame } from "../Api/Api";
+import { submitGame, registerServiceWorker } from "../Api/Api";
 import { navigate } from "@reach/router";
 import { withTranslation } from "react-i18next";
 
@@ -41,7 +41,7 @@ class Create extends Component {
                 variant="outlined"
                 fullWidth
                 label={t("Title")}
-                onChange={(e) => this.handleChange("title", e.target.value)}
+                onChange={e => this.handleChange("title", e.target.value)}
               />
             </Grid>
 
@@ -51,11 +51,7 @@ class Create extends Component {
                 fullWidth
                 multiline
                 label={t("Description")}
-
-                onChange={(e) =>
-                  this.handleChange("description", e.target.value)
-                }
-
+                onChange={e => this.handleChange("description", e.target.value)}
               />
             </Grid>
 
@@ -65,13 +61,8 @@ class Create extends Component {
                 fullWidth
                 multiline
                 label={t("Game completion message")}
-
-                onChange={(e) =>
-                  this.handleChange("completion", e.target.value)
-                }
-
                 onChange={e => this.handleChange("completion", e.target.value)}
-
+                onChange={e => this.handleChange("completion", e.target.value)}
               />
             </Grid>
           </Grid>
@@ -101,7 +92,7 @@ class Create extends Component {
   handleChange = (str, value) => {
     this.setState({ [str]: value });
   };
-  handleLevel = (level) => {
+  handleLevel = level => {
     const { levels } = this.state;
     this.setState({ levels: [...levels, level] });
   };
@@ -110,6 +101,9 @@ class Create extends Component {
     submitGame(game).then(game_id => {
       navigate(`/play/${game_id}`);
     });
+  };
+  componentDidMount = () => {
+    registerServiceWorker();
   };
 }
 
