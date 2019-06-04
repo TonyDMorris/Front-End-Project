@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Create from "./components/Create";
 import Play from "./components/Play";
 import Axios from "axios";
-
+import { getGames } from "./Api/Api";
 import Paper from "@material-ui/core/Paper";
 import PirateFont from "./PirateFont.ttf";
 import test3 from "./test3.jpg";
@@ -19,9 +19,6 @@ const styles = {
     margin: "0px"
   }
 };
-
-
-import { getGames } from "./Api/Api";
 
 class App extends React.Component {
   state = {};
