@@ -57,7 +57,7 @@ class CreateLevel extends Component {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
-              variant="outlined"
+              //variant="outlined"
               fullWidth
               value={mainclue}
               label={t("Main clue")}
@@ -67,7 +67,7 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
-              variant="outlined"
+              //variant="outlined"
               fullWidth
               value={clue2}
               label={t("Second clue")}
@@ -77,7 +77,7 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
-              variant="outlined"
+              //variant="outlined"
               fullWidth
               value={clue3}
               label={t("Third clue")}
@@ -121,7 +121,7 @@ class CreateLevel extends Component {
 
           <Typography>{t("Select win condition")}</Typography>
 
-          <Grid container>
+          <Grid container spacing={3} justify="center">
             <Button
               data-cy="text-condition-button"
               onClick={e => this.handleCheck("string")}
@@ -156,7 +156,7 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
-              variant="outlined"
+              //variant="outlined"
               fullWidth
               value={wintext}
               label={t("Level completion message")}

@@ -38,7 +38,7 @@ class Create extends Component {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                //variant="outlined"
                 fullWidth
                 label={t("Title")}
                 onChange={e => this.handleChange("title", e.target.value)}
@@ -57,7 +57,7 @@ class Create extends Component {
 
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                //variant="outlined"
                 fullWidth
                 multiline
                 label={t("Game completion message")}
@@ -71,7 +71,7 @@ class Create extends Component {
         <Container component="main" maxWidth="xs">
           <CssBaseline />
 
-          <Grid container>
+          <Grid container justify="center">
             <CreateLevel handleLevel={this.handleLevel} />
 
             {
