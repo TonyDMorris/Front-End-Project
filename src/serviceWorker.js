@@ -126,6 +126,14 @@ function checkValidServiceWorker(swUrl, config) {
     });
 }
 
+fetch("examples/example.json")
+  .then(function(response) {
+    // Do stuff with the response
+  })
+  .catch(function(error) {
+    console.log("Looks like there was a problem: \n", error);
+  });
+
 export function unregister() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.ready.then(registration => {
