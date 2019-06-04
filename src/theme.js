@@ -1,7 +1,6 @@
 import { createMuiTheme } from "@material-ui/core";
 import blue from "@material-ui/core/colors/blue";
 import green from "@material-ui/core/colors/green";
-// import PirateFont from "./PirateFont.tff";
 
 export default createMuiTheme({
   palette: {
@@ -9,7 +8,7 @@ export default createMuiTheme({
     secondary: green
   },
   typography: {
-    fontFamily: "'Montserrat', Italianno",
+    fontFamily: "IM Fell English SC",
     fontSize: 16,
     fontWeightLight: 500,
     fontWeightRegular: 600,

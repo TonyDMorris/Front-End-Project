@@ -1,10 +1,6 @@
-@font-face {
-  font-family: "PirateFont";
-  src: url("./PirateFont.ttf");
-}
-
 h1 h2 body p {
-  font-family: "PirateFont.ttf";
+  font-family: "IM Fell DW Pica", serif;
+  font-family: "IM Fell DW Pica SC", serif;
 }
 
 body {
@@ -16,4 +12,5 @@ body {
 }
 
 html {
+  font-family: "primitiveregular";
 }

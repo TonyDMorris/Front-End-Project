@@ -26,7 +26,7 @@ function Home(props) {
       <Typography variant="h1" className={classes.title}>
         TheHunt
       </Typography>
-      <Typography variant="body1" className={classes.blurb}>
+      <Typography variant="h4" className={classes.blurb}>
         {t("introduction paragraph")}
       </Typography>
       <GameList games={props.games} />
