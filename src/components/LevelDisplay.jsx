@@ -101,9 +101,20 @@ class LevelDisplay extends React.Component {
 
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "gps" && (
-                  <div>
-                    <button onClick={this.handleGPS}>{t("Check GPS")}</button>
-                  </div>
+
+                  <Grid item xs={12}>
+                    <div>
+                      <Button
+                        onClick={this.handleGPS}
+                        variant="outlined"
+                        color="inherit"
+                      >
+                        Check GPS
+                      </Button>
+                      {/* <button onClick={this.handleGPS}>Check GPS</button> */}
+                    </div>
+                  </Grid>
+
                 )}
 
               {this.props.changeLevelButton === false &&
@@ -119,9 +130,14 @@ class LevelDisplay extends React.Component {
                     {this.props.gameLevel.wintext}
                   </div>
 
-                  <button onClick={this.props.changeLevel}>
-                    {t("Next Level")}
-                  </button>
+                  <Button onClick={this.props.changeLevel}>{t("Next Level")}</Button>
+                  {/* <button onClick={this.props.changeLevel}>Next Level</button> */}
+
+
+                 
+                    
+                 
+
                 </div>
               )}
             </Grid>

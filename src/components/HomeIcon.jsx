@@ -21,7 +21,7 @@ const HomeIcon = () => {
   );
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none"
   },
   fab: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    backgroundColor: "black"
   },
   extendedIcon: {
     marginRight: theme.spacing(1)

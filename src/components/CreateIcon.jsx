@@ -1,7 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Typography, Button, Fab } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Fab,
+  Icon
+} from "@material-ui/core";
 import { Link } from "@reach/router";
 import AddIcon from "@material-ui/icons/Add";
 // import { purple, green } from "@material-ui/core/colors/purple";
@@ -13,7 +20,6 @@ const CreateIcon = () => {
   return (
     <Fab
       size="small"
-      color="primary"
       variant="extended"
       aria-label="create"
       className={classes.fab}
@@ -37,7 +43,8 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none"
   },
   fab: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    backgroundColor: "black"
   },
   extendedIcon: {
     marginRight: theme.spacing(1)
