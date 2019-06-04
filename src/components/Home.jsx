@@ -24,7 +24,7 @@ function Home(props) {
   return (
     <div className={classes.wrapper}>
       <Typography variant="h1" className={classes.title}>
-        TheHunt
+        <i>The Hunt</i>
       </Typography>
       <Typography variant="h4" className={classes.blurb}>
         {t("introduction paragraph")}
