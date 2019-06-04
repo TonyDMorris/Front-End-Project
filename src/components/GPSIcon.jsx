@@ -3,7 +3,7 @@ import { Fab } from "@material-ui/core";
 import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import SvgIcon from "@material-ui/core/SvgIcon";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
@@ -16,7 +16,11 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none"
   },
   fab: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    backgroundColor: "black",
+    "&:hover": {
+      backgroundColor: "#DE0404"
+    }
   },
   extendedIcon: {
     marginRight: theme.spacing(1)

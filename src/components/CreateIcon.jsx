@@ -24,7 +24,7 @@ const CreateIcon = () => {
       className={classes.fab}
     >
       create
-      <AddIcon />
+      {/* <AddIcon /> */}
     </Fab>
   );
 };
@@ -44,8 +44,12 @@ const useStyles = makeStyles(theme => ({
   fab: {
     margin: theme.spacing(1),
     backgroundColor: "black",
+    "&:hover": {
+      backgroundColor: "#DE0404"
+    },
     color: "white"
   },
+
   extendedIcon: {
     marginRight: theme.spacing(1)
   }
