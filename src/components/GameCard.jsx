@@ -1,6 +1,6 @@
 import React from "react";
 import { Link as ReachLink } from "@reach/router";
-import { Card, Link, Typography, Button } from "@material-ui/core";
+import { Link, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import theme from "../theme";
@@ -20,10 +20,12 @@ const useStyles = makeStyles({
     margin: theme.spacing(1)
   },
   title: {
-    marginBottom: 10
+    marginBottom: 10,
+    color: "black"
   },
-  pos: {
-    marginTop: 10
+  text: {
+    marginTop: 10,
+    color: "black"
   }
 });
 
@@ -38,13 +40,24 @@ const GameCard = props => {
 
   const { game } = props;
   return (
-    <Button variant="outlined" className={classes.card} key={game.game_id}>
-      <Link component={GameLink} to={`/play/${game.id}`}>
+    <Button
+      variant="outlined"
+      className={classes.card}
+      key={game.game_id}
+      style={{ borderWidth: "3px" }}
+    >
+      <Link
+        classes={{ underline: "none" }}
+        component={GameLink}
+        to={`/play/${game.id}`}
+      >
         <Typography variant="h5" className={classes.title}>
           {game.title}
         </Typography>
-        <Typography variant="body1"> {game.description}</Typography>
-        <Typography variant="body2" className={classes.pos}>
+        <Typography variant="body1" className={classes.text}>
+          {game.description}
+        </Typography>
+        <Typography variant="body2" className={classes.text}>
           {t("levels")} {game.levels.length}
         </Typography>
       </Link>
