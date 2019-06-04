@@ -15,25 +15,23 @@ function Header(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar color="default" position="static">
-        <Toolbar>
-          <Typography variant="h4" className={classes.title}>
-            The Hunt
-          </Typography>
-          <LocDropDown />
-          {props.location.pathname === "/" ? (
-            <Link className={classes.button} to="/create">
-
-              <CreateIcon />
-
-            </Link>
-          ) : (
-            <Link className={classes.button} to="/">
-              <HomeIcon />
-            </Link>
-          )}
-        </Toolbar>
-      </AppBar>
+      {/* <AppBar color="default" position="static" style={{ marginRight: 0 }}> */}
+      <Toolbar>
+        <Typography variant="h4" className={classes.title}>
+          The Hunt
+        </Typography>
+        <LocDropDown />
+        {props.location.pathname === "/" ? (
+          <Link className={classes.button} to="/create">
+            <CreateIcon />
+          </Link>
+        ) : (
+          <Link className={classes.button} to="/">
+            <HomeIcon />
+          </Link>
+        )}
+      </Toolbar>
+      {/* </AppBar> */}
     </div>
   );
 }
@@ -48,7 +46,7 @@ function Header(props) {
 //   }
 // });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },

@@ -13,7 +13,9 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
 const styles = {
   paperContainer: {
-    backgroundImage: `url(${test3})`
+    backgroundImage: `url(${test3})`,
+    width: "100%",
+    margin: "0px"
   }
 };
 
