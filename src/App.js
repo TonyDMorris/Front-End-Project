@@ -1,16 +1,14 @@
 import React from "react";
 import "./style.css";
+import theme from "./theme.js";
 import { Router, Location } from "@reach/router";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Create from "./components/Create";
 import Play from "./components/Play";
-import Axios from "axios";
 import { getGames } from "./Api/Api";
-import Paper from "@material-ui/core/Paper";
-import PirateFont from "./PirateFont.ttf";
+import { Container } from "@material-ui/core/";
 import test3 from "./test3.jpg";
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
 const styles = {
   paperContainer: {
@@ -24,7 +22,7 @@ class App extends React.Component {
   state = {};
 
   componentDidMount = () => {
-    getGames().then(games => {
+    getGames().then((games) => {
       this.setState({ games });
     });
   };
@@ -32,7 +30,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Paper style={styles.paperContainer}>
+        <Container theme={theme}>
           <Location>
             {({ location }) => <Header location={location} />}
           </Location>
@@ -41,7 +39,7 @@ class App extends React.Component {
             <Create path="/create" />
             <Play path="/play/:gameid" />
           </Router>
-        </Paper>
+        </Container>
       </div>
     );
   }
