@@ -3,16 +3,21 @@ import { Typography, Link, Grid, Button } from "@material-ui/core";
 import { Link as linkReach } from "@reach/router";
 import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
+import { classifyImage } from "../Api/Api";
+import LeaderBoard from "./LeaderBoard";
+
+import { withTranslation } from "react-i18next";
+
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
 class LevelDisplay extends React.Component {
   state = {
     input: "",
-    location: "",
-    takingPic: false
+    location: ""
   };
 
   render() {
+    const { t } = this.props;
     return (
       <div>
         {this.props.curLevel <= this.props.numLevels - 1 ? (
@@ -31,17 +36,17 @@ class LevelDisplay extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
-                  Level {this.props.curLevel + 1}
+                  {t("Level")} {this.props.curLevel + 1}
                 </div>
               </Grid>
               <Grid item xs={12}>
                 <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
-                  Task {this.props.gameLevel.mainclue}
+                  {t("Task")} {this.props.gameLevel.mainclue}
                 </div>
               </Grid>
               {this.props.attempts === 1 && (
                 <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
-                  Clue 1 {this.props.gameLevel.clue2}
+                  {t("Clue 1")} {this.props.gameLevel.clue2}
                 </div>
               )}
               {this.props.attempts >= 2 && (
@@ -53,7 +58,7 @@ class LevelDisplay extends React.Component {
                         fontSize: "50px"
                       }}
                     >
-                      Clue 1 {this.props.gameLevel.clue2}
+                      {t("Clue 1")} {this.props.gameLevel.clue2}
                     </div>
 
                     <div
@@ -62,7 +67,7 @@ class LevelDisplay extends React.Component {
                         fontSize: "50px"
                       }}
                     >
-                      Clue 2 {this.props.gameLevel.clue3}
+                      {t("Clue 2")} {this.props.gameLevel.clue3}
                     </div>
                   </div>
                 </Grid>
@@ -86,7 +91,7 @@ class LevelDisplay extends React.Component {
                           variant="outlined"
                           color="inherit"
                         >
-                          Submit
+                          {t("Submit")}
                         </Button>
                       </Grid>
                       {/* <button type="sumbit">Submit</button> */}
@@ -96,6 +101,7 @@ class LevelDisplay extends React.Component {
 
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "gps" && (
+
                   <Grid item xs={12}>
                     <div>
                       <Button
@@ -108,40 +114,30 @@ class LevelDisplay extends React.Component {
                       {/* <button onClick={this.handleGPS}>Check GPS</button> */}
                     </div>
                   </Grid>
+
                 )}
 
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "image" && (
                   <div style={{ height: "100vh" }} className="App">
-                    {this.state.takingPic && (
-                      <SnapShotCam
-                        handleCamera={this.handleCamera}
-                        handlePhoto={this.classifyImage}
-                      />
-                    )}
-                    {!this.state.takingPic && (
-                      // <Button
-                      //   variant="outlined"
-                      //   color="inherit"
-                      //   onClick={this.handleCamera}
-                      // >
-                      //   Take Pic
-                      //   {/* <button onClick={this.handleCamera}>Take Pic</button> */}
-                      // </Button>
-                      <SnapShotCam />
-                    )}
+                    <SnapShotCam handlePhoto={this.handleImage} />
                   </div>
                 )}
 
               {this.props.changeLevelButton && (
                 <div>
-                  <div
-                    style={{ "font-family": "Italianno", "font-size": "50px" }}
-                  >
+                  <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
                     {this.props.gameLevel.wintext}
                   </div>
-                  <Button onClick={this.props.changeLevel}>Next Level</Button>
+
+                  <Button onClick={this.props.changeLevel}>{t("Next Level")}</Button>
                   {/* <button onClick={this.props.changeLevel}>Next Level</button> */}
+
+
+                 
+                    
+                 
+
                 </div>
               )}
             </Grid>
@@ -149,22 +145,23 @@ class LevelDisplay extends React.Component {
         ) : (
           <div>
             <h1>{this.props.completionMes}</h1>
+
             <Link component={linkReach} to="/">
-              Home
+              {t("Home")}
             </Link>
             <br />
             <Link component={linkReach} to="/create">
-              Create your own game
+              {t("Create Your Game")}
             </Link>
+            <LeaderBoard
+              game_id={this.props.game_id}
+              score={this.props.score}
+            />
           </div>
         )}
       </div>
     );
   }
-
-  handleCamera = () => {
-    this.setState({ takingPic: !this.state.takingPic });
-  };
 
   handleChange = e => {
     this.setState({ input: e.target.value });
@@ -191,33 +188,14 @@ class LevelDisplay extends React.Component {
     this.setState({ input: "" });
   };
 
-  classifyImage = base64Img => {
-    const vision = require("react-cloud-vision-api");
-    vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
-    const req = new vision.Request({
-      image: new vision.Image({
-        base64: base64Img
-      }),
-      features: [new vision.Feature("LABEL_DETECTION", 10)]
-    });
-
+  handleImage = base64Img => {
     this.setState({ loading: true });
-
-    return vision.annotate(req).then(
-      ({ responses }) => {
-        const labels = responses[0].labelAnnotations.reduce((acc, curr) => {
-          acc.push(curr.description);
-          return acc;
-        }, []);
-        this.setState({ input: labels }, () => {
-          this.props.checkPhotoAnswer(this.state.input);
-        });
-      },
-      e => {
-        console.log("Error: ", e);
-      }
-    );
+    classifyImage(base64Img).then(labels => {
+      this.setState({ input: labels }, () => {
+        this.props.checkPhotoAnswer(this.state.input);
+      });
+    });
   };
 }
 
-export default LevelDisplay;
+export default withTranslation()(LevelDisplay);

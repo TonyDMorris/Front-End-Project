@@ -5,11 +5,9 @@ import { Card, Link, Typography } from "@material-ui/core";
 
 import { useTranslation } from "react-i18next";
 
-
 const GameLink = React.forwardRef((props, ref) => (
   <ReachLink innerRef={ref} {...props} />
 ));
-
 
 const GameCard = props => {
   const { t } = useTranslation();
@@ -17,16 +15,15 @@ const GameCard = props => {
   const { game } = props;
   console.log(game);
   return (
-    <div>
+    <div key={game.game_id}>
       <Card>
         <Link component={GameLink} to={`/play/${game.id}`}>
-
+          <Typography variant="h3">{game.title}</Typography>
+          <Typography variant="body1"> {game.description}</Typography>
           <Typography>
-            <h1>{game.title}</h1>
-            <p>{game.description}</p>
-            <p> {t("levels")} {game.levels.length}</p>
+            {" "}
+            {t("levels")} {game.levels.length}
           </Typography>
-
         </Link>
       </Card>
     </div>

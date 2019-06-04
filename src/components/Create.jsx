@@ -14,7 +14,7 @@ import {
   Container
 } from "@material-ui/core";
 import CreateLevel from "./CreateLevel";
-import axios from "axios";
+import { submitGame } from "../Api/Api";
 import { navigate } from "@reach/router";
 import { withTranslation } from "react-i18next";
 
@@ -51,9 +51,11 @@ class Create extends Component {
                 fullWidth
                 multiline
                 label={t("Description")}
+
                 onChange={(e) =>
                   this.handleChange("description", e.target.value)
                 }
+
               />
             </Grid>
 
@@ -63,9 +65,13 @@ class Create extends Component {
                 fullWidth
                 multiline
                 label={t("Game completion message")}
+
                 onChange={(e) =>
                   this.handleChange("completion", e.target.value)
                 }
+
+                onChange={e => this.handleChange("completion", e.target.value)}
+
               />
             </Grid>
           </Grid>
@@ -100,11 +106,10 @@ class Create extends Component {
     this.setState({ levels: [...levels, level] });
   };
   handleSubmit = () => {
-    return axios
-      .post("https://mongo-flask-api.herokuapp.com/games", this.state)
-      .then(({ data: { game_id } }) => {
-        navigate(`/play/${game_id}`);
-      });
+    const game = this.state;
+    submitGame(game).then(game_id => {
+      navigate(`/play/${game_id}`);
+    });
   };
 }
 

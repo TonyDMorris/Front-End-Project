@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button, Fab } from "@material-ui/core";
 import { Link } from "@reach/router";
@@ -11,10 +10,10 @@ import CreateIcon from "./CreateIcon";
 import HomeIcon from "./HomeIcon";
 
 function Header(props) {
-  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <div className={classes.root}>
+
       {/* <AppBar color="default" position="static" style={{ marginRight: 0 }}> */}
       <Toolbar>
         <Typography variant="h4" className={classes.title}>
@@ -32,6 +31,25 @@ function Header(props) {
         )}
       </Toolbar>
       {/* </AppBar> */}
+
+      <AppBar color="default" position="static">
+        <Toolbar>
+          <Typography variant="h4" className={classes.title}>
+            The Hunt
+          </Typography>
+          <LocDropDown />
+          {props.location.pathname === "/" ? (
+            <Link className={classes.button} to="/create">
+              <CreateIcon />
+            </Link>
+          ) : (
+            <Link className={classes.button} to="/">
+              <HomeIcon />
+            </Link>
+          )}
+        </Toolbar>
+      </AppBar>
+
     </div>
   );
 }

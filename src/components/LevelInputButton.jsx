@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { TextField, Button, Grid, Typography } from "@material-ui/core";
 import SnapShotCam from "./SnapShotCam";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -9,14 +10,16 @@ const LevelInputButton = ({
   handleGPS,
   loading
 }) => {
+  const { t } = useTranslation();
   return (
     <Grid container spacing={4}>
       <Grid item xs={12}>
         {wincondition === "string" && (
           <TextField
+            data-cy="text-condition-input"
             variant="outlined"
             fullWidth
-            label="Your answer:"
+            label={t("Your answer")}
             onChange={e => handleWinData(e.target.value)}
           />
         )}
@@ -24,7 +27,9 @@ const LevelInputButton = ({
           <SnapShotCam handlePhoto={handleWinData} />
         )}
         {wincondition === "gps" && (
-          <Button onClick={handleGPS}>Send GPS</Button>
+          <Button data-cy="gps-condition-input" onClick={handleGPS}>
+            {t("Send GPS")}
+          </Button>
         )}
         {loading && (
           <div>
