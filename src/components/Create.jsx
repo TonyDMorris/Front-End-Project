@@ -14,7 +14,7 @@ import {
   Container
 } from "@material-ui/core";
 import CreateLevel from "./CreateLevel";
-import { submitGame } from "../Api/Api";
+import { submitGame, registerServiceWorker } from "../Api/Api";
 import { navigate } from "@reach/router";
 import { withTranslation } from "react-i18next";
 
@@ -101,6 +101,9 @@ class Create extends Component {
     submitGame(game).then(game_id => {
       navigate(`/play/${game_id}`);
     });
+  };
+  componentDidMount = () => {
+    registerServiceWorker();
   };
 }
 

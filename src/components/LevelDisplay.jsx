@@ -21,13 +21,13 @@ class LevelDisplay extends React.Component {
     return (
       <div>
         {this.props.curLevel <= this.props.numLevels - 1 ? (
-          <div className="root">
+          <div className='root'>
             <Grid
               container
               spacing={6}
-              direction="column"
-              justify="center"
-              alignItems="center"
+              direction='column'
+              justify='center'
+              alignItems='center'
             >
               <Grid item xs={12}>
                 <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
@@ -78,18 +78,18 @@ class LevelDisplay extends React.Component {
                   <form onSubmit={this.handleSubmit}>
                     <Grid item xs={12}>
                       <input
-                        type="text"
+                        type='text'
                         onChange={this.handleChange}
                         value={this.state.input}
                       />{" "}
                     </Grid>
                     <br />
                     <Grid item xs={12} style={{ justifyContent: "center" }}>
-                      <Grid container alignItems="center" justify="center">
+                      <Grid container alignItems='center' justify='center'>
                         <Button
-                          type="submit"
-                          variant="outlined"
-                          color="inherit"
+                          type='submit'
+                          variant='outlined'
+                          color='inherit'
                         >
                           {t("Submit")}
                         </Button>
@@ -101,25 +101,27 @@ class LevelDisplay extends React.Component {
 
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "gps" && (
-
                   <Grid item xs={12}>
                     <div>
                       <Button
                         onClick={this.handleGPS}
-                        variant="outlined"
-                        color="inherit"
+                        variant='outlined'
+                        color='inherit'
                       >
                         Check GPS
                       </Button>
-                      {/* <button onClick={this.handleGPS}>Check GPS</button> */}
+                      {this.props.distanceAway && (
+                        <Typography>
+                          You are about {this.props.distanceAway}m away!
+                        </Typography>
+                      )}
                     </div>
                   </Grid>
-
                 )}
 
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "image" && (
-                  <div style={{ height: "100vh" }} className="App">
+                  <div style={{ height: "100vh" }} className='App'>
                     <SnapShotCam handlePhoto={this.handleImage} />
                   </div>
                 )}
@@ -130,14 +132,10 @@ class LevelDisplay extends React.Component {
                     {this.props.gameLevel.wintext}
                   </div>
 
-                  <Button onClick={this.props.changeLevel}>{t("Next Level")}</Button>
+                  <Button onClick={this.props.changeLevel}>
+                    {t("Next Level")}
+                  </Button>
                   {/* <button onClick={this.props.changeLevel}>Next Level</button> */}
-
-
-                 
-                    
-                 
-
                 </div>
               )}
             </Grid>
@@ -146,11 +144,11 @@ class LevelDisplay extends React.Component {
           <div>
             <h1>{this.props.completionMes}</h1>
 
-            <Link component={linkReach} to="/">
+            <Link component={linkReach} to='/'>
               {t("Home")}
             </Link>
             <br />
-            <Link component={linkReach} to="/create">
+            <Link component={linkReach} to='/create'>
               {t("Create Your Game")}
             </Link>
             <LeaderBoard
@@ -176,7 +174,7 @@ class LevelDisplay extends React.Component {
           )},${position.coords.longitude.toFixed(4)}`
         },
         () => {
-          this.props.checkAnswer(this.state.location);
+          this.props.checkGPSAnswer(this.state.location);
         }
       );
     });

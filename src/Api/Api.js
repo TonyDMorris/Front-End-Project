@@ -1,13 +1,18 @@
 import axios from "axios";
 import vision from "react-cloud-vision-api";
-
+import felix from "felix";
 const URL = "https://mongo-flask-api.herokuapp.com/";
 
 export const getGames = () => {
+  const gamesURL = `${URL}gameslist`;
+  const cachedGamesList = felix.get(gamesURL);
   return axios
     .get(`${URL}gameslist`)
     .then(({ data }) => {
-      return data;
+      const cache = felix.create(gamesURL);
+      cache.put("gamesList", data);
+      registerServiceWorker();
+      return cache.get("gamesList");
     })
     .catch(err => {
       const error = {
@@ -66,26 +71,34 @@ export const classifyImage = base64Img => {
 };
 
 export const getGame = game_id => {
-  return axios
-    .get(`${URL}/games?id=${game_id}`)
-    .then(({ data }) => {
-      return data;
-    })
-    .catch(err => {
-      if (!err.response) {
-        const error = {
-          message: "You are offline"
-        };
-        return error;
-      }
-      if (err.response.status) {
-        const error = {
-          message: "Game does not exist"
-        };
-        return error;
-      }
-      console.dir(err);
-    });
+  const gameURL = `${URL}/games?id=${game_id}`;
+  const cachedGame = felix.get(gameURL);
+
+  return cachedGame
+    ? Promise.resolve(cachedGame.get(game_id))
+    : axios
+        .get(gameURL)
+        .then(({ data }) => {
+          let cache = felix.create(gameURL);
+          cache.put(game_id, data);
+          registerServiceWorker();
+          return cache.get(game_id);
+        })
+        .catch(err => {
+          if (!err.response) {
+            const error = {
+              message: "You are offline"
+            };
+            return error;
+          }
+          if (err.response.status) {
+            const error = {
+              message: "Game does not exist"
+            };
+            return error;
+          }
+          console.dir(err);
+        });
 };
 
 export const getLeaderBoard = game_id => {
@@ -103,4 +116,29 @@ export const submitScore = score => {
     .catch(error => {
       console.log(error);
     });
+};
+
+export const registerServiceWorker = () => {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("../service-worker.js")
+      .then(
+        function(registration) {
+          // Registration was successful
+          console.log(
+            "ServiceWorker registration successful with scope: ",
+            registration.scope
+          );
+        },
+        function(err) {
+          // registration failed :(
+          console.log("ServiceWorker registration failed: ", err);
+        }
+      )
+      .catch(function(err) {
+        console.log(err);
+      });
+  } else {
+    console.log("service worker is not supported");
+  }
 };
