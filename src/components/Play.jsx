@@ -10,7 +10,8 @@ class Play extends React.Component {
     attempts: 0,
     changeLevelButton: false,
     answer: "",
-    score: null
+    score: null,
+    distanceAway: null
   };
 
   componentDidMount() {
@@ -33,6 +34,7 @@ class Play extends React.Component {
             attempts={this.state.attempts}
             checkAnswer={this.checkAnswer}
             checkPhotoAnswer={this.checkPhotoAnswer}
+            checkGPSAnswer={this.checkGPSAnswer}
             changeLevelButton={this.state.changeLevelButton}
             title={this.state.game.title}
             numLevels={this.state.game.levels.length}
@@ -43,6 +45,7 @@ class Play extends React.Component {
             completionMes={this.state.game.completion}
             game_id={this.props.gameid}
             score={this.state.score}
+            distanceAway={this.state.distanceAway}
           />
         )}
       </div>
@@ -57,6 +60,39 @@ class Play extends React.Component {
     } else {
       this.setState(prevState => {
         return { attempts: prevState.attempts + 1, score: prevState.score - 1 };
+      });
+    }
+  };
+
+  checkGPSAnswer = answer => {
+    let answerXcoord = answer.split(",")[0];
+    let answerYcoord = answer.split(",")[1];
+    let dataXcoord = this.state.game.levels[this.state.curLevel].windata.split(
+      ","
+    )[0];
+    let dataYcoord = this.state.game.levels[this.state.curLevel].windata.split(
+      ","
+    )[1];
+    let distanceX = Math.abs(answerXcoord - dataXcoord);
+    let distanceY = Math.abs(answerYcoord - dataYcoord);
+
+    let metersX = distanceX * 100000;
+    let metersY = distanceY * 100000;
+    let sqrt = Math.sqrt(metersX * metersY).toFixed(0);
+
+    console.log(metersX, metersY, "x and y from ofice to port street", sqrt);
+
+    if (distanceX < 0.0005 && distanceY < 0.0005) {
+      this.setState(prevState => {
+        return { changeLevelButton: true };
+      });
+    } else {
+      this.setState(prevState => {
+        return {
+          attempts: prevState.attempts + 1,
+          score: prevState.score - 1,
+          distanceAway: sqrt
+        };
       });
     }
   };
