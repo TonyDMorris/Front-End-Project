@@ -9,10 +9,16 @@ export default createMuiTheme({
     secondary: green
   },
   typography: {
-    fontFamily: "'Montserrat', sans-serif",
+    fontFamily: "'Montserrat', Italianno",
     fontSize: 16,
     fontWeightLight: 500,
     fontWeightRegular: 600,
-    fontWeightMedium: 700
+    fontWeightMedium: 700,
+    textfieldColor: {
+      color: "red",
+      "&:focus": {
+        color: "#DE0404"
+      }
+    }
   }
 });

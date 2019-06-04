@@ -35,7 +35,10 @@ const useStyles = makeStyles(theme => ({
   },
   fab: {
     margin: theme.spacing(1),
-    backgroundColor: "black"
+    backgroundColor: "black",
+    "&:hover": {
+      backgroundColor: "#DE0404"
+    }
   },
   extendedIcon: {
     marginRight: theme.spacing(1)
