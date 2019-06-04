@@ -30,17 +30,19 @@ const useStyles = makeStyles(theme => ({
 function GPSIcon(props) {
   const classes = useStyles();
   return (
-    <Fab
-      size="small"
-      color={props.clicked ? "secondary" : "primary"}
-      variant="round"
-      aria-label="GPS"
-      className={classes.fab}
-    >
-      <SvgIcon>
-        <path d="M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z" />
-      </SvgIcon>
-    </Fab>
+    <div>
+      <Fab
+        size="small"
+        color={props.clicked ? "secondary" : "primary"}
+        variant="round"
+        aria-label="GPS"
+        className={classes.fab}
+      >
+        <SvgIcon>
+          <path d="M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z" />
+        </SvgIcon>
+      </Fab>
+    </div>
   );
 }
 

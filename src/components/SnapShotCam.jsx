@@ -43,7 +43,7 @@ class SnapShotCam extends Component {
             variant="outlined"
             color="inherit"
             data-cy="img-condition-input"
-
+            style={{ borderWidth: "3px" }}
             onClick={() => {
               this.handleClick();
             }}
