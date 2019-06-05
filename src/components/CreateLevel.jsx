@@ -147,12 +147,14 @@ class CreateLevel extends Component {
             </div>
           </Grid>
 
-          <LevelInputButton
-            wincondition={wincondition}
-            handleWinData={this.handleWinData}
-            handleGPS={this.handleGPS}
-            loading={this.state.loading}
-          />
+          <Grid item xs={12}>
+            <LevelInputButton
+              wincondition={wincondition}
+              handleWinData={this.handleWinData}
+              handleGPS={this.handleGPS}
+              loading={this.state.loading}
+            />
+          </Grid>
 
           <Grid item xs={12}>
             <TextField
