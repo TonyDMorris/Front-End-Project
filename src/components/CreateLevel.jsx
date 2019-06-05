@@ -123,32 +123,34 @@ class CreateLevel extends Component {
 
           <Typography>{t("Select win condition")}</Typography>
 
-          <Grid container spacing={3} justify="center">
-            <div
-              style={{ marginBottom: "10px" }}
-              data-cy="text-condition-button"
-              onClick={(e) => this.handleCheck("string")}
-            >
-              <TextIcon clicked={this.state.wincondition === "string"} />
-              {t("Text")}
-            </div>
+          <div style={{ padding: 24 }}>
+            <Grid container spacing={3} justify="center">
+              <div
+                style={{ marginBottom: "10px" }}
+                data-cy="text-condition-button"
+                onClick={(e) => this.handleCheck("string")}
+              >
+                <TextIcon clicked={this.state.wincondition === "string"} />
+                {t("Text")}
+              </div>
 
-            <div
-              data-cy="img-condition-button"
-              onClick={(e) => this.handleCheck("image")}
-            >
-              <CameraIcon clicked={this.state.wincondition === "image"} />
-              {t("Image")}
-            </div>
+              <div
+                data-cy="img-condition-button"
+                onClick={(e) => this.handleCheck("image")}
+              >
+                <CameraIcon clicked={this.state.wincondition === "image"} />
+                {t("Image")}
+              </div>
 
-            <div
-              data-cy="gps-condition-button"
-              onClick={(e) => this.handleCheck("gps")}
-            >
-              <GPSIcon clicked={this.state.wincondition === "gps"} />
-              {t("GPS")}
-            </div>
-          </Grid>
+              <div
+                data-cy="gps-condition-button"
+                onClick={(e) => this.handleCheck("gps")}
+              >
+                <GPSIcon clicked={this.state.wincondition === "gps"} />
+                {t("GPS")}
+              </div>
+            </Grid>
+          </div>
 
           <Grid item xs={12}>
             <LevelInputButton
