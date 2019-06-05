@@ -28,10 +28,10 @@ const resources = {
       "Select win condition": "Select a win condition:",
       Text: "Text",
       Image: "Image",
-      GPS: "GPS",
+      "Send GPS": "Send GPS",
       "Level completion message": "Level completion message:",
       "Add Level": "Add Level",
-      create: "Create Game",
+      create: "create",
       Level: "Level",
       Task: "Task:",
       "Clue 1": "1st Clue:",
@@ -42,7 +42,19 @@ const resources = {
       "Next Level": "Next Level",
       Home: "Home",
       "Your answer": "Your answer:",
-      "Send GPS": "Send GPS"
+      "Send GPS": "Send GPS",
+      Finish: "Finish!",
+      "Skip Level": "Skip Level?",
+      "Skip to Finish": "Skip to Finish?",
+      "initial distance msg": "You are about",
+      "end distance msg": "m away!",
+      Username: "Username",
+      Score: "Score",
+      EnterNameLeaderBoard:
+        "Please enter your name to add your score to the leaderboard!",
+      WelcomeLeaderboard: "Welcome to the leaderboard!",
+      Name: "Name",
+      "Submit Score": "Submit Score!"
     }
   },
   es: {
@@ -69,21 +81,33 @@ const resources = {
       "Select win condition": "Elige como tiene que ser la respuesta:",
       Text: "Texto",
       Image: "Imagen",
-      GPS: "GPS",
+      "Send GPS": "Enviar GPS",
       "Level completion message": "Mensaje al pasar de nivel:",
       "Add Level": "Añadir Nivel",
       create: "Crear Juego",
       Level: "Nivel",
       Task: "Misión:",
       "Clue 1": "1ª pista:",
-      "Clue 1": "2ª pista:",
+      "Clue 2": "2ª pista:",
       Submit: "Enviar",
       "Check GPS": "Comprobar GPS",
       "take pic": "hacer foto",
       "Next Level": "Siguiente Nivel",
       Home: "Página Principal",
       "Your answer": "Respuesta esperada:",
-      "Send GPS": "Enviar GPS"
+      "Send GPS": "Enviar GPS",
+      Finish: "Acabaste!",
+      "Skip Level": "¿Saltar Nivel?",
+      "Skip to Finish": "Ir al final?",
+      "initial distance msg": "Estás a",
+      "end distance msg": "m de distancia!",
+      Username: "Jugador",
+      Score: "Puntuación",
+      EnterNameLeaderBoard:
+        "Por favor, introduce tu nombre para la clasificación",
+      WelcomeLeaderboard: "¡Bienvenido a las clasificaciones!",
+      Name: "Nombre",
+      "Submit Score": "¡Añade tu puntuación!"
     }
   }
 };
