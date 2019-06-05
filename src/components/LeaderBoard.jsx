@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Axios from "axios";
+import chest from "../chest.png";
 import {
   Typography,
   TextField,
@@ -40,28 +40,34 @@ class LeaderBoard extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Typography variant='h4'>Welcome to the leaderboard!</Typography>
-        <Typography variant='body1'>
+        <Typography variant="h4">Welcome to the leaderboard!</Typography>
+        <Typography variant="body1">
           Please enter your name to add your score to the leaderboard!
         </Typography>
         <form onSubmit={this.submitScore} className={classes.form}>
           <TextField
-            id='standard-name'
-            label='Name'
-            margin='normal'
-            onChange={e => {
+            id="standard-name"
+            label="Name"
+            margin="normal"
+            onChange={(e) => {
               this.handleInput(e.target.value);
             }}
           />
           <Button onClick={this.submitScore}>Submit Score!</Button>
         </form>
 
-        <Paper className={classes.root}>
-          <Table className={classes.table}>
+        <Paper
+          className={classes.root}
+          style={{ backgroundImage: `url(${chest})`, backgroundSize: "cover" }}
+        >
+          <Table
+            style={{ backgroundColor: "rgba(255,255,255,0.75)" }}
+            className={classes.table}
+          >
             <TableHead>
               <TableRow>
                 <TableCell>Username</TableCell>
-                <TableCell align='right'>Score</TableCell>
+                <TableCell align="right">Score</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -70,12 +76,12 @@ class LeaderBoard extends Component {
                   .sort((a, b) => {
                     return b.score - a.score;
                   })
-                  .map(score => (
+                  .map((score) => (
                     <TableRow key={score.username}>
-                      <TableCell component='th' scope='row'>
+                      <TableCell component="th" scope="row">
                         {score.username}
                       </TableCell>
-                      <TableCell align='right'>{score.score}</TableCell>
+                      <TableCell align="right">{score.score}</TableCell>
                     </TableRow>
                   ))}
             </TableBody>
@@ -85,17 +91,17 @@ class LeaderBoard extends Component {
     );
   }
 
-  handleInput = username => {
+  handleInput = (username) => {
     this.setState({ username });
   };
 
-  submitScore = e => {
+  submitScore = (e) => {
     const { username } = this.state;
     const { score, game_id } = this.props;
     const highScore = { game_id, username, score };
     e.preventDefault();
     submitScore(highScore);
-    this.setState(prevState => {
+    this.setState((prevState) => {
       console.log(prevState);
       const leaderBoard = [highScore, ...prevState.leaderBoard];
       return { leaderBoard };
