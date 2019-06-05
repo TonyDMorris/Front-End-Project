@@ -23,10 +23,10 @@ function Home(props) {
   const { classes } = props;
   return (
     <div className={classes.wrapper}>
-      <Typography variant="h1" className={classes.title}>
+      <Typography variant="h2" className={classes.title}>
         <i>The Hunt</i>
       </Typography>
-      <Typography variant="h4" className={classes.blurb}>
+      <Typography variant="h6" className={classes.blurb}>
         {t("introduction paragraph")}
       </Typography>
       <GameList games={props.games} />
