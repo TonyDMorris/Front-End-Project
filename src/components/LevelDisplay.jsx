@@ -117,11 +117,12 @@ class LevelDisplay extends React.Component {
                         variant="outlined"
                         color="inherit"
                       >
-                        Check GPS
+                        {t("Check GPS")}
                       </Button>
                       {this.props.distanceAway && (
                         <Typography variant="h6">
-                          You are about {this.props.distanceAway}m away!
+                          {t("initial distance msg")} {this.props.distanceAway}{" "}
+                          {t("end distance msg")}
                         </Typography>
                       )}
                     </div>
@@ -136,9 +137,9 @@ class LevelDisplay extends React.Component {
                   style={{ margin: "5px" }}
                 >
                   {this.props.curLevel + 1 < this.props.numLevels ? (
-                    <span>{t("Skip Level?")}</span>
+                    <span>{t("Skip Level")}</span>
                   ) : (
-                    <span>{t("Skip to Finish?")}</span>
+                    <span>{t("Skip to Finish")}</span>
                   )}
                 </Button>
               )}
@@ -163,7 +164,7 @@ class LevelDisplay extends React.Component {
                     {this.props.curLevel + 1 < this.props.numLevels ? (
                       <span>{t("Next Level")}</span>
                     ) : (
-                      <span>{t("Finish!")}</span>
+                      <span>{t("Finish")}</span>
                     )}
                   </Button>
                   {/* <button onClick={this.props.changeLevel}>Next Level</button> */}
