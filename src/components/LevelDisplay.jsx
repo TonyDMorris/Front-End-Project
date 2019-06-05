@@ -30,7 +30,6 @@ class LevelDisplay extends React.Component {
               alignItems="center"
             >
               <Grid item xs={12}>
-
                 <div
                   style={{
                     fontFamily: "Italianno",
@@ -39,11 +38,10 @@ class LevelDisplay extends React.Component {
                     justifyContent: "center"
                   }}
                 >
-
-                <Typography variant="h3" align="center">
-
-                  {this.props.title}
-                </Typography>
+                  <Typography variant="h3" align="center">
+                    {this.props.title}
+                  </Typography>
+                </div>
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="h4">
@@ -133,8 +131,8 @@ class LevelDisplay extends React.Component {
               {this.props.attempts >= 2 && !this.props.changeLevelButton && (
                 <Button
                   onClick={this.props.changeLevel}
-                  variant='outlined'
-                  color='inherit'
+                  variant="outlined"
+                  color="inherit"
                   style={{ margin: "5px" }}
                 >
                   {this.props.curLevel + 1 < this.props.numLevels ? (
@@ -153,17 +151,15 @@ class LevelDisplay extends React.Component {
                 )}
 
               {this.props.changeLevelButton && (
-
                 <div style={{ textAlign: "center", justifyContent: "center" }}>
                   <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
                     {this.props.gameLevel.wintext}
                   </div>
                   <Button
                     onClick={this.props.changeLevel}
-                    variant='outlined'
-                    color='inherit'
+                    variant="outlined"
+                    color="inherit"
                   >
-
                     {this.props.curLevel + 1 < this.props.numLevels ? (
                       <span>{t("Next Level")}</span>
                     ) : (
@@ -186,12 +182,12 @@ class LevelDisplay extends React.Component {
     );
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({ input: e.target.value });
   };
 
-  handleGPS = (e) => {
-    navigator.geolocation.getCurrentPosition((position) => {
+  handleGPS = e => {
+    navigator.geolocation.getCurrentPosition(position => {
       this.setState(
         {
           location: `${position.coords.latitude.toFixed(
@@ -205,15 +201,15 @@ class LevelDisplay extends React.Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.checkAnswer(this.state.input);
     this.setState({ input: "" });
   };
 
-  handleImage = (base64Img) => {
+  handleImage = base64Img => {
     this.setState({ loading: true });
-    classifyImage(base64Img).then((labels) => {
+    classifyImage(base64Img).then(labels => {
       this.setState({ input: labels }, () => {
         this.props.checkPhotoAnswer(this.state.input);
       });
