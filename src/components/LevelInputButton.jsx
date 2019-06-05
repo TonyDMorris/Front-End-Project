@@ -12,38 +12,36 @@ const LevelInputButton = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Grid
-      container
-      spacing={4}
-      direction="column"
-      alignItems="center"
-      justify="center"
-    >
-      <Grid item xs>
-        {wincondition === "string" && (
-          <TextField
-            //variant="outlined"
-            fullWidth
-            label={t("Your answer")}
-            onChange={e => handleWinData(e.target.value)}
-            style={{ width: 328 }}
-          />
-        )}
-        {wincondition === "image" && (
-          <SnapShotCam handlePhoto={handleWinData} />
-        )}
-        {wincondition === "gps" && (
-          <Button variant="outlined" onClick={handleGPS}>
-            {t("Send GPS")}
-          </Button>
-        )}
-        {loading && (
-          <div>
-            <CircularProgress />
-          </div>
-        )}
-      </Grid>
+    // <Grid
+    //   container
+    //   // spacing={4}
+    //   direction="column"
+    //   alignItems="center"
+    //   justify="center"
+    // >
+    <Grid item xs>
+      {wincondition === "string" && (
+        <TextField
+          //variant="outlined"
+          fullWidth
+          label={t("Your answer")}
+          onChange={(e) => handleWinData(e.target.value)}
+          // style={{ width: 328 }}
+        />
+      )}
+      {wincondition === "image" && <SnapShotCam handlePhoto={handleWinData} />}
+      {wincondition === "gps" && (
+        <Button variant="outlined" onClick={handleGPS}>
+          {t("Send GPS")}
+        </Button>
+      )}
+      {loading && (
+        <div>
+          <CircularProgress />
+        </div>
+      )}
     </Grid>
+    // </Grid>
   );
 };
 
