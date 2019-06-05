@@ -5,6 +5,15 @@ import red from "@material-ui/core/colors/red";
 import grey from "@material-ui/core/colors/grey";
 
 export default createMuiTheme({
+  overrides: {
+    MuiInput: {
+      underline: {
+        "&:after": {
+          borderBottomColor: "black"
+        }
+      }
+    }
+  },
   palette: {
     //   primary: grey,
     secondary: grey
