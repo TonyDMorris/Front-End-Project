@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import {
-  Card,
   Typography,
   TextField,
   Grid,
-  Box,
-  Avatar,
   Button,
   CssBaseline,
-  Checkbox,
-  FormControlLabel,
-  makeStyles,
   Container
 } from "@material-ui/core";
 import CreateLevel from "./CreateLevel";
@@ -37,10 +31,7 @@ class Create extends Component {
 
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              {/* <Typography variant="h5"> Title:</Typography> */}
               <TextField
-                //variant="outlined"
-
                 label={t("Title")}
                 onChange={(e) => this.handleChange("title", e.target.value)}
               />
@@ -48,7 +39,6 @@ class Create extends Component {
 
             <Grid item xs={12}>
               <TextField
-                // variant="outlined"
                 fullWidth
                 multiline
                 label={t("Description")}
@@ -60,7 +50,6 @@ class Create extends Component {
 
             <Grid item xs={12}>
               <TextField
-                //variant="outlined"
                 fullWidth
                 multiline
                 label={t("Game completion message")}

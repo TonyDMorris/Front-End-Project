@@ -1,11 +1,11 @@
 import React from "react";
-import { Typography, Link, Grid, Button } from "@material-ui/core";
-import { Link as linkReach } from "@reach/router";
+import { Typography, Link, Grid, Button, TextField } from "@material-ui/core";
+
 import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
 import { classifyImage } from "../Api/Api";
 import LeaderBoard from "./LeaderBoard";
-
+import WinScreen from "./Win-screen";
 import { withTranslation } from "react-i18next";
 
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
@@ -67,11 +67,11 @@ class LevelDisplay extends React.Component {
                 this.props.winCondition === "string" && (
                   <form onSubmit={this.handleSubmit}>
                     <Grid item xs={12}>
-                      <input
+                      <TextField
                         type="text"
                         onChange={this.handleChange}
                         value={this.state.input}
-                      />{" "}
+                      />
                     </Grid>
                     <br />
                     <Grid item xs={12} style={{ justifyContent: "center" }}>
@@ -119,9 +119,7 @@ class LevelDisplay extends React.Component {
 
               {this.props.changeLevelButton && (
                 <div>
-
                   <Typography>{this.props.gameLevel.wintext}</Typography>
-
 
                   <Button onClick={this.props.changeLevel}>
                     {this.props.curLevel + 1 < this.props.numLevels ? (
@@ -136,21 +134,11 @@ class LevelDisplay extends React.Component {
             </Grid>
           </div>
         ) : (
-          <div>
-            <h1>{this.props.completionMes}</h1>
-
-            <Link component={linkReach} to="/">
-              {t("Home")}
-            </Link>
-            <br />
-            <Link component={linkReach} to="/create">
-              {t("Create Your Game")}
-            </Link>
-            <LeaderBoard
-              game_id={this.props.game_id}
-              score={this.props.score}
-            />
-          </div>
+          <WinScreen
+            completionMes={this.props.completionMes}
+            game_id={this.props.game_id}
+            score={this.props.score}
+          />
         )}
       </div>
     );
