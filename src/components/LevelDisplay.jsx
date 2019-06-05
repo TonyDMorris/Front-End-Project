@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Link, Grid, Button } from "@material-ui/core";
+import { Typography, Link, Grid, Button, TextField } from "@material-ui/core";
 
 import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
@@ -67,11 +67,11 @@ class LevelDisplay extends React.Component {
                 this.props.winCondition === "string" && (
                   <form onSubmit={this.handleSubmit}>
                     <Grid item xs={12}>
-                      <input
+                      <TextField
                         type="text"
                         onChange={this.handleChange}
                         value={this.state.input}
-                      />{" "}
+                      />
                     </Grid>
                     <br />
                     <Grid item xs={12} style={{ justifyContent: "center" }}>
@@ -144,12 +144,12 @@ class LevelDisplay extends React.Component {
     );
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ input: e.target.value });
   };
 
-  handleGPS = e => {
-    navigator.geolocation.getCurrentPosition(position => {
+  handleGPS = (e) => {
+    navigator.geolocation.getCurrentPosition((position) => {
       this.setState(
         {
           location: `${position.coords.latitude.toFixed(
@@ -163,15 +163,15 @@ class LevelDisplay extends React.Component {
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.checkAnswer(this.state.input);
     this.setState({ input: "" });
   };
 
-  handleImage = base64Img => {
+  handleImage = (base64Img) => {
     this.setState({ loading: true });
-    classifyImage(base64Img).then(labels => {
+    classifyImage(base64Img).then((labels) => {
       this.setState({ input: labels }, () => {
         this.props.checkPhotoAnswer(this.state.input);
       });
