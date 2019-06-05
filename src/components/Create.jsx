@@ -27,9 +27,11 @@ class Create extends Component {
         >
           <CssBaseline />
 
-          <Typography component="h1" variant="h5">
-            {t("Create Your Game")}
-          </Typography>
+          <div style={{ padding: 24 }}>
+            <Typography component="h1" variant="h5">
+              {t("Create Your Game")}
+            </Typography>
+          </div>
 
           <Typography>{t("Create game header")}</Typography>
 
@@ -37,7 +39,7 @@ class Create extends Component {
             <Grid item xs={12}>
               <TextField
                 label={t("Title")}
-                onChange={e => this.handleChange("title", e.target.value)}
+                onChange={(e) => this.handleChange("title", e.target.value)}
               />
             </Grid>
 
@@ -46,7 +48,9 @@ class Create extends Component {
                 fullWidth
                 multiline
                 label={t("Description")}
-                onChange={e => this.handleChange("description", e.target.value)}
+                onChange={(e) =>
+                  this.handleChange("description", e.target.value)
+                }
               />
             </Grid>
 
@@ -55,8 +59,12 @@ class Create extends Component {
                 fullWidth
                 multiline
                 label={t("Game completion message")}
-                onChange={e => this.handleChange("completion", e.target.value)}
-                onChange={e => this.handleChange("completion", e.target.value)}
+                onChange={(e) =>
+                  this.handleChange("completion", e.target.value)
+                }
+                onChange={(e) =>
+                  this.handleChange("completion", e.target.value)
+                }
               />
             </Grid>
           </Grid>
@@ -86,13 +94,13 @@ class Create extends Component {
   handleChange = (str, value) => {
     this.setState({ [str]: value });
   };
-  handleLevel = level => {
+  handleLevel = (level) => {
     const { levels } = this.state;
     this.setState({ levels: [...levels, level] });
   };
   handleSubmit = () => {
     const game = this.state;
-    submitGame(game).then(game_id => {
+    submitGame(game).then((game_id) => {
       navigate(`/play/${game_id}`);
     });
   };
