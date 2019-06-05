@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "black",
     "&:hover": {
       backgroundColor: "#DE0404"
+    },
+    "&:focus": {
+      backgroundColor: "#DE0404"
     }
   },
   extendedIcon: {
