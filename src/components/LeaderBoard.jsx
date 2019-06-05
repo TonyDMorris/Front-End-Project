@@ -14,6 +14,8 @@ import {
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { getLeaderBoard, submitScore } from "../Api/Api";
+import { withTranslation } from "react-i18next";
+
 const styles = {
   root: {
     display: "flex",
@@ -37,28 +39,29 @@ class LeaderBoard extends Component {
     });
   }
   render() {
-    const { classes } = this.props;
+    const { classes, t } = this.props;
     return (
       <div>
-        <Typography variant="h4">Welcome to the leaderboard!</Typography>
-        <Typography variant="body1">
-          Please enter your name to add your score to the leaderboard!
-        </Typography>
+        <Typography variant="h4">{t("WelcomeLeaderboard")}</Typography>
+        <Typography variant="body1">{t("EnterNameLeaderBoard")}</Typography>
         <form onSubmit={this.submitScore} className={classes.form}>
           <TextField
             id="standard-name"
-            label="Name"
+            label={t("Name")}
             margin="normal"
-            onChange={(e) => {
+            onChange={e => {
               this.handleInput(e.target.value);
             }}
           />
-          <Button onClick={this.submitScore}>Submit Score!</Button>
+          <Button onClick={this.submitScore}>{t("Submit Score")}</Button>
         </form>
 
         <Paper
           className={classes.root}
-          style={{ backgroundImage: `url(${chest})`, backgroundSize: "cover" }}
+          style={{
+            backgroundImage: `url(${chest})`,
+            backgroundSize: "cover"
+          }}
         >
           <Table
             style={{ backgroundColor: "rgba(255,255,255,0.75)" }}
@@ -66,8 +69,8 @@ class LeaderBoard extends Component {
           >
             <TableHead>
               <TableRow>
-                <TableCell>Username</TableCell>
-                <TableCell align="right">Score</TableCell>
+                <TableCell>{t("Username")}</TableCell>
+                <TableCell align="right">{t("Score")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -76,7 +79,7 @@ class LeaderBoard extends Component {
                   .sort((a, b) => {
                     return b.score - a.score;
                   })
-                  .map((score) => (
+                  .map(score => (
                     <TableRow key={score.username}>
                       <TableCell component="th" scope="row">
                         {score.username}
@@ -91,17 +94,17 @@ class LeaderBoard extends Component {
     );
   }
 
-  handleInput = (username) => {
+  handleInput = username => {
     this.setState({ username });
   };
 
-  submitScore = (e) => {
+  submitScore = e => {
     const { username } = this.state;
     const { score, game_id } = this.props;
     const highScore = { game_id, username, score };
     e.preventDefault();
     submitScore(highScore);
-    this.setState((prevState) => {
+    this.setState(prevState => {
       console.log(prevState);
       const leaderBoard = [highScore, ...prevState.leaderBoard];
       return { leaderBoard };
@@ -113,4 +116,4 @@ LeaderBoard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(LeaderBoard);
+export default withTranslation()(withStyles(styles)(LeaderBoard));
