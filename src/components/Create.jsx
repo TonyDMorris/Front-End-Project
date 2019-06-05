@@ -37,11 +37,12 @@ class Create extends Component {
 
           <Grid container spacing={2}>
             <Grid item xs={12}>
+              {/* <Typography variant="h5"> Title:</Typography> */}
               <TextField
                 //variant="outlined"
-                fullWidth
+
                 label={t("Title")}
-                onChange={e => this.handleChange("title", e.target.value)}
+                onChange={(e) => this.handleChange("title", e.target.value)}
               />
             </Grid>
 
@@ -51,7 +52,9 @@ class Create extends Component {
                 fullWidth
                 multiline
                 label={t("Description")}
-                onChange={e => this.handleChange("description", e.target.value)}
+                onChange={(e) =>
+                  this.handleChange("description", e.target.value)
+                }
               />
             </Grid>
 
@@ -61,8 +64,12 @@ class Create extends Component {
                 fullWidth
                 multiline
                 label={t("Game completion message")}
-                onChange={e => this.handleChange("completion", e.target.value)}
-                onChange={e => this.handleChange("completion", e.target.value)}
+                onChange={(e) =>
+                  this.handleChange("completion", e.target.value)
+                }
+                onChange={(e) =>
+                  this.handleChange("completion", e.target.value)
+                }
               />
             </Grid>
           </Grid>
@@ -92,13 +99,13 @@ class Create extends Component {
   handleChange = (str, value) => {
     this.setState({ [str]: value });
   };
-  handleLevel = level => {
+  handleLevel = (level) => {
     const { levels } = this.state;
     this.setState({ levels: [...levels, level] });
   };
   handleSubmit = () => {
     const game = this.state;
-    submitGame(game).then(game_id => {
+    submitGame(game).then((game_id) => {
       navigate(`/play/${game_id}`);
     });
   };
