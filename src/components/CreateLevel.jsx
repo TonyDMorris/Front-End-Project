@@ -122,29 +122,29 @@ class CreateLevel extends Component {
           <Typography>{t("Select win condition")}</Typography>
 
           <Grid container spacing={3} justify="center">
-            <Button
+            <div
               data-cy="text-condition-button"
               onClick={e => this.handleCheck("string")}
             >
               <TextIcon clicked={this.state.wincondition === "string"} />
               {t("Text")}
-            </Button>
+            </div>
 
-            <Button
+            <div
               data-cy="img-condition-button"
               onClick={e => this.handleCheck("image")}
             >
               <CameraIcon clicked={this.state.wincondition === "image"} />
               {t("Image")}
-            </Button>
+            </div>
 
-            <Button
+            <div
               data-cy="gps-condition-button"
               onClick={e => this.handleCheck("gps")}
             >
               <GPSIcon clicked={this.state.wincondition === "gps"} />
               {t("GPS")}
-            </Button>
+            </div>
           </Grid>
 
           <LevelInputButton

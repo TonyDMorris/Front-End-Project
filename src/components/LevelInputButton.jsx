@@ -12,8 +12,14 @@ const LevelInputButton = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Grid container spacing={4}>
-      <Grid item xs={12}>
+    <Grid
+      container
+      spacing={4}
+      direction="column"
+      alignItems="center"
+      justify="center"
+    >
+      <Grid item xs>
         {wincondition === "string" && (
           <TextField
             //variant="outlined"
