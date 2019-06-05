@@ -30,7 +30,14 @@ class LevelDisplay extends React.Component {
               alignItems='center'
             >
               <Grid item xs={12}>
-                <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
+                <div
+                  style={{
+                    fontFamily: "Italianno",
+                    fontSize: "50px",
+                    textAlign: "center",
+                    justifyContent: "center"
+                  }}
+                >
                   {this.props.title}
                 </div>
               </Grid>
@@ -106,7 +113,10 @@ class LevelDisplay extends React.Component {
                   <Grid
                     item
                     xs={12}
-                    style={{ textAlign: "center", justifyContent: "center" }}
+                    style={{
+                      textAlign: "center",
+                      justifyContent: "center"
+                    }}
                   >
                     <div>
                       <Button
@@ -126,7 +136,12 @@ class LevelDisplay extends React.Component {
                 )}
 
               {this.props.attempts >= 2 && !this.props.changeLevelButton && (
-                <Button onClick={this.props.changeLevel}>
+                <Button
+                  onClick={this.props.changeLevel}
+                  variant='outlined'
+                  color='inherit'
+                  style={{ margin: "5px" }}
+                >
                   {this.props.curLevel + 1 < this.props.numLevels ? (
                     <span>{t("Skip Level?")}</span>
                   ) : (
@@ -147,7 +162,11 @@ class LevelDisplay extends React.Component {
                   <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
                     {this.props.gameLevel.wintext}
                   </div>
-                  <Button onClick={this.props.changeLevel}>
+                  <Button
+                    onClick={this.props.changeLevel}
+                    variant='outlined'
+                    color='inherit'
+                  >
                     {this.props.curLevel + 1 < this.props.numLevels ? (
                       <span>{t("Next Level")}</span>
                     ) : (
