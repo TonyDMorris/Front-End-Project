@@ -44,11 +44,13 @@ class LevelDisplay extends React.Component {
                   {t("Task")} {this.props.gameLevel.mainclue}
                 </div>
               </Grid>
+
               {this.props.attempts === 1 && (
                 <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
                   {t("Clue 1")} {this.props.gameLevel.clue2}
                 </div>
               )}
+
               {this.props.attempts >= 2 && (
                 <Grid item xs={12}>
                   <div>
@@ -101,7 +103,11 @@ class LevelDisplay extends React.Component {
 
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "gps" && (
-                  <Grid item xs={12}>
+                  <Grid
+                    item
+                    xs={12}
+                    style={{ textAlign: "center", justifyContent: "center" }}
+                  >
                     <div>
                       <Button
                         onClick={this.handleGPS}
@@ -125,6 +131,16 @@ class LevelDisplay extends React.Component {
                     <SnapShotCam handlePhoto={this.handleImage} />
                   </div>
                 )}
+
+              {this.props.attempts >= 2 && (
+                <Button onClick={this.props.changeLevel}>
+                  {this.props.curLevel + 1 < this.props.numLevels ? (
+                    <span>{t("Skip Level?")}</span>
+                  ) : (
+                    <span>{t("Skip to Finish?")}</span>
+                  )}
+                </Button>
+              )}
 
               {this.props.changeLevelButton && (
                 <div>
