@@ -30,7 +30,18 @@ class LevelDisplay extends React.Component {
               alignItems="center"
             >
               <Grid item xs={12}>
+
+                <div
+                  style={{
+                    fontFamily: "Italianno",
+                    fontSize: "50px",
+                    textAlign: "center",
+                    justifyContent: "center"
+                  }}
+                >
+
                 <Typography variant="h3" align="center">
+
                   {this.props.title}
                 </Typography>
               </Grid>
@@ -44,11 +55,13 @@ class LevelDisplay extends React.Component {
                   {t("Task")} {this.props.gameLevel.mainclue}
                 </Typography>
               </Grid>
+
               {this.props.attempts === 1 && (
                 <Typography variant="h5">
                   {t("Clue 1")} {this.props.gameLevel.clue2}
                 </Typography>
               )}
+
               {this.props.attempts >= 2 && (
                 <Grid item xs={12}>
                   <div>
@@ -92,7 +105,14 @@ class LevelDisplay extends React.Component {
 
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "gps" && (
-                  <Grid item xs={12}>
+                  <Grid
+                    item
+                    xs={12}
+                    style={{
+                      textAlign: "center",
+                      justifyContent: "center"
+                    }}
+                  >
                     <div>
                       <Button
                         onClick={this.handleGPS}
@@ -110,6 +130,21 @@ class LevelDisplay extends React.Component {
                   </Grid>
                 )}
 
+              {this.props.attempts >= 2 && !this.props.changeLevelButton && (
+                <Button
+                  onClick={this.props.changeLevel}
+                  variant='outlined'
+                  color='inherit'
+                  style={{ margin: "5px" }}
+                >
+                  {this.props.curLevel + 1 < this.props.numLevels ? (
+                    <span>{t("Skip Level?")}</span>
+                  ) : (
+                    <span>{t("Skip to Finish?")}</span>
+                  )}
+                </Button>
+              )}
+
               {this.props.changeLevelButton === false &&
                 this.props.winCondition === "image" && (
                   <div style={{ height: "100vh" }} className="App">
@@ -118,10 +153,17 @@ class LevelDisplay extends React.Component {
                 )}
 
               {this.props.changeLevelButton && (
-                <div>
-                  <Typography>{this.props.gameLevel.wintext}</Typography>
 
-                  <Button onClick={this.props.changeLevel}>
+                <div style={{ textAlign: "center", justifyContent: "center" }}>
+                  <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
+                    {this.props.gameLevel.wintext}
+                  </div>
+                  <Button
+                    onClick={this.props.changeLevel}
+                    variant='outlined'
+                    color='inherit'
+                  >
+
                     {this.props.curLevel + 1 < this.props.numLevels ? (
                       <span>{t("Next Level")}</span>
                     ) : (
