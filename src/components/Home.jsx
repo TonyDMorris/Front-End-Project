@@ -14,7 +14,8 @@ const style = {
     margin: "3vh 0vh"
   },
   blurb: {
-    margin: "6vh 10vw"
+    margin: "6vh 10vw",
+    fontSize: "4vh"
   }
 };
 
@@ -23,10 +24,10 @@ function Home(props) {
   const { classes } = props;
   return (
     <div className={classes.wrapper}>
-      <Typography variant="h1" className={classes.title}>
+      <Typography variant='h1' className={classes.title}>
         <i>The Hunt</i>
       </Typography>
-      <Typography variant="h4" className={classes.blurb}>
+      <Typography variant='h4' className={classes.blurb}>
         {t("introduction paragraph")}
       </Typography>
       <GameList games={props.games} />
