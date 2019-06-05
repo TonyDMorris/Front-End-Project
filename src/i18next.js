@@ -6,6 +6,7 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
+      "High Scores": "High Scores",
       "current-language": "English",
       "Create New Game": "Create Game",
       "English-lang": "English",
@@ -46,6 +47,7 @@ const resources = {
   },
   es: {
     translation: {
+      "High Scores": "Mejores puntuaciones",
       "current-language": "Español",
       "Create New Game": "Crear Juego",
       "English-lang": "Inglés",

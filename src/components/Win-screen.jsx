@@ -3,14 +3,36 @@ import { Link as linkReach } from "@reach/router";
 import { useTranslation } from "react-i18next";
 import { Typography, Link, Grid, Button } from "@material-ui/core";
 import LeaderBoard from "./LeaderBoard";
-const WinScreen = props => {
+import pirate from "../pirate.png";
+
+const WinScreen = (props) => {
   const { t } = useTranslation();
   const [showLB, changeLB] = useState(false);
   return !showLB ? (
-    <div />
+    <div>
+      <img src={pirate} style={{ maxWidth: "100%" }} />
+
+      <Typography variant="h3" align="center">
+        {props.completionMes}
+      </Typography>
+      <Grid item xs={12} style={{ justifyContent: "center" }}>
+        <Grid container alignItems="center" justify="center">
+          <Button
+            type="submit"
+            variant="outlined"
+            color="inherit"
+            align="center"
+            onClick={() => {
+              changeLB(!showLB);
+            }}
+          >
+            {t("High Scores")}
+          </Button>
+        </Grid>
+      </Grid>
+    </div>
   ) : (
     <div>
-      <h1>{props.completionMes}</h1>
       <Link component={linkReach} to="/">
         {t("Home")}
       </Link>
