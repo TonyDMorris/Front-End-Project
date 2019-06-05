@@ -5,7 +5,7 @@ import { Typography, Link, Grid, Button } from "@material-ui/core";
 import LeaderBoard from "./LeaderBoard";
 import pirate from "../pirate.png";
 
-const WinScreen = (props) => {
+const WinScreen = props => {
   const { t } = useTranslation();
   const [showLB, changeLB] = useState(false);
   return !showLB ? (
@@ -32,16 +32,7 @@ const WinScreen = (props) => {
       </Grid>
     </div>
   ) : (
-    <div>
-      <Link component={linkReach} to="/">
-        {t("Home")}
-      </Link>
-      <br />
-      <Link component={linkReach} to="/create">
-        {t("Create Your Game")}
-      </Link>
-      <LeaderBoard game_id={props.game_id} score={props.score} />
-    </div>
+    <LeaderBoard game_id={props.game_id} score={props.score} />
   );
 };
 
