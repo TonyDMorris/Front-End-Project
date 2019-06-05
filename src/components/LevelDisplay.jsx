@@ -125,14 +125,7 @@ class LevelDisplay extends React.Component {
                   </Grid>
                 )}
 
-              {this.props.changeLevelButton === false &&
-                this.props.winCondition === "image" && (
-                  <div style={{ height: "100vh" }} className='App'>
-                    <SnapShotCam handlePhoto={this.handleImage} />
-                  </div>
-                )}
-
-              {this.props.attempts >= 2 && (
+              {this.props.attempts >= 2 && !this.props.changeLevelButton && (
                 <Button onClick={this.props.changeLevel}>
                   {this.props.curLevel + 1 < this.props.numLevels ? (
                     <span>{t("Skip Level?")}</span>
@@ -142,8 +135,15 @@ class LevelDisplay extends React.Component {
                 </Button>
               )}
 
+              {this.props.changeLevelButton === false &&
+                this.props.winCondition === "image" && (
+                  <div style={{ height: "100vh" }} className='App'>
+                    <SnapShotCam handlePhoto={this.handleImage} />
+                  </div>
+                )}
+
               {this.props.changeLevelButton && (
-                <div>
+                <div style={{ textAlign: "center", justifyContent: "center" }}>
                   <div style={{ fontFamily: "Italianno", fontSize: "50px" }}>
                     {this.props.gameLevel.wintext}
                   </div>
