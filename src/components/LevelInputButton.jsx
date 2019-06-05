@@ -1,17 +1,45 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, Button, Grid, Typography } from "@material-ui/core";
 import SnapShotCam from "./SnapShotCam";
-const LevelInputButton = ({ wincondition, handleWinData }) => {
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const LevelInputButton = ({
+  wincondition,
+  handleWinData,
+  handleGPS,
+  loading
+}) => {
   return (
-    <div>
-      {wincondition === "string" && (
-        <TextField
-          label="Your answer:"
-          onChange={e => handleWinData(e.target.value)}
-        />
-      )}
-      {wincondition === "image" && <SnapShotCam handlePhoto={handleWinData} />}
-    </div>
+    <Grid
+      container
+      spacing={4}
+      direction="column"
+      alignItems="center"
+      justify="center"
+    >
+      <Grid item xs>
+        {wincondition === "string" && (
+          <TextField
+            //variant="outlined"
+            fullWidth
+            label="Your answer:"
+            onChange={e => handleWinData(e.target.value)}
+            style={{ width: 328 }}
+          />
+        )}
+        {wincondition === "image" && (
+          <SnapShotCam handlePhoto={handleWinData} />
+        )}
+        {wincondition === "gps" && (
+          <Button onClick={handleGPS}>Send GPS</Button>
+        )}
+        {loading && (
+          <div>
+            <CircularProgress />
+          </div>
+        )}
+      </Grid>
+    </Grid>
   );
 };
 

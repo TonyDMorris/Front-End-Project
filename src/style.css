@@ -1,0 +1,17 @@
+h1 h2 body p {
+  font-family: "IM Fell DW Pica", serif;
+  font-family: "IM Fell DW Pica SC", serif;
+}
+
+body {
+  background: url(test3.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+html {
+  font-family: "IM Fell DW Pica", serif;
+  font-family: "IM Fell DW Pica SC", serif;
+}

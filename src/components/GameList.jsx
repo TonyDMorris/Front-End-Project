@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import GameCard from "./GameCard";
-import { Paper } from "@material-ui/core";
+// import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
@@ -11,16 +11,16 @@ const styles = {
 
 class GameList extends Component {
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     return (
       <div>
         <div>
           {this.props.games &&
             this.props.games.map(game => {
               return (
-                <Paper className={classes.gameCard} key={game.id}>
-                  <GameCard game={game} />
-                </Paper>
+                // <Paper className={classes.gameCard} key={game.id}>
+                <GameCard key={game.id} game={game} />
+                // </Paper>
               );
             })}
         </div>
