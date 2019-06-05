@@ -121,8 +121,14 @@ class CreateLevel extends Component {
 
           <Typography>{t("Select win condition")}</Typography>
 
-          <Grid container spacing={3} justify="center">
+          <Grid
+            style={{ padding: "10px" }}
+            container
+            spacing={4}
+            justify="center"
+          >
             <div
+              style={{ marginBottom: "10px" }}
               data-cy="text-condition-button"
               onClick={e => this.handleCheck("string")}
             >
