@@ -44,16 +44,29 @@ class LeaderBoard extends Component {
       <div>
         <Typography variant="h4">{t("WelcomeLeaderboard")}</Typography>
         <Typography variant="body1">{t("EnterNameLeaderBoard")}</Typography>
-        <form onSubmit={this.submitScore} className={classes.form}>
+        <form
+          className={classes.root}
+          onSubmit={this.submitScore}
+          className={classes.form}
+        >
           <TextField
             id="standard-name"
             label={t("Name")}
-            margin="normal"
+            //margin="normal"
             onChange={e => {
               this.handleInput(e.target.value);
             }}
           />
-          <Button onClick={this.submitScore}>{t("Submit Score")}</Button>
+          <Button
+            //marginTop="normal"
+            type="submit"
+            variant="outlined"
+            color="inherit"
+            align="center"
+            onClick={this.submitScore}
+          >
+            {t("Submit Score")}
+          </Button>
         </form>
 
         <Paper
