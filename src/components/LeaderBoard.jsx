@@ -15,6 +15,7 @@ import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { getLeaderBoard, submitScore } from "../Api/Api";
 import { withTranslation } from "react-i18next";
+import theme from "../theme";
 
 const styles = {
   root: {
@@ -24,6 +25,9 @@ const styles = {
   },
   table: {
     maxWidth: 650
+  },
+  margin: {
+    margin: theme.spacing(2.5)
   }
 };
 
@@ -42,8 +46,12 @@ class LeaderBoard extends Component {
     const { classes, t } = this.props;
     return (
       <div>
-        <Typography variant="h4">{t("WelcomeLeaderboard")}</Typography>
-        <Typography variant="body1">{t("EnterNameLeaderBoard")}</Typography>
+        <Typography className={classes.margin} variant="h4">
+          {t("WelcomeLeaderboard")}
+        </Typography>
+        <Typography className={classes.margin} variant="body1">
+          {t("EnterNameLeaderBoard")}
+        </Typography>
         <form
           className={classes.root}
           onSubmit={this.submitScore}
@@ -52,17 +60,17 @@ class LeaderBoard extends Component {
           <TextField
             id="standard-name"
             label={t("Name")}
-            //margin="normal"
+            className={classes.margin}
             onChange={e => {
               this.handleInput(e.target.value);
             }}
           />
           <Button
-            //marginTop="normal"
             type="submit"
             variant="outlined"
             color="inherit"
             align="center"
+            className={classes.margin}
             onClick={this.submitScore}
           >
             {t("Submit Score")}
