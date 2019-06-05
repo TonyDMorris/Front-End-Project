@@ -119,10 +119,16 @@ class LevelDisplay extends React.Component {
 
               {this.props.changeLevelButton && (
                 <div>
+
                   <Typography>{this.props.gameLevel.wintext}</Typography>
 
+
                   <Button onClick={this.props.changeLevel}>
-                    {t("Next Level")}
+                    {this.props.curLevel + 1 < this.props.numLevels ? (
+                      <span>{t("Next Level")}</span>
+                    ) : (
+                      <span>{t("Finish!")}</span>
+                    )}
                   </Button>
                   {/* <button onClick={this.props.changeLevel}>Next Level</button> */}
                 </div>
