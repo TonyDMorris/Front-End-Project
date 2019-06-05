@@ -15,6 +15,9 @@ import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { getLeaderBoard, submitScore } from "../Api/Api";
 
+import { withTranslation } from "react-i18next";
+
+
 const styles = {
   root: {
     display: "flex",
@@ -48,9 +51,10 @@ class LeaderBoard extends Component {
     });
   }
   render() {
-    const { classes } = this.props;
+    const { classes, t } = this.props;
     return (
       <div>
+
         <Typography variant='h4'>Welcome to the leaderboard!</Typography>
         <Typography variant='body1'>
           Please enter your name to add your score to the leaderboard!
@@ -85,6 +89,7 @@ class LeaderBoard extends Component {
               <TableRow>
                 <TableCell>Username</TableCell>
                 <TableCell align='right'>Score</TableCell>
+
               </TableRow>
             </TableHead>
             <TableBody>
@@ -130,4 +135,4 @@ LeaderBoard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(LeaderBoard);
+export default withTranslation()(withStyles(styles)(LeaderBoard));
