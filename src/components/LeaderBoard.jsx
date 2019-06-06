@@ -33,7 +33,9 @@ const styles = {
 
 class LeaderBoard extends Component {
   state = {
-    leaderBoard: []
+    leaderBoard: [],
+    username: null,
+    enteredName: false
   };
 
   componentDidMount() {
@@ -46,10 +48,10 @@ class LeaderBoard extends Component {
     const { classes, t } = this.props;
     return (
       <div>
-        <Typography className={classes.margin} variant="h4">
+        <Typography className={classes.margin} variant='h4'>
           {t("WelcomeLeaderboard")}
         </Typography>
-        <Typography className={classes.margin} variant="body1">
+        <Typography className={classes.margin} variant='body1'>
           {t("EnterNameLeaderBoard")}
         </Typography>
         <form
@@ -58,7 +60,8 @@ class LeaderBoard extends Component {
           className={classes.form}
         >
           <TextField
-            id="standard-name"
+            value={this.state.username}
+            id='standard-name'
             label={t("Name")}
             className={classes.margin}
             onChange={e => {
@@ -66,12 +69,15 @@ class LeaderBoard extends Component {
             }}
           />
           <Button
-            type="submit"
-            variant="outlined"
-            color="inherit"
-            align="center"
+            type='submit'
+            variant='outlined'
+            color='inherit'
+            align='center'
             className={classes.margin}
             onClick={this.submitScore}
+            disabled={
+              this.state.username && !this.state.enteredName ? false : true
+            }
           >
             {t("Submit Score")}
           </Button>
@@ -91,7 +97,7 @@ class LeaderBoard extends Component {
             <TableHead>
               <TableRow>
                 <TableCell>{t("Username")}</TableCell>
-                <TableCell align="right">{t("Score")}</TableCell>
+                <TableCell align='right'>{t("Score")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -102,10 +108,10 @@ class LeaderBoard extends Component {
                   })
                   .map(score => (
                     <TableRow key={score.username}>
-                      <TableCell component="th" scope="row">
+                      <TableCell component='th' scope='row'>
                         {score.username}
                       </TableCell>
-                      <TableCell align="right">{score.score}</TableCell>
+                      <TableCell align='right'>{score.score}</TableCell>
                     </TableRow>
                   ))}
             </TableBody>
@@ -124,12 +130,16 @@ class LeaderBoard extends Component {
     const { score, game_id } = this.props;
     const highScore = { game_id, username, score };
     e.preventDefault();
-    submitScore(highScore);
-    this.setState(prevState => {
-      console.log(prevState);
-      const leaderBoard = [highScore, ...prevState.leaderBoard];
-      return { leaderBoard };
-    });
+    if (!this.state.username) {
+      alert("Please enter a username");
+    } else {
+      submitScore(highScore);
+      this.setState(prevState => {
+        console.log(prevState);
+        const leaderBoard = [highScore, ...prevState.leaderBoard];
+        return { leaderBoard, username: "", enteredName: true };
+      });
+    }
   };
 }
 
