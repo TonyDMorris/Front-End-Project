@@ -121,12 +121,16 @@ class CreateLevel extends Component {
             />
           </FormGroup> */}
 
-          <Typography>{t("Select win condition")}</Typography>
+          <Typography variant="h5">{t("Select win condition")}</Typography>
 
           <div style={{ padding: 24 }}>
-            <Grid container spacing={3} justify="space-around">
+            <Grid
+              container
+              direction="row"
+              justify="space-around"
+              alignItems="center"
+            >
               <div
-                style={{ marginBottom: "10px" }}
                 data-cy="text-condition-button"
                 onClick={(e) => this.handleCheck("string")}
               >
@@ -163,7 +167,6 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
               fullWidth
               value={wintext}
               label={t("Level completion message")}
