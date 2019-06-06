@@ -24,6 +24,7 @@ import GPSIcon from "./GPSIcon";
 import TextIcon from "./TextIcon";
 import { withTranslation } from "react-i18next";
 import { classifyImage } from "../Api/Api";
+import { ThemeProvider } from "@material-ui/styles";
 
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
@@ -100,42 +101,8 @@ class CreateLevel extends Component {
               label={t("Third clue")}
               onChange={e => this.handleChange("clue3", e.target.value)}
             />
-          </Grid>
-
-          {/* <FormGroup row>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="text"
-                  onClick={(e) => this.handleCheck("string")}
-                  checked={wincondition === "string"}
-                />
-              }
-              label="Text"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="image"
-                  onClick={(e) => this.handleCheck("image")}
-                  checked={wincondition === "image"}
-                />
-              }
-              label="Image"
-            />
-
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="gps"
-                  onClick={(e) => this.handleCheck("gps")}
-                  checked={wincondition === "gps"}
-                />
-              }
-              label="GPS"
-            />
-          </FormGroup> */}
-
+          </Grid>.
+          
           <Typography variant="h5">{t("Select win condition")}</Typography>
 
           <div style={{ padding: 24 }}>
@@ -170,7 +137,6 @@ class CreateLevel extends Component {
               </div>
             </Grid>
           </div>
-
           <Grid item xs={12}>
             <LevelInputButton
               wincondition={wincondition}
@@ -196,7 +162,7 @@ class CreateLevel extends Component {
         </Grid>
 
         {wincondition && mainclue && clue2 && clue3 && wintext && windata && (
-          <Fab
+          <Button
             onClick={() => {
               this.props.handleLevel(this.state);
               this.setState({
@@ -208,16 +174,15 @@ class CreateLevel extends Component {
                 windata: ""
               });
             }}
-            color="primary"
+            color="black"
             aria-label="Add"
-            variant="extended"
+            variant="outlined"
+            style={{ margin: "24px" }}
           >
-            <AddIcon />
             {t("Add Level")}
-          </Fab>
+          </Button>
         )}
       </div>
-      // </Container>
     );
   }
 
