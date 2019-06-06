@@ -68,6 +68,11 @@ class LeaderBoard extends Component {
               align="center"
             >
               <TextField
+                InputLabelProps={{
+                  style: {
+                    color: "black"
+                  }
+                }}
                 value={this.state.username}
                 id="standard-name"
                 label={t("Name")}
