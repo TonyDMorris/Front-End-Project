@@ -24,7 +24,6 @@ class Play extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
     return (
       <Container theme={theme}>
         {this.state.game.levels && (

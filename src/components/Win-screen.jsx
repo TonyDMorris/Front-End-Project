@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Link as linkReach } from "@reach/router";
 import { useTranslation } from "react-i18next";
-import { Typography, Link, Grid, Button, withStyles } from "@material-ui/core";
+import { Typography, Grid, Button, withStyles } from "@material-ui/core";
 import LeaderBoard from "./LeaderBoard";
 import pirate from "../pirate.png";
-import { PropTypes } from "prop-types";
 
 const style = {
   container: {
@@ -23,9 +21,7 @@ const style = {
 const WinScreen = props => {
   const { t } = useTranslation();
   const [showLB, changeLB] = useState(false);
-  const { classes } = props;
   return !showLB ? (
-
     <div
       style={{
         display: "flex",
@@ -34,7 +30,11 @@ const WinScreen = props => {
         flexDirection: "column"
       }}
     >
-      <img src={pirate} style={{ maxWidth: "100vw", alignSelf: "center" }} />
+      <img
+        alt={"pirate"}
+        src={pirate}
+        style={{ maxWidth: "100vw", alignSelf: "center" }}
+      />
 
       <Typography variant="h3" align="center">
         {props.completionMes}
