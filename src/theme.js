@@ -12,11 +12,6 @@ export default createMuiTheme({
           borderBottomColor: "black"
         }
       }
-      // underlineLabel: {
-      //   "&:after": {
-      //     color: "green"
-      //   }
-      // }
     }
   },
   palette: {

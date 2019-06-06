@@ -46,22 +46,23 @@ class LeaderBoard extends Component {
     const { classes, t } = this.props;
     return (
       <div>
-        <Typography className={classes.margin} variant="h4">
+        <Typography className={classes.margin} variant="h4" align="center">
           {t("WelcomeLeaderboard")}
         </Typography>
-        <Typography className={classes.margin} variant="body1">
+        <Typography className={classes.margin} variant="body1" align="center">
           {t("EnterNameLeaderBoard")}
         </Typography>
         <form
           className={classes.root}
           onSubmit={this.submitScore}
           className={classes.form}
+          align="center"
         >
           <TextField
             id="standard-name"
             label={t("Name")}
             className={classes.margin}
-            onChange={e => {
+            onChange={(e) => {
               this.handleInput(e.target.value);
             }}
           />
@@ -76,7 +77,6 @@ class LeaderBoard extends Component {
             {t("Submit Score")}
           </Button>
         </form>
-
         <Paper
           className={classes.root}
           style={{
@@ -100,7 +100,7 @@ class LeaderBoard extends Component {
                   .sort((a, b) => {
                     return b.score - a.score;
                   })
-                  .map(score => (
+                  .map((score) => (
                     <TableRow key={score.username}>
                       <TableCell component="th" scope="row">
                         {score.username}
@@ -115,17 +115,17 @@ class LeaderBoard extends Component {
     );
   }
 
-  handleInput = username => {
+  handleInput = (username) => {
     this.setState({ username });
   };
 
-  submitScore = e => {
+  submitScore = (e) => {
     const { username } = this.state;
     const { score, game_id } = this.props;
     const highScore = { game_id, username, score };
     e.preventDefault();
     submitScore(highScore);
-    this.setState(prevState => {
+    this.setState((prevState) => {
       console.log(prevState);
       const leaderBoard = [highScore, ...prevState.leaderBoard];
       return { leaderBoard };
