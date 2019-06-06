@@ -65,7 +65,7 @@ class LeaderBoard extends Component {
                 color: "black"
               }
             }}
-            value={this.state.username}
+            value={this.state.username ? this.state.username : ""}
             id="standard-name"
             label={t("Name")}
             className={classes.margin}
