@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import LevelInputButton from "./LevelInputButton";
+import grey from "@material-ui/core/colors/grey";
+
 import {
   Card,
   TextField,
@@ -46,6 +48,7 @@ class CreateLevel extends Component {
       windata,
       loading
     } = this.state;
+
     return (
       // <Container>
       <div>
@@ -59,31 +62,43 @@ class CreateLevel extends Component {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={mainclue}
               label={t("Main clue")}
-              onChange={(e) => this.handleChange("mainclue", e.target.value)}
+              onChange={e => this.handleChange("mainclue", e.target.value)}
             />
           </Grid>
 
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={clue2}
               label={t("Second clue")}
-              onChange={(e) => this.handleChange("clue2", e.target.value)}
+              onChange={e => this.handleChange("clue2", e.target.value)}
             />
           </Grid>
 
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={clue3}
               label={t("Third clue")}
-              onChange={(e) => this.handleChange("clue3", e.target.value)}
+              onChange={e => this.handleChange("clue3", e.target.value)}
             />
           </Grid>
 
@@ -132,7 +147,7 @@ class CreateLevel extends Component {
             >
               <div
                 data-cy="text-condition-button"
-                onClick={(e) => this.handleCheck("string")}
+                onClick={e => this.handleCheck("string")}
               >
                 <TextIcon clicked={this.state.wincondition === "string"} />
                 {t("Text")}
@@ -140,7 +155,7 @@ class CreateLevel extends Component {
 
               <div
                 data-cy="img-condition-button"
-                onClick={(e) => this.handleCheck("image")}
+                onClick={e => this.handleCheck("image")}
               >
                 <CameraIcon clicked={this.state.wincondition === "image"} />
                 {t("Image")}
@@ -148,7 +163,7 @@ class CreateLevel extends Component {
 
               <div
                 data-cy="gps-condition-button"
-                onClick={(e) => this.handleCheck("gps")}
+                onClick={e => this.handleCheck("gps")}
               >
                 <GPSIcon clicked={this.state.wincondition === "gps"} />
                 {t("GPS")}
@@ -167,10 +182,15 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={wintext}
               label={t("Level completion message")}
-              onChange={(e) => this.handleChange("wintext", e.target.value)}
+              onChange={e => this.handleChange("wintext", e.target.value)}
             />
           </Grid>
         </Grid>
@@ -201,7 +221,7 @@ class CreateLevel extends Component {
     );
   }
 
-  handleCheck = (winCon) => {
+  handleCheck = winCon => {
     this.setState({ wincondition: winCon });
   };
 
@@ -209,14 +229,14 @@ class CreateLevel extends Component {
     this.setState({ [str]: value });
   };
 
-  handleWinData = (value) => {
+  handleWinData = value => {
     const { wincondition } = this.state;
     if (wincondition === "string") {
       this.setState({ windata: value, loading: false });
     }
     if (wincondition === "image") {
       this.setState({ loading: true });
-      return classifyImage(value).then((labels) => {
+      return classifyImage(value).then(labels => {
         this.setState({ windata: labels, loading: false });
       });
     }
@@ -225,8 +245,8 @@ class CreateLevel extends Component {
     }
   };
 
-  handleGPS = (e) => {
-    navigator.geolocation.getCurrentPosition((position) => {
+  handleGPS = e => {
+    navigator.geolocation.getCurrentPosition(position => {
       const lat = position.coords.latitude.toFixed(4);
       const long = position.coords.longitude.toFixed(4);
       this.setState({ loading: true });
