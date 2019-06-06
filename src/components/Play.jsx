@@ -1,6 +1,6 @@
 import React from "react";
 import theme from "../theme.js";
-import { Container, MuiThemeProvider } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import LevelDisplay from "./LevelDisplay";
 import { withTranslation } from "react-i18next";
 import { getGame } from "../Api/Api";
@@ -17,7 +17,7 @@ class Play extends React.Component {
 
   componentDidMount() {
     const { gameid } = this.props;
-    getGame(gameid).then((game) => {
+    getGame(gameid).then(game => {
       const score = game.levels.length * 3;
       this.setState({ game, score });
     });
@@ -53,19 +53,19 @@ class Play extends React.Component {
     );
   }
 
-  checkAnswer = (answer) => {
+  checkAnswer = answer => {
     if (this.state.game.levels[this.state.curLevel].windata === answer) {
-      this.setState((prevState) => {
+      this.setState(prevState => {
         return { changeLevelButton: true };
       });
     } else {
-      this.setState((prevState) => {
+      this.setState(prevState => {
         return { attempts: prevState.attempts + 1, score: prevState.score - 1 };
       });
     }
   };
 
-  checkGPSAnswer = (answer) => {
+  checkGPSAnswer = answer => {
     let answerXcoord = answer.split(",")[0];
     let answerYcoord = answer.split(",")[1];
     let dataXcoord = this.state.game.levels[this.state.curLevel].windata.split(
@@ -84,11 +84,11 @@ class Play extends React.Component {
     console.log(metersX, metersY, "x and y from ofice to port street", sqrt);
 
     if (distanceX < 0.0005 && distanceY < 0.0005) {
-      this.setState((prevState) => {
+      this.setState(prevState => {
         return { changeLevelButton: true };
       });
     } else {
-      this.setState((prevState) => {
+      this.setState(prevState => {
         return {
           attempts: prevState.attempts + 1,
           score: prevState.score - 1,
@@ -98,7 +98,7 @@ class Play extends React.Component {
     }
   };
 
-  checkPhotoAnswer = (inputArray) => {
+  checkPhotoAnswer = inputArray => {
     let windata = this.state.game.levels[this.state.curLevel].windata;
 
     let total = [...inputArray, ...windata];
@@ -108,14 +108,14 @@ class Play extends React.Component {
     if (comparisonArray.length < total.length) {
       this.setState({ changeLevelButton: true });
     } else {
-      this.setState((prevState) => {
+      this.setState(prevState => {
         return { attempts: prevState.attempts + 1, score: prevState.score - 1 };
       });
     }
   };
 
-  changeLevel = (prevState) => {
-    this.setState((prevState) => {
+  changeLevel = prevState => {
+    this.setState(prevState => {
       return {
         curLevel: prevState.curLevel + 1,
         changeLevelButton: false,
