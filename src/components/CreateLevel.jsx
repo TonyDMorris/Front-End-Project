@@ -85,42 +85,8 @@ class CreateLevel extends Component {
               label={t("Third clue")}
               onChange={(e) => this.handleChange("clue3", e.target.value)}
             />
-          </Grid>
-
-          {/* <FormGroup row>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="text"
-                  onClick={(e) => this.handleCheck("string")}
-                  checked={wincondition === "string"}
-                />
-              }
-              label="Text"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="image"
-                  onClick={(e) => this.handleCheck("image")}
-                  checked={wincondition === "image"}
-                />
-              }
-              label="Image"
-            />
-
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="gps"
-                  onClick={(e) => this.handleCheck("gps")}
-                  checked={wincondition === "gps"}
-                />
-              }
-              label="GPS"
-            />
-          </FormGroup> */}
-
+          </Grid>.
+          
           <Typography variant="h5">{t("Select win condition")}</Typography>
 
           <div style={{ padding: 24 }}>
@@ -155,7 +121,6 @@ class CreateLevel extends Component {
               </div>
             </Grid>
           </div>
-
           <Grid item xs={12}>
             <LevelInputButton
               wincondition={wincondition}
@@ -188,9 +153,9 @@ class CreateLevel extends Component {
                 windata: ""
               });
             }}
-            color="primary"
-            aria-label="Add"
-            variant="extended"
+            color='primary'
+            aria-label='Add'
+            variant='extended'
           >
             <AddIcon />
             {t("Add Level")}
