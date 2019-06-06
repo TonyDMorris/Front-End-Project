@@ -37,16 +37,6 @@ function Header(props) {
   );
 }
 
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: purple,
-//     secondary: green
-//   },
-//   status: {
-//     danger: "orange"
-//   }
-// });
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
