@@ -5,7 +5,6 @@ const URL = "https://mongo-flask-api.herokuapp.com/";
 
 export const getGames = () => {
   const gamesURL = `${URL}gameslist`;
-  const cachedGamesList = felix.get(gamesURL);
   return axios
     .get(`${URL}gameslist`)
     .then(({ data }) => {
