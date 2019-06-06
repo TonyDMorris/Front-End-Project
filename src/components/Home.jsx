@@ -4,6 +4,7 @@ import { Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import GameList from "./GameList";
 import { useTranslation } from "react-i18next";
+import logo from "../mainLogo.png";
 
 const style = {
   wrapper: {
@@ -23,10 +24,10 @@ function Home(props) {
   const { classes } = props;
   return (
     <div className={classes.wrapper}>
-      <Typography variant="h2" className={classes.title}>
-        <i>The Hunt</i>
+      <Typography variant='h2' className={classes.title}>
+        <img src={require("../mainLogo.png")} />
       </Typography>
-      <Typography variant="h6" className={classes.blurb}>
+      <Typography variant='h6' className={classes.blurb}>
         {t("introduction paragraph")}
       </Typography>
       <GameList games={props.games} />
