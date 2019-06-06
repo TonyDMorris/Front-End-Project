@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import chest from "../chest.png";
+import test3 from "../test3.jpg";
 import {
   Typography,
   TextField,
@@ -48,87 +49,101 @@ class LeaderBoard extends Component {
     const { classes, t } = this.props;
     return (
       <div>
-        <Typography className={classes.margin} variant="h4">
-          {t("WelcomeLeaderboard")}
-        </Typography>
-        <Typography className={classes.margin} variant="body1">
-          {t("EnterNameLeaderBoard")}
-        </Typography>
-        <form
-          className={`${classes.root} ${classes.form}`}
-          onSubmit={this.submitScore}
-        >
-          <TextField
-            InputLabelProps={{
-              style: {
-                color: "black"
-              }
-            }}
-            value={this.state.username ? this.state.username : ""}
-            id="standard-name"
-            label={t("Name")}
-            className={classes.margin}
-            onChange={e => {
-              this.handleInput(e.target.value);
-            }}
-          />
-          <Button
-            type="submit"
-            variant="outlined"
-            color="inherit"
-            align="center"
-            className={classes.margin}
-            onClick={this.submitScore}
-            disabled={
-              this.state.username && !this.state.enteredName ? false : true
-            }
-          >
-            {t("Submit Score")}
-          </Button>
-        </form>
-        <Paper
-          className={classes.root}
-          style={{
-            backgroundImage: `url(${chest})`,
-            backgroundSize: "cover"
-          }}
-        >
-          <Table
-            style={{ backgroundColor: "rgba(255,255,255,0.75)" }}
-            className={classes.table}
-          >
-            <TableHead>
-              <TableRow>
-                <TableCell>{t("Username")}</TableCell>
-                <TableCell align="right">{t("Score")}</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.state.leaderBoard &&
-                this.state.leaderBoard
-                  .sort((a, b) => {
-                    return b.score - a.score;
-                  })
-                  .map(score => (
-                    <TableRow key={score.username}>
-                      <TableCell component="th" scope="row">
-                        {score.username}
-                      </TableCell>
-                      <TableCell align="right">{score.score}</TableCell>
-                    </TableRow>
-                  ))}
-            </TableBody>
-          </Table>
-        </Paper>
+        {!this.state.enteredName ? (
+          <div>
+            <Typography className={classes.margin} variant="h4">
+              {t("WelcomeLeaderboard")}
+            </Typography>
+            <Typography className={classes.margin} variant="body1">
+              {t("EnterNameLeaderBoard")}
+            </Typography>
+            <form
+              className={`${classes.root} ${classes.form}`}
+              onSubmit={this.submitScore}
+            >
+              <TextField
+                InputLabelProps={{
+                  style: {
+                    color: "black"
+                  }
+                }}
+                value={this.state.username ? this.state.username : ""}
+                id="standard-name"
+                label={t("Name")}
+                className={classes.margin}
+                onChange={(e) => {
+                  this.handleInput(e.target.value);
+                }}
+              />
+              <Button
+                type="submit"
+                variant="outlined"
+                color="inherit"
+                align="center"
+                className={classes.margin}
+                onClick={this.submitScore}
+                disabled={
+                  this.state.username && !this.state.enteredName ? false : true
+                }
+              >
+                {t("Submit Score")}
+              </Button>
+            </form>
+            <img
+              src={chest}
+              style={{ maxWidth: "100vw", alignSelf: "center" }}
+            />
+          </div>
+        ) : (
+          <div>
+            <Typography className={classes.margin} variant="h4">
+              {t("WelcomeLeaderboard")}
+            </Typography>
+            <Paper
+              className={classes.root}
+              style={{
+                backgroundImage: `url(${test3})`,
+                backgroundSize: "cover"
+              }}
+            >
+              <Table
+                style={{ backgroundColor: "rgba(255,255,255,0.75)" }}
+                className={classes.table}
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell>{t("Username")}</TableCell>
+                    <TableCell align="right">{t("Score")}</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.state.leaderBoard &&
+                    this.state.leaderBoard
+                      .sort((a, b) => {
+                        return b.score - a.score;
+                      })
+                      .map((score) => (
+                        <TableRow key={score.username}>
+                          <TableCell component="th" scope="row">
+                            {score.username}
+                          </TableCell>
+                          <TableCell align="right">{score.score}</TableCell>
+                        </TableRow>
+                      ))}
+                </TableBody>
+              </Table>
+            </Paper>
+          </div>
+        )}
       </div>
     );
   }
 
-  handleInput = username => {
+  handleInput = (username) => {
     this.setState({ username });
   };
 
-  submitScore = e => {
+  submitScore = (e) => {
     const { username } = this.state;
     const { score, game_id } = this.props;
     const highScore = { game_id, username, score };
@@ -137,7 +152,7 @@ class LeaderBoard extends Component {
       alert("Please enter a username");
     } else {
       submitScore(highScore);
-      this.setState(prevState => {
+      this.setState((prevState) => {
         console.log(prevState);
         const leaderBoard = [highScore, ...prevState.leaderBoard];
         return { leaderBoard, username: "", enteredName: true };
