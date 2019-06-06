@@ -36,7 +36,7 @@ const LevelInputButton = ({
       )}
       {wincondition === "image" && <SnapShotCam handlePhoto={handleWinData} />}
       {wincondition === "gps" && (
-        <Button variant="outlined" onClick={handleGPS}>
+        <Button variant="outlined" color="inherit" onClick={handleGPS}>
           {t("Send GPS")}
         </Button>
       )}
