@@ -5,6 +5,8 @@ import SnapShotCam from "./SnapShotCam";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const LevelInputButton = ({
+  updateWinData,
+  windata,
   wincondition,
   handleWinData,
   handleGPS,
@@ -22,16 +24,16 @@ const LevelInputButton = ({
     <Grid item xs>
       {wincondition === "string" && (
         <TextField
-          //variant="outlined"
+          value={windata}
           fullWidth
           label={t("Your answer")}
-          onChange={(e) => handleWinData(e.target.value)}
+          onChange={e => updateWinData(e.target.value)}
           // style={{ width: 328 }}
         />
       )}
       {wincondition === "image" && <SnapShotCam handlePhoto={handleWinData} />}
       {wincondition === "gps" && (
-        <Button variant="outlined" onClick={handleGPS}>
+        <Button variant='outlined' onClick={handleGPS}>
           {t("Send GPS")}
         </Button>
       )}
