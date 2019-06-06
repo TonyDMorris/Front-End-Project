@@ -1,10 +1,8 @@
 import React from "react";
-import { Typography, Link, Grid, Button, TextField } from "@material-ui/core";
-
+import { Typography, Grid, Button, TextField } from "@material-ui/core";
 import SnapShotCam from "./SnapShotCam";
 import vision from "react-cloud-vision-api";
 import { classifyImage } from "../Api/Api";
-import LeaderBoard from "./LeaderBoard";
 import WinScreen from "./Win-screen";
 import { withTranslation } from "react-i18next";
 
@@ -96,7 +94,6 @@ class LevelDisplay extends React.Component {
                           {t("Submit")}
                         </Button>
                       </Grid>
-                      {/* <button type="sumbit">Submit</button> */}
                     </Grid>
                   </form>
                 )}
@@ -167,7 +164,6 @@ class LevelDisplay extends React.Component {
                       <span>{t("Finish")}</span>
                     )}
                   </Button>
-                  {/* <button onClick={this.props.changeLevel}>Next Level</button> */}
                 </div>
               )}
             </Grid>

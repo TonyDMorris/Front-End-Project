@@ -73,7 +73,6 @@ class Create extends Component {
                 }}
                 label={t("Game completion message")}
                 onChange={e => this.handleChange("completion", e.target.value)}
-                onChange={e => this.handleChange("completion", e.target.value)}
               />
             </Grid>
           </Grid>

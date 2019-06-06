@@ -49,6 +49,7 @@ class LeaderBoard extends Component {
     const { classes, t } = this.props;
     return (
       <div>
+
         {!this.state.enteredName ? (
           <div>
             <Typography className={classes.margin} variant="h4" align="center">
@@ -141,6 +142,83 @@ class LeaderBoard extends Component {
             </Paper>
           </div>
         )}
+
+        /*
+        <Typography className={classes.margin} variant="h4">
+          {t("WelcomeLeaderboard")}
+        </Typography>
+        <Typography className={classes.margin} variant="body1">
+          {t("EnterNameLeaderBoard")}
+        </Typography>
+        <form
+          className={`${classes.root} ${classes.form}`}
+          onSubmit={this.submitScore}
+        >
+          <TextField
+            InputLabelProps={{
+              style: {
+                color: "black"
+              }
+            }}
+            value={this.state.username ? this.state.username : ""}
+            id="standard-name"
+            label={t("Name")}
+            className={classes.margin}
+            onChange={e => {
+              this.handleInput(e.target.value);
+            }}
+          />
+          <Button
+            type="submit"
+            variant="outlined"
+            color="inherit"
+            align="center"
+            className={classes.margin}
+            onClick={this.submitScore}
+            disabled={
+              this.state.username && !this.state.enteredName ? false : true
+            }
+          >
+            {t("Submit Score")}
+          </Button>
+        </form>
+
+        <Paper
+          className={classes.root}
+          style={{
+            backgroundImage: `url(${chest})`,
+            backgroundSize: "cover"
+          }}
+        >
+          <Table
+            style={{ backgroundColor: "rgba(255,255,255,0.75)" }}
+            className={classes.table}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>{t("Username")}</TableCell>
+                <TableCell align="right">{t("Score")}</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.state.leaderBoard &&
+                this.state.leaderBoard
+                  .sort((a, b) => {
+                    return b.score - a.score;
+                  })
+                  .map(score => (
+                    <TableRow key={score.username}>
+                      <TableCell component="th" scope="row">
+                        {score.username}
+                      </TableCell>
+                      <TableCell align="right">{score.score}</TableCell>
+                    </TableRow>
+                  ))}
+            </TableBody>
+          </Table>
+        </Paper>
+        */
+
       </div>
     );
   }
