@@ -51,7 +51,7 @@ class CreateLevel extends Component {
       <div>
         <CssBaseline />
 
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           {t("Create new level")}
         </Typography>
         <Grid container spacing={2}>
@@ -85,45 +85,11 @@ class CreateLevel extends Component {
             />
           </Grid>
 
-          {/* <FormGroup row>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="text"
-                  onClick={(e) => this.handleCheck("string")}
-                  checked={wincondition === "string"}
-                />
-              }
-              label="Text"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="image"
-                  onClick={(e) => this.handleCheck("image")}
-                  checked={wincondition === "image"}
-                />
-              }
-              label="Image"
-            />
-
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="gps"
-                  onClick={(e) => this.handleCheck("gps")}
-                  checked={wincondition === "gps"}
-                />
-              }
-              label="GPS"
-            />
-          </FormGroup> */}
-
           <Typography>{t("Select win condition")}</Typography>
 
-          <Grid container spacing={3} justify="center">
+          <Grid container spacing={3} justify='center'>
             <div
-              data-cy="text-condition-button"
+              data-cy='text-condition-button'
               onClick={e => this.handleCheck("string")}
             >
               <TextIcon clicked={this.state.wincondition === "string"} />
@@ -131,7 +97,7 @@ class CreateLevel extends Component {
             </div>
 
             <div
-              data-cy="img-condition-button"
+              data-cy='img-condition-button'
               onClick={e => this.handleCheck("image")}
             >
               <CameraIcon clicked={this.state.wincondition === "image"} />
@@ -139,7 +105,7 @@ class CreateLevel extends Component {
             </div>
 
             <div
-              data-cy="gps-condition-button"
+              data-cy='gps-condition-button'
               onClick={e => this.handleCheck("gps")}
             >
               <GPSIcon clicked={this.state.wincondition === "gps"} />
@@ -180,9 +146,9 @@ class CreateLevel extends Component {
                 windata: ""
               });
             }}
-            color="primary"
-            aria-label="Add"
-            variant="extended"
+            color='primary'
+            aria-label='Add'
+            variant='extended'
           >
             <AddIcon />
             {t("Add Level")}
