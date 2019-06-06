@@ -55,9 +55,8 @@ class LeaderBoard extends Component {
           {t("EnterNameLeaderBoard")}
         </Typography>
         <form
-          className={classes.root}
+          className={`${classes.root} ${classes.form}`}
           onSubmit={this.submitScore}
-          className={classes.form}
         >
           <TextField
             InputLabelProps={{

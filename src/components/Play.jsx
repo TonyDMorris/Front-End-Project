@@ -1,6 +1,6 @@
 import React from "react";
 import theme from "../theme.js";
-import { Container, MuiThemeProvider } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import LevelDisplay from "./LevelDisplay";
 import { withTranslation } from "react-i18next";
 import { getGame } from "../Api/Api";
@@ -24,7 +24,6 @@ class Play extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
     return (
       <Container theme={theme}>
         {this.state.game.levels ? (
