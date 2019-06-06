@@ -33,7 +33,9 @@ const styles = {
 
 class LeaderBoard extends Component {
   state = {
-    leaderBoard: []
+    leaderBoard: [],
+    username: null,
+    enteredName: false
   };
 
   componentDidMount() {
@@ -59,6 +61,7 @@ class LeaderBoard extends Component {
           align="center"
         >
           <TextField
+            value={this.state.username}
             id="standard-name"
             label={t("Name")}
             className={classes.margin}
@@ -73,6 +76,9 @@ class LeaderBoard extends Component {
             align="center"
             className={classes.margin}
             onClick={this.submitScore}
+            disabled={
+              this.state.username && !this.state.enteredName ? false : true
+            }
           >
             {t("Submit Score")}
           </Button>
@@ -124,12 +130,16 @@ class LeaderBoard extends Component {
     const { score, game_id } = this.props;
     const highScore = { game_id, username, score };
     e.preventDefault();
-    submitScore(highScore);
-    this.setState((prevState) => {
-      console.log(prevState);
-      const leaderBoard = [highScore, ...prevState.leaderBoard];
-      return { leaderBoard };
-    });
+    if (!this.state.username) {
+      alert("Please enter a username");
+    } else {
+      submitScore(highScore);
+      this.setState((prevState) => {
+        console.log(prevState);
+        const leaderBoard = [highScore, ...prevState.leaderBoard];
+        return { leaderBoard, username: "", enteredName: true };
+      });
+    }
   };
 }
 
