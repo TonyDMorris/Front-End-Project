@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import LevelInputButton from "./LevelInputButton";
+import grey from "@material-ui/core/colors/grey";
+
 import {
   Card,
   TextField,
@@ -47,6 +49,7 @@ class CreateLevel extends Component {
       windata,
       loading
     } = this.state;
+
     return (
       // <Container>
       <div>
@@ -60,7 +63,11 @@ class CreateLevel extends Component {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={mainclue}
               label={t("Main clue")}
@@ -70,7 +77,11 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={clue2}
               label={t("Second clue")}
@@ -80,7 +91,11 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={clue3}
               label={t("Third clue")}
@@ -133,6 +148,11 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={wintext}
               label={t("Level completion message")}
