@@ -73,6 +73,7 @@ class LeaderBoard extends Component {
             align='center'
             className={classes.margin}
             onClick={this.submitScore}
+            disabled={this.state.username ? false : true}
           >
             {t("Submit Score")}
           </Button>
@@ -125,12 +126,16 @@ class LeaderBoard extends Component {
     const { score, game_id } = this.props;
     const highScore = { game_id, username, score };
     e.preventDefault();
-    submitScore(highScore);
-    this.setState(prevState => {
-      console.log(prevState);
-      const leaderBoard = [highScore, ...prevState.leaderBoard];
-      return { leaderBoard, username: "" };
-    });
+    if (!this.state.username) {
+      alert("Please enter a username");
+    } else {
+      submitScore(highScore);
+      this.setState(prevState => {
+        console.log(prevState);
+        const leaderBoard = [highScore, ...prevState.leaderBoard];
+        return { leaderBoard, username: null };
+      });
+    }
   };
 }
 
