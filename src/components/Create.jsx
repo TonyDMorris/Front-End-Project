@@ -87,6 +87,7 @@ class Create extends Component {
             {
               <Button
                 variant="outlined"
+                color="inherit"
                 style={{ margin: "24px" }}
                 disabled={
                   !title || !description || !completion || !levels.length

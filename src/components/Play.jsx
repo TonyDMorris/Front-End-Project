@@ -26,7 +26,7 @@ class Play extends React.Component {
   render() {
     return (
       <Container theme={theme}>
-        {this.state.game.levels && (
+        {this.state.game.levels ? (
           <LevelDisplay
             gameLevel={this.state.game.levels[this.state.curLevel]}
             curLevel={this.state.curLevel}
@@ -47,6 +47,8 @@ class Play extends React.Component {
             score={this.state.score}
             distanceAway={this.state.distanceAway}
           />
+        ) : (
+          <p>Loading...</p>
         )}
       </Container>
     );
