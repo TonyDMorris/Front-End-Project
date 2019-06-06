@@ -1,30 +1,19 @@
 import React, { Component } from "react";
 import LevelInputButton from "./LevelInputButton";
-import grey from "@material-ui/core/colors/grey";
 
 import {
-  Card,
   TextField,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
   Button,
-  Fab,
   Grid,
-  Container,
   Typography,
   CssBaseline
 } from "@material-ui/core";
-import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
-import SvgIcon from "@material-ui/core/SvgIcon";
 import vision from "react-cloud-vision-api";
 import CameraIcon from "./CameraIcon";
 import GPSIcon from "./GPSIcon";
 import TextIcon from "./TextIcon";
 import { withTranslation } from "react-i18next";
 import { classifyImage } from "../Api/Api";
-import { ThemeProvider } from "@material-ui/styles";
 
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
@@ -46,17 +35,15 @@ class CreateLevel extends Component {
       clue2,
       clue3,
       wintext,
-      windata,
-      loading
+      windata
     } = this.state;
 
     return (
-      // <Container>
       <div>
         <CssBaseline />
 
         <div style={{ padding: 8 }}>
-          <Typography component='h1' variant='h5'>
+          <Typography component="h1" variant="h5">
             {t("Create new level")}
           </Typography>
         </div>
@@ -103,19 +90,17 @@ class CreateLevel extends Component {
             />
           </Grid>
 
-          <Typography variant='h5'>{t("Select win condition")}</Typography>
+          <Typography variant="h5">{t("Select win condition")}</Typography>
 
           <div style={{ padding: 24 }}>
             <Grid
               container
-              direction='row'
-              justify='space-around'
-              alignItems='center'
+              direction="row"
+              justify="space-around"
+              alignItems="center"
             >
               <div
-
                 data-cy="text-condition-button"
-
                 onClick={e => this.handleCheck("string")}
               >
                 <TextIcon clicked={this.state.wincondition === "string"} />
@@ -123,9 +108,7 @@ class CreateLevel extends Component {
               </div>
 
               <div
-
                 data-cy="img-condition-button"
-
                 onClick={e => this.handleCheck("image")}
               >
                 <CameraIcon clicked={this.state.wincondition === "image"} />
@@ -133,9 +116,7 @@ class CreateLevel extends Component {
               </div>
 
               <div
-
                 data-cy="gps-condition-button"
-
                 onClick={e => this.handleCheck("gps")}
               >
                 <GPSIcon clicked={this.state.wincondition === "gps"} />
@@ -201,7 +182,6 @@ class CreateLevel extends Component {
   handleChange = (str, value) => {
     this.setState({ [str]: value });
   };
-
 
   updateWinData = value => {
     this.setState({ windata: value });
