@@ -36,6 +36,7 @@ const LocDropDown = () => {
       >
         <MenuItem value={"en"}>{t("English-lang")}</MenuItem>
         <MenuItem value={"es"}>{t("Spanish-lang")}</MenuItem>
+        <MenuItem value={"it"}>{t("Italian-lang")}</MenuItem>
       </Select>
     </FormControl>
   );

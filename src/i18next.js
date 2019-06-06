@@ -10,6 +10,7 @@ const resources = {
       "Create New Game": "Create Game",
       "English-lang": "English",
       "Spanish-lang": "Spanish",
+      "Italian-lang": "Italian",
       "Create Your Game": "Create Your Game:",
       "Create game header":
         "Give your new game a name and add a short description.",
@@ -63,6 +64,7 @@ const resources = {
       "Create New Game": "Crear Juego",
       "English-lang": "Inglés",
       "Spanish-lang": "Español",
+      "Italian-lang": "Italiano",
       "Create Your Game": "Crea Tu Juego:",
       "Create game header":
         "Dale un nombre a tu juego y añade una breve descripción.",
@@ -116,6 +118,7 @@ const resources = {
       "Create New Game": "Crea Gioco",
       "English-lang": "Inglese",
       "Spanish-lang": "Spagnolo",
+      "Italian-lang": "Italiano",
       "Create Your Game": "Crea Partita:",
       "Create game header":
         "Dai un nome alla tua partita e aggiungi una breve descrizione.",
