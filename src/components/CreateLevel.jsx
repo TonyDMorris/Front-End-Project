@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import LevelInputButton from "./LevelInputButton";
+import grey from "@material-ui/core/colors/grey";
+
 import {
   Card,
   TextField,
@@ -22,6 +24,7 @@ import GPSIcon from "./GPSIcon";
 import TextIcon from "./TextIcon";
 import { withTranslation } from "react-i18next";
 import { classifyImage } from "../Api/Api";
+import { ThemeProvider } from "@material-ui/styles";
 
 vision.init({ auth: "AIzaSyB6nHUETOWX7cGDQdqv9dokDb8oXVZN-f0" });
 
@@ -46,6 +49,7 @@ class CreateLevel extends Component {
       windata,
       loading
     } = this.state;
+
     return (
       // <Container>
       <div>
@@ -59,7 +63,11 @@ class CreateLevel extends Component {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={mainclue}
               label={t("Main clue")}
@@ -69,7 +77,11 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={clue2}
               label={t("Second clue")}
@@ -79,7 +91,11 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={clue3}
               label={t("Third clue")}
@@ -97,7 +113,9 @@ class CreateLevel extends Component {
               alignItems='center'
             >
               <div
-                data-cy='text-condition-button'
+
+                data-cy="text-condition-button"
+
                 onClick={e => this.handleCheck("string")}
               >
                 <TextIcon clicked={this.state.wincondition === "string"} />
@@ -105,7 +123,9 @@ class CreateLevel extends Component {
               </div>
 
               <div
-                data-cy='img-condition-button'
+
+                data-cy="img-condition-button"
+
                 onClick={e => this.handleCheck("image")}
               >
                 <CameraIcon clicked={this.state.wincondition === "image"} />
@@ -113,7 +133,9 @@ class CreateLevel extends Component {
               </div>
 
               <div
-                data-cy='gps-condition-button'
+
+                data-cy="gps-condition-button"
+
                 onClick={e => this.handleCheck("gps")}
               >
                 <GPSIcon clicked={this.state.wincondition === "gps"} />
@@ -134,6 +156,11 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
+              InputLabelProps={{
+                style: {
+                  color: "black"
+                }
+              }}
               fullWidth
               value={wintext}
               label={t("Level completion message")}
@@ -143,7 +170,7 @@ class CreateLevel extends Component {
         </Grid>
 
         {wincondition && mainclue && clue2 && clue3 && wintext && windata && (
-          <Fab
+          <Button
             onClick={() => {
               this.props.handleLevel(this.state);
               this.setState({
@@ -155,16 +182,15 @@ class CreateLevel extends Component {
                 windata: ""
               });
             }}
-            color='primary'
-            aria-label='Add'
-            variant='extended'
+            color="black"
+            aria-label="Add"
+            variant="outlined"
+            style={{ margin: "24px" }}
           >
-            <AddIcon />
             {t("Add Level")}
-          </Fab>
+          </Button>
         )}
       </div>
-      // </Container>
     );
   }
 
@@ -175,6 +201,7 @@ class CreateLevel extends Component {
   handleChange = (str, value) => {
     this.setState({ [str]: value });
   };
+
 
   updateWinData = value => {
     this.setState({ windata: value });

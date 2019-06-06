@@ -26,14 +26,23 @@ const LevelInputButton = ({
         <TextField
           value={windata}
           fullWidth
+          InputLabelProps={{
+            style: {
+              color: "black"
+            }
+          }}
           label={t("Your answer")}
+
           onChange={e => updateWinData(e.target.value)}
+
           // style={{ width: 328 }}
         />
       )}
       {wincondition === "image" && <SnapShotCam handlePhoto={handleWinData} />}
       {wincondition === "gps" && (
-        <Button variant='outlined' onClick={handleGPS}>
+
+        <Button variant="outlined" color="inherit" onClick={handleGPS}>
+
           {t("Send GPS")}
         </Button>
       )}
