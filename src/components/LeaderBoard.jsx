@@ -91,7 +91,7 @@ class LeaderBoard extends Component {
             </form>
             <img
               src={chest}
-              style={{ maxWidth: "100vw", alignSelf: "center" }}
+              style={{ maxWidth: "80vw", alignSelf: "center" }}
             />
           </div>
         ) : (
