@@ -33,7 +33,9 @@ const styles = {
 
 class LeaderBoard extends Component {
   state = {
-    leaderBoard: []
+    leaderBoard: [],
+    username: null,
+    enteredName: false
   };
 
   componentDidMount() {
@@ -73,7 +75,9 @@ class LeaderBoard extends Component {
             align='center'
             className={classes.margin}
             onClick={this.submitScore}
-            disabled={this.state.username ? false : true}
+            disabled={
+              this.state.username && !this.state.enteredName ? false : true
+            }
           >
             {t("Submit Score")}
           </Button>
@@ -133,7 +137,7 @@ class LeaderBoard extends Component {
       this.setState(prevState => {
         console.log(prevState);
         const leaderBoard = [highScore, ...prevState.leaderBoard];
-        return { leaderBoard, username: null };
+        return { leaderBoard, username: "", enteredName: true };
       });
     }
   };
