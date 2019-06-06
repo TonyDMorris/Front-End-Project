@@ -15,9 +15,11 @@ function Header(props) {
     <div className={classes.root}>
       {/* <AppBar color="default" position="static" style={{ marginRight: 0 }}> */}
       <Toolbar>
-        <Typography variant="h4" className={classes.title}>
-          The Hunt
-        </Typography>
+        {props.location.pathname !== "/" && (
+          <Typography variant="h5" className={classes.title}>
+            <i>The Hunt</i>
+          </Typography>
+        )}
         <LocDropDown />
         {props.location.pathname === "/" ? (
           <Link className={classes.button} to="/create">
@@ -44,7 +46,7 @@ function Header(props) {
 //   }
 // });
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
   },

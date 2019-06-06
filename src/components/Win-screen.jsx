@@ -25,19 +25,27 @@ const WinScreen = props => {
   const [showLB, changeLB] = useState(false);
   const { classes } = props;
   return !showLB ? (
-    <div className={classes.container}>
-      <img src={pirate} className={classes.img} />
 
-      <Typography variant='h3' align='center'>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+        flexDirection: "column"
+      }}
+    >
+      <img src={pirate} style={{ maxWidth: "100vw", alignSelf: "center" }} />
+
+      <Typography variant="h3" align="center">
         {props.completionMes}
       </Typography>
       <Grid item xs={12} style={{ justifyContent: "center" }}>
-        <Grid container alignItems='center' justify='center'>
+        <Grid container alignItems="center" justify="center">
           <Button
-            type='submit'
-            variant='outlined'
-            color='inherit'
-            align='center'
+            type="submit"
+            variant="outlined"
+            color="inherit"
+            align="center"
             onClick={() => {
               changeLB(!showLB);
             }}

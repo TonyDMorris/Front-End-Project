@@ -20,12 +20,18 @@ class Create extends Component {
     const { title, description, completion, levels } = this.state;
     return (
       <Grid container>
-        <Container component="main" maxWidth="xs">
+        <Container
+          style={{ marginBottom: "10px" }}
+          component="main"
+          maxWidth="xs"
+        >
           <CssBaseline />
 
-          <Typography component="h1" variant="h5">
-            {t("Create Your Game")}
-          </Typography>
+          <div style={{ padding: 24 }}>
+            <Typography component="h1" variant="h5">
+              {t("Create Your Game")}
+            </Typography>
+          </div>
 
           <Typography>{t("Create game header")}</Typography>
 
@@ -72,6 +78,8 @@ class Create extends Component {
 
             {
               <Button
+                variant="outlined"
+                style={{ margin: "24px" }}
                 disabled={
                   !title || !description || !completion || !levels.length
                 }

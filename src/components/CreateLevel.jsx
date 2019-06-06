@@ -51,9 +51,11 @@ class CreateLevel extends Component {
       <div>
         <CssBaseline />
 
-        <Typography component='h1' variant='h5'>
-          {t("Create new level")}
-        </Typography>
+        <div style={{ padding: 8 }}>
+          <Typography component="h1" variant="h5">
+            {t("Create new level")}
+          </Typography>
+        </div>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
@@ -61,7 +63,7 @@ class CreateLevel extends Component {
               fullWidth
               value={mainclue}
               label={t("Main clue")}
-              onChange={e => this.handleChange("mainclue", e.target.value)}
+              onChange={(e) => this.handleChange("mainclue", e.target.value)}
             />
           </Grid>
 
@@ -71,7 +73,7 @@ class CreateLevel extends Component {
               fullWidth
               value={clue2}
               label={t("Second clue")}
-              onChange={e => this.handleChange("clue2", e.target.value)}
+              onChange={(e) => this.handleChange("clue2", e.target.value)}
             />
           </Grid>
 
@@ -81,38 +83,44 @@ class CreateLevel extends Component {
               fullWidth
               value={clue3}
               label={t("Third clue")}
-              onChange={e => this.handleChange("clue3", e.target.value)}
+              onChange={(e) => this.handleChange("clue3", e.target.value)}
             />
-          </Grid>
+          </Grid>.
+          
+          <Typography variant="h5">{t("Select win condition")}</Typography>
 
-          <Typography>{t("Select win condition")}</Typography>
-
-          <Grid container spacing={3} justify='center'>
-            <div
-              data-cy='text-condition-button'
-              onClick={e => this.handleCheck("string")}
+          <div style={{ padding: 24 }}>
+            <Grid
+              container
+              direction="row"
+              justify="space-around"
+              alignItems="center"
             >
-              <TextIcon clicked={this.state.wincondition === "string"} />
-              {t("Text")}
-            </div>
+              <div
+                data-cy="text-condition-button"
+                onClick={(e) => this.handleCheck("string")}
+              >
+                <TextIcon clicked={this.state.wincondition === "string"} />
+                {t("Text")}
+              </div>
 
-            <div
-              data-cy='img-condition-button'
-              onClick={e => this.handleCheck("image")}
-            >
-              <CameraIcon clicked={this.state.wincondition === "image"} />
-              {t("Image")}
-            </div>
+              <div
+                data-cy="img-condition-button"
+                onClick={(e) => this.handleCheck("image")}
+              >
+                <CameraIcon clicked={this.state.wincondition === "image"} />
+                {t("Image")}
+              </div>
 
-            <div
-              data-cy='gps-condition-button'
-              onClick={e => this.handleCheck("gps")}
-            >
-              <GPSIcon clicked={this.state.wincondition === "gps"} />
-              {t("GPS")}
-            </div>
-          </Grid>
-
+              <div
+                data-cy="gps-condition-button"
+                onClick={(e) => this.handleCheck("gps")}
+              >
+                <GPSIcon clicked={this.state.wincondition === "gps"} />
+                {t("GPS")}
+              </div>
+            </Grid>
+          </div>
           <Grid item xs={12}>
             <LevelInputButton
               wincondition={wincondition}
@@ -124,11 +132,10 @@ class CreateLevel extends Component {
 
           <Grid item xs={12}>
             <TextField
-              //variant="outlined"
               fullWidth
               value={wintext}
               label={t("Level completion message")}
-              onChange={e => this.handleChange("wintext", e.target.value)}
+              onChange={(e) => this.handleChange("wintext", e.target.value)}
             />
           </Grid>
         </Grid>
@@ -159,7 +166,7 @@ class CreateLevel extends Component {
     );
   }
 
-  handleCheck = winCon => {
+  handleCheck = (winCon) => {
     this.setState({ wincondition: winCon });
   };
 
@@ -167,14 +174,14 @@ class CreateLevel extends Component {
     this.setState({ [str]: value });
   };
 
-  handleWinData = value => {
+  handleWinData = (value) => {
     const { wincondition } = this.state;
     if (wincondition === "string") {
       this.setState({ windata: value, loading: false });
     }
     if (wincondition === "image") {
       this.setState({ loading: true });
-      return classifyImage(value).then(labels => {
+      return classifyImage(value).then((labels) => {
         this.setState({ windata: labels, loading: false });
       });
     }
@@ -183,8 +190,8 @@ class CreateLevel extends Component {
     }
   };
 
-  handleGPS = e => {
-    navigator.geolocation.getCurrentPosition(position => {
+  handleGPS = (e) => {
+    navigator.geolocation.getCurrentPosition((position) => {
       const lat = position.coords.latitude.toFixed(4);
       const long = position.coords.longitude.toFixed(4);
       this.setState({ loading: true });
