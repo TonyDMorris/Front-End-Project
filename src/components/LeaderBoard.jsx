@@ -51,10 +51,10 @@ class LeaderBoard extends Component {
       <div>
         {!this.state.enteredName ? (
           <div>
-            <Typography className={classes.margin} variant="h4">
+            <Typography className={classes.margin} variant='h4'>
               {t("WelcomeLeaderboard")}
             </Typography>
-            <Typography className={classes.margin} variant="body1">
+            <Typography className={classes.margin} variant='body1'>
               {t("EnterNameLeaderBoard")}
             </Typography>
             <form
@@ -68,18 +68,18 @@ class LeaderBoard extends Component {
                   }
                 }}
                 value={this.state.username ? this.state.username : ""}
-                id="standard-name"
+                id='standard-name'
                 label={t("Name")}
                 className={classes.margin}
-                onChange={(e) => {
+                onChange={e => {
                   this.handleInput(e.target.value);
                 }}
               />
               <Button
-                type="submit"
-                variant="outlined"
-                color="inherit"
-                align="center"
+                type='submit'
+                variant='outlined'
+                color='inherit'
+                align='center'
                 className={classes.margin}
                 onClick={this.submitScore}
                 disabled={
@@ -91,12 +91,13 @@ class LeaderBoard extends Component {
             </form>
             <img
               src={chest}
+              alt='treasure chest'
               style={{ maxWidth: "100vw", alignSelf: "center" }}
             />
           </div>
         ) : (
           <div>
-            <Typography className={classes.margin} variant="h4">
+            <Typography className={classes.margin} variant='h4'>
               {t("WelcomeLeaderboard")}
             </Typography>
             <Paper
@@ -113,7 +114,7 @@ class LeaderBoard extends Component {
                 <TableHead>
                   <TableRow>
                     <TableCell>{t("Username")}</TableCell>
-                    <TableCell align="right">{t("Score")}</TableCell>
+                    <TableCell align='right'>{t("Score")}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -122,14 +123,16 @@ class LeaderBoard extends Component {
                       .sort((a, b) => {
                         return b.score - a.score;
                       })
-                      .map((score) => (
-                        <TableRow key={score.username}>
-                          <TableCell component="th" scope="row">
-                            {score.username}
-                          </TableCell>
-                          <TableCell align="right">{score.score}</TableCell>
-                        </TableRow>
-                      ))}
+                      .map((score, i) => {
+                        return (
+                          <TableRow key={i}>
+                            <TableCell component='th' scope='row'>
+                              {score.username}
+                            </TableCell>
+                            <TableCell align='right'>{score.score}</TableCell>
+                          </TableRow>
+                        );
+                      })}
                 </TableBody>
               </Table>
             </Paper>
@@ -139,11 +142,11 @@ class LeaderBoard extends Component {
     );
   }
 
-  handleInput = (username) => {
+  handleInput = username => {
     this.setState({ username });
   };
 
-  submitScore = (e) => {
+  submitScore = e => {
     const { username } = this.state;
     const { score, game_id } = this.props;
     const highScore = { game_id, username, score };
@@ -152,8 +155,7 @@ class LeaderBoard extends Component {
       alert("Please enter a username");
     } else {
       submitScore(highScore);
-      this.setState((prevState) => {
-        console.log(prevState);
+      this.setState(prevState => {
         const leaderBoard = [highScore, ...prevState.leaderBoard];
         return { leaderBoard, username: "", enteredName: true };
       });
