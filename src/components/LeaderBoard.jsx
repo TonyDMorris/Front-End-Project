@@ -51,10 +51,14 @@ class LeaderBoard extends Component {
       <div>
         {!this.state.enteredName ? (
           <div>
-            <Typography className={classes.margin} variant='h4'>
+            <Typography className={classes.margin} variant='h4' align='center'>
               {t("WelcomeLeaderboard")}
             </Typography>
-            <Typography className={classes.margin} variant='body1'>
+            <Typography
+              className={classes.margin}
+              variant='body1'
+              align='center'
+            >
               {t("EnterNameLeaderBoard")}
             </Typography>
             <form
@@ -97,7 +101,7 @@ class LeaderBoard extends Component {
           </div>
         ) : (
           <div>
-            <Typography className={classes.margin} variant='h4'>
+            <Typography className={classes.margin} variant='h4' align='center'>
               {t("WelcomeLeaderboard")}
             </Typography>
             <Paper
